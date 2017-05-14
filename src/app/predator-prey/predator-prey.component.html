@@ -1,0 +1,23 @@
+<h2>
+  Darstellung eines Räuber-Beute-Systems
+</h2>
+
+<button type="button" (click)="map.addPrey()">Add Prey</button>
+<button type="button" (click)="map.addPredator()">Add Predator</button>
+
+<div>
+  <div *ngFor="let line of map.fields">
+    <a *ngFor="let cell of line" (click)="currentCell = cell" [className]="cell.type">
+      {{cell.value}}
+    </a>
+  </div>
+</div>
+
+<div *ngIf="currentCell">
+  <p> Aktuelle Zelle </p>
+  <p> {{currentCell.value}} </p>
+  <a *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
+    {{neighbour.value}}
+  </a>
+  
+</div>

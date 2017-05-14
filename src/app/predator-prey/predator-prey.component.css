@@ -1,0 +1,11 @@
+.prey{
+    color: green;
+}
+
+.predator{
+    color: red;
+}
+
+.empty{
+    color: black;
+}
