@@ -23,4 +23,12 @@ export class PredatorPreyComponent implements OnInit {
   ngOnInit() {
   }
 
+  calculate() {
+    this.map.calculateMovement();
+  }
+
+  reset() {
+    this.map = new Map(this.size);
+  }
+
 }

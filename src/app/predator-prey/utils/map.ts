@@ -1,5 +1,9 @@
 import { Cell } from './cell';
 
+function modulo (num: number, mod: number): number {
+    return ((num % mod) + mod) % mod;
+}
+
 export class Map {
 
     public fields: Cell[][];
@@ -11,20 +15,20 @@ export class Map {
         for (let i = 0; i < this.size; i++) {
             this.fields[i] = [];
             for (let j = 0; j < this.size; j++) {
-                this.fields[i][j] = new Cell(j, i, 0 );
+                this.fields[i][j] = new Cell(j, i, 0);
             }
         }
     }
 
     public getCell(xValue: number, yValue: number): Cell {
-        return this.fields[yValue % this.size][xValue % this.size];
+        return this.fields[modulo(yValue, this.size)][modulo(xValue, this.size)];
     }
 
-    public setCell(cell: Cell){
+    public setCell(cell: Cell) {
         this.fields[cell.yCoordinate][cell.xCoordinate] = cell;
     }
 
-    public getNeighbours(xValue: number, yValue: number) {
+    public getNeighbours(xValue: number, yValue: number): Cell[] {
         let tuple: Cell[] = [];
 
         // Nachbarzellen oberhalb
@@ -63,7 +67,21 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-        this.setCell(new Cell(xValue, yValue, 2, 'predator'));
+        this.setCell(new Cell(xValue, yValue, 1, 'predator'));
+    }
+
+    public calculateMovement() {
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+
+                cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
+
+                if (cell.type !== 'empty') {
+                    cell.gainEnergy();
+                }
+
+            });
+        });
     }
 
 }

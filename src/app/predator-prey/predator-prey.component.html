@@ -2,8 +2,16 @@
   Darstellung eines Räuber-Beute-Systems
 </h2>
 
+<div>
+  <label>Feldgröße</label>
+  <input [(ngModel)]="size">
+  <button type="button" (click)="reset()">Generate Map</button>
+</div>
+
 <button type="button" (click)="map.addPrey()">Add Prey</button>
 <button type="button" (click)="map.addPredator()">Add Predator</button>
+<button type="button" (click)="calculate()">Calculate</button>
+<button type="button" (click)="reset()">Reset</button>
 
 <div>
   <div *ngFor="let line of map.fields">
