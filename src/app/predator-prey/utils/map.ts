@@ -17,7 +17,11 @@ export class Map {
     }
 
     public getCell(xValue: number, yValue: number): Cell {
-        return this.fields[xValue % this.size][yValue % this.size];
+        return this.fields[yValue % this.size][xValue % this.size];
+    }
+
+    public setCell(cell: Cell){
+        this.fields[cell.yCoordinate][cell.xCoordinate] = cell;
     }
 
     public getNeighbours(xValue: number, yValue: number) {
@@ -48,8 +52,7 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-
-        this.fields[xValue][yValue] = new Cell(xValue, yValue, 1, 'prey');
+        this.setCell(new Cell(xValue, yValue, 1, 'prey'));
     }
 
     public addPredator(xValue?: number, yValue?: number) {
@@ -60,8 +63,7 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-
-        this.fields[xValue][yValue] = new Cell(xValue, yValue, 2, 'predator');
+        this.setCell(new Cell(xValue, yValue, 2, 'predator'));
     }
 
 }
