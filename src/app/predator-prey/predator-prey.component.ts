@@ -16,7 +16,7 @@ export class PredatorPreyComponent implements OnInit {
   public currentCell: Cell;
 
   constructor() {
-    this.size = 8;
+    this.size = 5;
     this.map = new Map(this.size);
   }
  // [ngClass]="{'prey': currentCell.value === 1}"
@@ -28,6 +28,7 @@ export class PredatorPreyComponent implements OnInit {
   }
 
   reset() {
+    // TODO: Anpassung der Größe Funktioniert nicht
     this.map = new Map(this.size);
   }
 

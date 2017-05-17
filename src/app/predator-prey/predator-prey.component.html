@@ -25,7 +25,8 @@
   <p> Aktuelle Zelle </p>
   <p> {{currentCell.value}} </p>
   <a *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
-    {{neighbour.value}}
+    {{neighbour.value}}.. {{neighbour.direction}},
   </a>
+  <a>direction: {{currentCell.direction}}</a>
 
 </div>

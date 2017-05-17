@@ -74,10 +74,21 @@ export class Map {
         this.fields.forEach(line => {
             line.forEach(cell => {
 
-                cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
+                // cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
 
                 if (cell.type !== 'empty') {
                     cell.gainEnergy();
+                    cell.moveDirection(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
+                }
+
+            });
+        });
+
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+
+                if (cell.type === 'empty') {
+                    cell.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
                 }
 
             });
