@@ -1,32 +1,39 @@
 <h2>
   Darstellung eines Räuber-Beute-Systems
 </h2>
+<md-card>
+  <div>
+    <md-input-container>
+      <input mdInput [(ngModel)]="size" placeholder="Feldgröße">
+    </md-input-container>
+    <button md-raised-button type="button" (click)="reset()">Generate Map</button>
+  </div>
+
+  <button md-raised-button type="button" (click)="map.addPrey()">Add Prey</button>
+  <button md-raised-button type="button" (click)="map.addPredator()">Add Predator</button>
+  <button md-raised-button type="button" (click)="calculate()">Calculate</button>
+  <button md-raised-button type="button" (click)="reset()">Reset</button>
+</md-card>
+
 
 <div>
-  <label>Feldgröße</label>
-  <input [(ngModel)]="size">
-  <button type="button" (click)="reset()">Generate Map</button>
-</div>
-
-<button type="button" (click)="map.addPrey()">Add Prey</button>
-<button type="button" (click)="map.addPredator()">Add Predator</button>
-<button type="button" (click)="calculate()">Calculate</button>
-<button type="button" (click)="reset()">Reset</button>
-
-<div>
-  <div *ngFor="let line of map.fields">
-    <a *ngFor="let cell of line" (click)="currentCell = cell" [className]="cell.type">
+  <md-card>
+    <div *ngFor="let line of map.fields">
+      <a *ngFor="let cell of line" (click)="currentCell = cell" [className]="cell.type">
       {{cell.value}}
     </a>
-  </div>
+    </div>
+  </md-card>
 </div>
 
+
 <div *ngIf="currentCell">
-  <p> Aktuelle Zelle </p>
-  <p> {{currentCell.value}} </p>
-  <a *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
+  <md-card>
+    <p> Aktuelle Zelle </p>
+    <p> {{currentCell.value}} </p>
+    <a *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
     {{neighbour.value}}.. {{neighbour.direction}},
   </a>
-  <a>direction: {{currentCell.direction}}</a>
-
+    <a>direction: {{currentCell.direction}}</a>
+  </md-card>
 </div>

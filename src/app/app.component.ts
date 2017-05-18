@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Beasrbeitung der Aufgaben für den Kurs Soft Computing im SS17 - VAWI';
+  title = 'Bearbeitung der Aufgaben für den Kurs Soft Computing im SS17 - VAWI';
 }
