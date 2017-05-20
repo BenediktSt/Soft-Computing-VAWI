@@ -49,25 +49,23 @@ export class Cell {
         // choose direction to go to
         if (potentialDirections.length !== 0) {
             this.direction = Math.floor((Math.random() * potentialDirections.length));
-            console.log(`Set direction of ${this.xCoordinate},${this.yCoordinate} to ${this.direction}`);
         }
     }
 
     public processMovement(tupel: Cell[]) {
-        console.log(`called for cell ${this.xCoordinate}, ${this.yCoordinate}`)
         tupel.forEach((cell, index) => {
-            console.log('direction: ' + cell.direction + ', index: ' + index);
-            if (cell.direction === null) {
-                // console.log('no hit');
-                // do nothing
-            }else if ((cell.direction + index) === 7) { // Wenn Position und Ausrichtung passend sind
+            if (cell.direction !== null &&
+            cell.type === 'empty' &&
+            (cell.direction + index) === 7) { // Wenn Position und Ausrichtung passend sind
                 // der erste Treffer gewinnt
-                console.log('hit');
                 this.value  = cell.value;
                 this.direction = null;
                 this.type = cell.type;
-                // this.id = cell.id;
                 return;
+            }else if (cell.direction !== null && cell.type !== 'empty') {
+                this.value = 0;
+                this.direction = null;
+                this.type = 'empty';
             }
         });
 

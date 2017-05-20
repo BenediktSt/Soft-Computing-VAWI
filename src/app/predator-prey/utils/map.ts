@@ -89,6 +89,8 @@ export class Map {
 
                 if (cell.type === 'empty') {
                     cell.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
+                }else{
+                    
                 }
 
             });

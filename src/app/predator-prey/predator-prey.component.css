@@ -1,11 +1,20 @@
-.prey{
-    color: green;
+
+md-grid-tile.empty {
+  background: #B19CD9;
 }
 
-.predator{
-    color: red;
+md-grid-tile.predator {
+  background: lightcoral;
 }
 
-.empty{
-    color: black;
+md-grid-tile.prey {
+  background: lightgreen;
+}
+
+
+p.thick {
+    font-weight: bold;
+}
+.content-card {
+    margin: 5px;
 }

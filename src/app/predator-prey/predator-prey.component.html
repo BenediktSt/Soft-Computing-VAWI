@@ -1,7 +1,7 @@
 <h2>
   Darstellung eines Räuber-Beute-Systems
 </h2>
-<md-card>
+<md-card class="content-card">
   <div>
     <md-input-container>
       <input mdInput [(ngModel)]="size" placeholder="Feldgröße">
@@ -17,23 +17,42 @@
 
 
 <div>
-  <md-card>
-    <div *ngFor="let line of map.fields">
-      <a *ngFor="let cell of line" (click)="currentCell = cell" [className]="cell.type">
-      {{cell.value}}
-    </a>
-    </div>
+  <md-card class="content-card">
+    <md-grid-list [cols]="size" rowHeight="50px">
+      <div *ngFor="let line of map.fields">
+        <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [className]="cell.type">
+          {{cell.value}}
+        </md-grid-tile>
+      </div>
+    </md-grid-list>
   </md-card>
 </div>
 
 
 <div *ngIf="currentCell">
-  <md-card>
-    <p> Aktuelle Zelle </p>
-    <p> {{currentCell.value}} </p>
-    <a *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
-    {{neighbour.value}}.. {{neighbour.direction}},
-  </a>
-    <a>direction: {{currentCell.direction}}</a>
+  <md-card class="content-card">
+    <md-card-header>
+      <md-card-title> Aktuelle Zelle </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <p class="thick">Koordinaten: </p>
+      <p>{{currentCell.xCoordinate}}, {{currentCell.yCoordinate}} </p>
+      <p class="thick">Wert: </p>
+      <p>{{currentCell.value}} </p>
+      <p class="thick">Typ: </p>
+      <p>{{currentCell.type}} </p>
+      <p class="thick">Ausrichtung: </p>
+      <p *ngIf="currentCell.direction !== null"> {{currentCell.direction}} </p>
+      <p *ngIf="currentCell.direction === null"> null </p>
+      <p class="thick">Nachbarn: </p>
+      <span *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
+        {{neighbour.value}} ... {{neighbour.direction}},
+      </span>
+    </md-card-content>
+    <md-card-actions>
+    <button md-button (click)="currentCell=null">
+      <md-icon>close</md-icon>
+      SCHLIESSEN </button>
+  </md-card-actions>
   </md-card>
 </div>
