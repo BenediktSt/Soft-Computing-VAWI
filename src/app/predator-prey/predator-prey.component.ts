@@ -16,7 +16,7 @@ export class PredatorPreyComponent implements OnInit {
   public currentCell: Cell;
 
   constructor() {
-    this.size = 5;
+    this.size = 15;
     this.map = new Map(this.size);
   }
  // [ngClass]="{'prey': currentCell.value === 1}"

@@ -20,7 +20,7 @@
   <md-card class="content-card">
     <md-grid-list [cols]="size" rowHeight="50px">
       <div *ngFor="let line of map.fields">
-        <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [className]="cell.type">
+        <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [style.background]="cell.color"> <!-- [className]="cell.type"-->
           {{cell.value}}
         </md-grid-tile>
       </div>
@@ -37,6 +37,8 @@
     <md-card-content>
       <p class="thick">Koordinaten: </p>
       <p>{{currentCell.xCoordinate}}, {{currentCell.yCoordinate}} </p>
+      <p class="thick">ID: </p>
+      <p>{{currentCell.id}} </p>
       <p class="thick">Wert: </p>
       <p>{{currentCell.value}} </p>
       <p class="thick">Typ: </p>

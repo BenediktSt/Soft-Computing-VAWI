@@ -1,21 +1,28 @@
 import { Cell } from './cell';
 
-function modulo (num: number, mod: number): number {
+function modulo(num: number, mod: number): number {
     return ((num % mod) + mod) % mod;
 }
+
+export const colorEmpty = '#B19CD9';
+export const colorPrey = 'lightgreen';
+export const colorPredator = 'lightcoral';
 
 export class Map {
 
     public fields: Cell[][];
+    private numCells: number;
 
     constructor(public size: number) {
 
         this.fields = [];
+        this.numCells = 1;
 
         for (let i = 0; i < this.size; i++) {
             this.fields[i] = [];
             for (let j = 0; j < this.size; j++) {
-                this.fields[i][j] = new Cell(j, i, 0);
+                this.fields[i][j] = new Cell(j, i, 0, 0);
+                // this.numCells++;
             }
         }
     }
@@ -29,7 +36,7 @@ export class Map {
     }
 
     public getNeighbours(xValue: number, yValue: number): Cell[] {
-        let tuple: Cell[] = [];
+        const tuple: Cell[] = [];
 
         // Nachbarzellen oberhalb
         tuple.push(this.getCell(xValue - 1, yValue - 1));
@@ -56,7 +63,8 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-        this.setCell(new Cell(xValue, yValue, 1, 'prey'));
+        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'prey', colorPrey));
+        this.numCells++;
     }
 
     public addPredator(xValue?: number, yValue?: number) {
@@ -67,16 +75,19 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-        this.setCell(new Cell(xValue, yValue, 1, 'predator'));
+        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'predator', colorPredator));
+        this.numCells++;
     }
 
     public calculateMovement() {
         this.fields.forEach(line => {
             line.forEach(cell => {
 
-                // cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
+                if (cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), this.numCells)) {
+                    this.numCells ++;
+                }
 
-                if (cell.type !== 'empty') {
+                if (cell.type !== 'empty' && !cell.reproduced) {
                     cell.gainEnergy();
                     cell.moveDirection(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
                 }
@@ -86,13 +97,20 @@ export class Map {
 
         this.fields.forEach(line => {
             line.forEach(cell => {
-
                 if (cell.type === 'empty') {
                     cell.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
-                }else{
-                    
                 }
+            });
+        });
 
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+                if (cell.type !== 'empty') {
+                    cell.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
+                }
+                if (cell.reproduced) {
+                    cell.reproduced = false;
+                }
             });
         });
     }
