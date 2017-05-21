@@ -2,29 +2,56 @@
   Darstellung eines Räuber-Beute-Systems
 </h2>
 <md-card class="content-card">
-  <div>
-    <md-input-container>
-      <input mdInput [(ngModel)]="size" placeholder="Feldgröße">
-    </md-input-container>
-    <button md-raised-button type="button" (click)="reset()">Generate Map</button>
-  </div>
-
-  <button md-raised-button type="button" (click)="map.addPrey()">Add Prey</button>
-  <button md-raised-button type="button" (click)="map.addPredator()">Add Predator</button>
-  <button md-raised-button type="button" (click)="calculate()">Calculate</button>
-  <button md-raised-button type="button" (click)="reset()">Reset</button>
+  <md-card-content>
+  <md-input-container>
+    <input mdInput [(ngModel)]="size" placeholder="Feldgröße">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="populationLevel" placeholder="Fortpflanzungslevel">
+  </md-input-container>
+  </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="reset()">
+        <md-icon>settings</md-icon>
+        Generate Map
+      </button>
+    </md-card-actions>
 </md-card>
 
 
 <div>
   <md-card class="content-card">
-    <md-grid-list [cols]="size" rowHeight="50px">
-      <div *ngFor="let line of map.fields">
-        <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [style.background]="cell.color"> <!-- [className]="cell.type"-->
-          {{cell.value}}
-        </md-grid-tile>
-      </div>
-    </md-grid-list>
+    <md-card-content>
+      <md-grid-list [cols]="size" rowHeight="50px">
+        <div *ngFor="let line of map.fields">
+          <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [style.background]="cell.color">
+            {{cell.value}}
+          </md-grid-tile>
+        </div>
+      </md-grid-list>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="map.addPrey()">
+        <md-icon>add_circle_outline</md-icon>
+        Add Prey
+      </button>
+      <button md-button (click)="map.addPredator()">
+        <md-icon>add_circle</md-icon>
+        Add Predator
+      </button>
+      <button md-button (click)="calculate()">
+        <md-icon>navigate_next</md-icon>
+        Calculate
+      </button>
+      <button md-button (click)="iterate()">
+        <md-icon>cached</md-icon>
+        Iterate
+      </button>
+      <button md-button (click)="reset()">
+        <md-icon>close</md-icon>
+        Reset
+      </button>
+    </md-card-actions>
   </md-card>
 </div>
 
@@ -52,9 +79,10 @@
       </span>
     </md-card-content>
     <md-card-actions>
-    <button md-button (click)="currentCell=null">
-      <md-icon>close</md-icon>
-      SCHLIESSEN </button>
-  </md-card-actions>
+      <button md-button (click)="currentCell=null">
+        <md-icon>close</md-icon>
+        SCHLIESSEN
+      </button>
+    </md-card-actions>
   </md-card>
 </div>

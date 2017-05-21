@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cell } from './utils/cell';
 import { Map } from './utils/map';
+import { Ruleset } from './utils/rules';
 
 @Component({
   selector: 'app-predator-prey',
@@ -9,17 +10,23 @@ import { Map } from './utils/map';
 })
 export class PredatorPreyComponent implements OnInit {
 
+  public size: number;
   public map: Map;
 
-  public size: number;
+  public populationLevel: number;
+  public ruleSet: Ruleset;
 
   public currentCell: Cell;
 
   constructor() {
-    this.size = 15;
-    this.map = new Map(this.size);
+    this.populationLevel = 8;
+    this.ruleSet = new Ruleset(this.populationLevel);
+
+    this.size = 12;
+    this.map = new Map(this.size, this.ruleSet);
+
   }
- // [ngClass]="{'prey': currentCell.value === 1}"
+
   ngOnInit() {
   }
 
@@ -27,9 +34,13 @@ export class PredatorPreyComponent implements OnInit {
     this.map.calculateMovement();
   }
 
+  iterate() {
+    this.map.iterate();
+  }
+
   reset() {
     // TODO: Anpassung der Größe Funktioniert nicht
-    this.map = new Map(this.size);
+    this.map = new Map(this.size, this.ruleSet);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Cell } from './cell';
+import { Ruleset } from './rules';
 
 function modulo(num: number, mod: number): number {
     return ((num % mod) + mod) % mod;
@@ -13,7 +14,7 @@ export class Map {
     public fields: Cell[][];
     private numCells: number;
 
-    constructor(public size: number) {
+    constructor(public size: number, public ruleSet: Ruleset) {
 
         this.fields = [];
         this.numCells = 1;
@@ -113,6 +114,21 @@ export class Map {
                 }
             });
         });
+    }
+
+    public iterate () {
+         this.fields.forEach(line => {
+            line.forEach(cell => {
+                cell = this.ruleSet.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = this.ruleSet.gainEnergy(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+            });
+         });
+
+         this.fields.forEach(line => {
+            line.forEach(cell => {
+                cell = this.ruleSet.unmarkReproduktion(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+            });
+         });
     }
 
 }
