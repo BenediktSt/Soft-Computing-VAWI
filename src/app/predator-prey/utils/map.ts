@@ -29,7 +29,7 @@ export class Map {
     }
 
     public getNewID() {
-        this.numCells ++;
+        this.numCells++;
         return this.numCells;
     }
 
@@ -90,7 +90,7 @@ export class Map {
             line.forEach(cell => {
 
                 if (cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), this.numCells)) {
-                    this.numCells ++;
+                    this.numCells++;
                 }
 
                 if (cell.type !== 'empty' && !cell.reproduced) {
@@ -121,21 +121,37 @@ export class Map {
         });
     }
 
-    public iterate () {
-         this.fields.forEach(line => {
+    public iterate() {
+        this.fields.forEach(line => {
             line.forEach(cell => {
                 cell = this.ruleSet.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.gainEnergy(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.moveDirection(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
-         });
+        });
 
-         this.fields.forEach(line => {
+        this.fields.forEach(line => {
             line.forEach(cell => {
-                cell = this.ruleSet.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                if (cell.type === 'empty') {
+                    cell = this.ruleSet.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+                if (cell.type !== 'empty') {
+                    cell = this.ruleSet.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+
+        this.fields.forEach(line => {
+            line.forEach(cell => {
                 cell = this.ruleSet.unmarkReproduktion(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
-         });
+        });
+
     }
 
 }

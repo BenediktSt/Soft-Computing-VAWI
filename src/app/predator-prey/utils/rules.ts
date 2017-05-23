@@ -67,7 +67,6 @@ export class Ruleset {
             tuple[3].reproduced &&
             tuple[3].value === 1) {
             newCell.value = Math.floor(activeCell.value / 2);
-            console.log(newCell.value);
             newCell.reproduced = true;
         }
 
@@ -84,7 +83,8 @@ export class Ruleset {
         const newCell: Cell = activeCell;
         const potentialDirections: Number[] = [];
 
-        if (activeCell.type !== 'empty') {
+        if (activeCell.type !== 'empty' &&
+            !activeCell.reproduced) {
             // get aviallable fields
             tuple.forEach((cell, index) => {
                 if (cell.type === 'empty') {
@@ -109,8 +109,20 @@ export class Ruleset {
         const newCell: Cell = activeCell;
 
         tuple.forEach((cell, index) => {
-            if (cell.direction !== null &&
+            if (activeCell.type === 'prey' &&
+                cell.type === 'predator' &&
+                (cell.direction + index) === 7
+                ) {
+                // entfernen der Beute
+                newCell.value = cell.value + 10;
+                newCell.direction = null;
+                newCell.type = cell.type;
+                newCell.color = cell.color;
+                newCell.id = cell.id;
+            }else if (
+                cell.direction !== null &&
                 activeCell.type === 'empty' &&
+                !activeCell.reproduced &&
                 (cell.direction + index) === 7) { // Wenn Position und Ausrichtung passend sind
                 // New cell after movement
                 newCell.value = cell.value;
@@ -121,7 +133,8 @@ export class Ruleset {
             } else if (
                 activeCell.direction !== null &&
                 activeCell.type !== 'empty' &&
-                cell.id === activeCell.id) {
+                !activeCell.reproduced &&
+                activeCell.id === cell.id) {
                 // reset the old Cell
                 newCell.value = 0;
                 newCell.direction = null;
