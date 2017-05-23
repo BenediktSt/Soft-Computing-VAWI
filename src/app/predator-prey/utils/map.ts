@@ -17,7 +17,7 @@ export class Map {
     constructor(public size: number, public ruleSet: Ruleset) {
 
         this.fields = [];
-        this.numCells = 1;
+        this.numCells = 0;
 
         for (let i = 0; i < this.size; i++) {
             this.fields[i] = [];
@@ -26,6 +26,11 @@ export class Map {
                 // this.numCells++;
             }
         }
+    }
+
+    public getNewID() {
+        this.numCells ++;
+        return this.numCells;
     }
 
     public getCell(xValue: number, yValue: number): Cell {
@@ -64,8 +69,8 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'prey', colorPrey));
         this.numCells++;
+        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'prey', colorPrey));
     }
 
     public addPredator(xValue?: number, yValue?: number) {
@@ -76,8 +81,8 @@ export class Map {
         if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
         }
-        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'predator', colorPredator));
         this.numCells++;
+        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'predator', colorPredator));
     }
 
     public calculateMovement() {
@@ -121,11 +126,13 @@ export class Map {
             line.forEach(cell => {
                 cell = this.ruleSet.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.gainEnergy(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = this.ruleSet.moveDirection(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
          });
 
          this.fields.forEach(line => {
             line.forEach(cell => {
+                cell = this.ruleSet.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.unmarkReproduktion(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
          });

@@ -25,6 +25,8 @@ export class PredatorPreyComponent implements OnInit {
     this.size = 12;
     this.map = new Map(this.size, this.ruleSet);
 
+    this.ruleSet.setMap(this.map);
+
   }
 
   ngOnInit() {
