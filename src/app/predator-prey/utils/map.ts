@@ -126,7 +126,8 @@ export class Map {
             line.forEach(cell => {
                 cell = this.ruleSet.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.gainEnergy(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                cell = this.ruleSet.moveDirection(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = this.ruleSet.moveDirectionPrey(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = this.ruleSet.moveDirectionPredator(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
         });
 

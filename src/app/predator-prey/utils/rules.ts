@@ -74,16 +74,16 @@ export class Ruleset {
 
     }
 
-    moveDirection(tuple: Cell[], activeCell: Cell): Cell {
+    moveDirectionPrey(tuple: Cell[], activeCell: Cell): Cell {
         /**
-         * Eine Zelle vom Typ Beute oder Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
+         * Eine Zelle vom Typ Beute entscheidet, in welche Richtung sie sich bewegen möchte.
          * Dies passiert zufällig und kann nur auf freie Felder geschehen.
          * In dieser Regel findet noch keine Bewegung statt, sondern nur die Bestimmung der Richtung.
          */
         const newCell: Cell = activeCell;
-        const potentialDirections: Number[] = [];
+        const potentialDirections: number[] = [];
 
-        if (activeCell.type !== 'empty' &&
+        if (activeCell.type === 'prey' &&
             !activeCell.reproduced) {
             // get aviallable fields
             tuple.forEach((cell, index) => {
@@ -94,7 +94,40 @@ export class Ruleset {
 
             // choose direction to go to
             if (potentialDirections.length !== 0) {
-                newCell.direction = Math.floor((Math.random() * potentialDirections.length));
+                newCell.direction = potentialDirections[Math.floor((Math.random() * potentialDirections.length))];
+            }
+        }
+        return newCell;
+    }
+
+    moveDirectionPredator(tuple: Cell[], activeCell: Cell): Cell {
+        /**
+         * Eine Zelle vom Typ Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
+         * Der Räuber bewegt sich auf das Feld einer Beute zu.
+         * Wenn keine Beute im Umkreis ist, bewegt sich der Räuber auf ein zufälliges Feld.
+         */
+        const newCell: Cell = activeCell;
+        const potentialDirections: number[] = [];
+
+        if (activeCell.type === 'predator') {
+            // search for prey
+            tuple.forEach((cell, index) => {
+                if (cell.type === 'prey') {
+                    newCell.direction = index;
+                    return newCell;
+                }
+            });
+
+            // get aviallable fields
+            tuple.forEach((cell, index) => {
+                if (cell.type === 'empty') {
+                    potentialDirections.push(index);
+                }
+            });
+
+            // choose direction to go to
+            if (potentialDirections.length !== 0) {
+                newCell.direction = potentialDirections[Math.floor((Math.random() * potentialDirections.length))];
             }
         }
         return newCell;
