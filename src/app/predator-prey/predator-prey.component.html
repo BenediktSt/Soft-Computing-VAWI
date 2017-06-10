@@ -120,8 +120,9 @@
 <div>
   <md-card>
     <canvas baseChart
-      [data]="lineChartData"
+      [datasets]="lineChartData"
       [labels]="lineChartLabels"
+      [colors]="lineChartColors"
       [options]="lineChartOptions"
       [chartType]="lineChartType">
     </canvas>
