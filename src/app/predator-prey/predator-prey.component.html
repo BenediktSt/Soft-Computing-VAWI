@@ -1,0 +1,130 @@
+<h2>
+  Darstellung eines Räuber-Beute-Systems
+</h2>
+<div *ngIf="showNewMapForm">
+  <md-card class="content-card">
+    <md-card-content>
+      <form [formGroup]="newMapForm">
+        <md-input-container>
+          <input mdInput formControlName="size" type="number" placeholder="Feldgröße">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="populationLevel" type="number" placeholder="Fortpflanzungslevel">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="startLevelPredator" type="number" placeholder="Startlevel der Räuber">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="energyThroughEating" type="number" placeholder="Energiegewinn durch Essen">
+        </md-input-container>
+      </form>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="generateNewMap()">
+        <md-icon>settings</md-icon>
+        Map generieren
+      </button>
+      <button md-button (click)="showNewMapForm=false; newMapForm.reset()">
+        <md-icon>close</md-icon>
+        SCHLIESSEN
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+
+<div>
+  <md-card class="content-card">
+    <md-card-header>
+      <md-card-subtitle>
+        <md-input-container>
+          <input mdInput [(ngModel)]="size" placeholder="Feldgröße" disabled>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [(ngModel)]="populationLevel" placeholder="Fortpflanzungslevel" disabled>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [(ngModel)]="startLevelPredator" placeholder="Startlevel der Räuber" disabled>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [(ngModel)]="energyThroughEating" placeholder="Energiegewinn durch Essen" disabled>
+        </md-input-container>
+      </md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <md-grid-list [cols]="size" rowHeight="fit">
+        <div *ngFor="let line of map.fields">
+          <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [style.background]="cell.color">
+            {{cell.value}}
+          </md-grid-tile>
+        </div>
+      </md-grid-list>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="map.addPrey()">
+        <md-icon>add_circle_outline</md-icon>
+        Beute
+      </button>
+      <button md-button (click)="map.addPredator()">
+        <md-icon>add_circle</md-icon>
+       Räuber
+      </button>
+      <button md-button (click)="iterate()">
+        <md-icon>cached</md-icon>
+        Iteration
+      </button>
+      <button md-button (click)="reset()">
+        <md-icon>close</md-icon>
+        Reset
+      </button>
+      <button md-button (click)="showNewMapForm=true" *ngIf="!showNewMapForm">
+        <md-icon>settings</md-icon>
+        Neue Map generieren
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+
+<div *ngIf="currentCell">
+  <md-card class="content-card">
+    <md-card-header>
+      <md-card-title> Aktuelle Zelle </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <p class="thick">Koordinaten: </p>
+      <p>{{currentCell.xCoordinate}}, {{currentCell.yCoordinate}} </p>
+      <p class="thick">ID: </p>
+      <p>{{currentCell.id}} </p>
+      <p class="thick">Wert: </p>
+      <p>{{currentCell.value}} </p>
+      <p class="thick">Typ: </p>
+      <p>{{currentCell.type}} </p>
+      <p class="thick">Ausrichtung: </p>
+      <p *ngIf="currentCell.direction !== null"> {{currentCell.direction}} </p>
+      <p *ngIf="currentCell.direction === null"> null </p>
+      <p class="thick">Nachbarn: </p>
+      <span *ngFor="let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)"> 
+        {{neighbour.value}} ... {{neighbour.direction}},
+      </span>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="currentCell=null">
+        <md-icon>close</md-icon>
+        SCHLIESSEN
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<div>
+  <md-card>
+    <canvas baseChart
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [colors]="lineChartColors"
+      [options]="lineChartOptions"
+      [chartType]="lineChartType">
+    </canvas>
+  </md-card>
+</div>

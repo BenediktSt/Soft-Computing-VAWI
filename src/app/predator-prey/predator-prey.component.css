@@ -1,0 +1,28 @@
+
+md-grid-tile.empty {
+  background: #B19CD9;
+}
+
+md-grid-tile.predator {
+  background: lightcoral;
+}
+
+md-grid-tile.prey {
+  background: lightgreen;
+}
+
+
+p.thick {
+    font-weight: bold;
+}
+.content-card {
+    margin: 5px;
+}
+
+h2 {
+    font-family: Roboto, Helvetica,sans-serif;
+}
+
+md-grid-list {
+  height: 500px;
+}
