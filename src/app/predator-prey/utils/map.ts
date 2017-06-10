@@ -14,7 +14,10 @@ export class Map {
     public fields: Cell[][];
     private numCells: number;
 
-    constructor(public size: number, public ruleSet: Ruleset) {
+    constructor(
+        public size: number,
+        public ruleSet: Ruleset,
+        public startLevelPredator: number) {
 
         this.fields = [];
         this.numCells = 0;
@@ -82,43 +85,7 @@ export class Map {
             yValue = Math.floor((Math.random() * this.size));
         }
         this.numCells++;
-        this.setCell(new Cell(xValue, yValue, 10, this.numCells, 'predator', colorPredator));
-    }
-
-    public calculateMovement() {
-        this.fields.forEach(line => {
-            line.forEach(cell => {
-
-                if (cell.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), this.numCells)) {
-                    this.numCells++;
-                }
-
-                if (cell.type !== 'empty' && !cell.reproduced) {
-                    cell.gainEnergy();
-                    cell.moveDirection(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
-                }
-
-            });
-        });
-
-        this.fields.forEach(line => {
-            line.forEach(cell => {
-                if (cell.type === 'empty') {
-                    cell.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
-                }
-            });
-        });
-
-        this.fields.forEach(line => {
-            line.forEach(cell => {
-                if (cell.type !== 'empty') {
-                    cell.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate));
-                }
-                if (cell.reproduced) {
-                    cell.reproduced = false;
-                }
-            });
-        });
+        this.setCell(new Cell(xValue, yValue, this.startLevelPredator, this.numCells, 'predator', colorPredator));
     }
 
     public iterate() {
@@ -134,8 +101,8 @@ export class Map {
 
         this.fields.forEach(line => {
             line.forEach(cell => {
-                if (cell.type === 'empty') {
-                    cell = this.ruleSet.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                if (cell.type !== 'predator') {
+                    cell = this.ruleSet.processMovementPredator(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 }
             });
         });
@@ -143,7 +110,23 @@ export class Map {
         this.fields.forEach(line => {
             line.forEach(cell => {
                 if (cell.type !== 'empty') {
-                    cell = this.ruleSet.processMovement(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                    cell = this.ruleSet.processMovementPredator(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+                if (cell.type === 'empty') {
+                    cell = this.ruleSet.processMovementPrey(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+                if (cell.type !== 'empty') {
+                    cell = this.ruleSet.processMovementPrey(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 }
             });
         });

@@ -5,7 +5,9 @@ export class Ruleset {
 
     public map: Map;
 
-    constructor(public populationLevel: number) { }
+    constructor(
+        public populationLevel: number,
+        public energyThroughEating: number) { }
 
     // No Rule
     setMap(map: Map) {
@@ -147,23 +149,18 @@ export class Ruleset {
         const potentialDirections: number[] = [];
 
         if (activeCell.type === 'predator') {
-            // search for prey
+            // search for prey or availlable fields
             tuple.forEach((cell, index) => {
                 if (cell.type === 'prey') {
                     newCell.direction = index;
                     return newCell;
-                }
-            });
-
-            // get aviallable fields
-            tuple.forEach((cell, index) => {
-                if (cell.type === 'empty') {
+                }else if (cell.type === 'empty') {
                     potentialDirections.push(index);
                 }
             });
 
             // choose direction to go to
-            if (potentialDirections.length !== 0) {
+            if (potentialDirections.length !== 0 && newCell.direction === null) {
                 newCell.direction = potentialDirections[Math.floor((Math.random() * potentialDirections.length))];
             }
         }
@@ -171,30 +168,21 @@ export class Ruleset {
     }
 
     /**
-     * Eine Zelle vom Typ Beute oder Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
-     * Dies passiert zufällig und kann nur auf freie Felder geschehen.
-     * In dieser Regel findet noch keine Bewegung statt, sondern nur die Bestimmung der Richtung.
+     * Eine Zelle vom Typ Beute setzt die bereits definierte Bewegung um
+     * Dies basiert auf der Ausrichtung der Zelle.
+     * Die Ausgangsszelle wird bei diesem Schritt geleert.
      */
-    processMovement(tuple: Cell[], activeCell: Cell): Cell {
+    processMovementPrey(tuple: Cell[], activeCell: Cell): Cell {
 
         const newCell: Cell = activeCell;
 
         tuple.forEach((cell, index) => {
-            if (activeCell.type === 'prey' &&
-                cell.type === 'predator' &&
-                (cell.direction + index) === 7
-            ) {
-                // entfernen der Beute
-                newCell.value = cell.value + 10;
-                newCell.direction = null;
-                newCell.type = cell.type;
-                newCell.color = cell.color;
-                newCell.id = cell.id;
-            } else if (
+            if (
                 cell.direction !== null &&
+                cell.type === 'prey' &&
                 activeCell.type === 'empty' &&
                 !activeCell.reproduced &&
-                (cell.direction + index) === 7) { // Wenn Position und Ausrichtung passend sind
+                (cell.direction + index) === 7) {
                 // New cell after movement
                 newCell.value = cell.value;
                 newCell.direction = null;
@@ -203,7 +191,7 @@ export class Ruleset {
                 newCell.id = cell.id;
             } else if (
                 activeCell.direction !== null &&
-                activeCell.type !== 'empty' &&
+                activeCell.type === 'prey' &&
                 !activeCell.reproduced &&
                 activeCell.id === cell.id) {
                 // reset the old Cell
@@ -217,17 +205,53 @@ export class Ruleset {
         return newCell;
     }
 
+    /**
+     * Eine Zelle vom Typ Räuber setzt die bereits definierte Bewegung um
+     * Dies basiert auf der Ausrichtung der Zelle.
+     * Falls die neue Zelle eine Beute ist, wird diese entfernt.
+     * Die Ausgangsszelle wird bei diesem Schritt geleert.
+     */
+    processMovementPredator(tuple: Cell[], activeCell: Cell): Cell {
+
+        const newCell: Cell = activeCell;
+
+        tuple.forEach((cell, index) => {
+            if (activeCell.type === 'prey' &&
+                cell.type === 'predator' &&
+                (cell.direction + index) === 7
+            ) {
+                // remove prey
+                newCell.value = cell.value + this.energyThroughEating;
+                newCell.direction = null;
+                newCell.type = cell.type;
+                newCell.color = cell.color;
+                newCell.id = cell.id;
+            } else if (
+                cell.direction !== null &&
+                cell.type === 'predator' &&
+                activeCell.type === 'empty' &&
+                !activeCell.reproduced &&
+                (cell.direction + index) === 7) {
+                // New cell after movement
+                newCell.value = cell.value;
+                newCell.direction = null;
+                newCell.type = cell.type;
+                newCell.color = cell.color;
+                newCell.id = cell.id;
+            } else if (
+                activeCell.direction !== null &&
+                activeCell.type === 'predator' &&
+                activeCell.id === cell.id) {
+                // reset the old Cell
+                newCell.value = 0;
+                newCell.direction = null;
+                newCell.type = 'empty';
+                newCell.color = colorEmpty;
+                newCell.id = 0;
+            }
+        });
+        return newCell;
+    }
 
 
-
-
-
-
-
-
-
-    /*
-    rule(tuple: Cell[], activeCell: Cell): Cell {
-
-    }*/
 }

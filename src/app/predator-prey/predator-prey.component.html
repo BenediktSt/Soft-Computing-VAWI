@@ -1,28 +1,58 @@
 <h2>
   Darstellung eines Räuber-Beute-Systems
 </h2>
-<md-card class="content-card">
-  <md-card-content>
-  <md-input-container>
-    <input mdInput [(ngModel)]="size" placeholder="Feldgröße">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="populationLevel" placeholder="Fortpflanzungslevel">
-  </md-input-container>
-  </md-card-content>
+<div *ngIf="showNewMapForm">
+  <md-card class="content-card">
+    <md-card-content>
+      <form [formGroup]="newMapForm">
+        <md-input-container>
+          <input mdInput formControlName="size" type="number" placeholder="Feldgröße">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="populationLevel" type="number" placeholder="Fortpflanzungslevel">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="startLevelPredator" type="number" placeholder="Startlevel der Räuber">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="energyThroughEating" type="number" placeholder="Energiegewinn durch Essen">
+        </md-input-container>
+      </form>
+    </md-card-content>
     <md-card-actions>
-      <button md-button (click)="reset()">
+      <button md-button (click)="generateNewMap()">
         <md-icon>settings</md-icon>
-        Generate Map
+        Map generieren
+      </button>
+      <button md-button (click)="showNewMapForm=false; newMapForm.reset()">
+        <md-icon>close</md-icon>
+        SCHLIESSEN
       </button>
     </md-card-actions>
-</md-card>
+  </md-card>
+</div>
 
 
 <div>
   <md-card class="content-card">
+    <md-card-header>
+      <md-card-subtitle>
+        <md-input-container>
+          <input mdInput [(ngModel)]="size" placeholder="Feldgröße" disabled>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [(ngModel)]="populationLevel" placeholder="Fortpflanzungslevel" disabled>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [(ngModel)]="startLevelPredator" placeholder="Startlevel der Räuber" disabled>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput [(ngModel)]="energyThroughEating" placeholder="Energiegewinn durch Essen" disabled>
+        </md-input-container>
+      </md-card-subtitle>
+    </md-card-header>
     <md-card-content>
-      <md-grid-list [cols]="size" rowHeight="50px">
+      <md-grid-list [cols]="size" rowHeight="fit">
         <div *ngFor="let line of map.fields">
           <md-grid-tile *ngFor="let cell of line" (click)="currentCell = cell" [style.background]="cell.color">
             {{cell.value}}
@@ -33,23 +63,23 @@
     <md-card-actions>
       <button md-button (click)="map.addPrey()">
         <md-icon>add_circle_outline</md-icon>
-        Add Prey
+        Beute
       </button>
       <button md-button (click)="map.addPredator()">
         <md-icon>add_circle</md-icon>
-        Add Predator
-      </button>
-      <button md-button (click)="calculate()">
-        <md-icon>navigate_next</md-icon>
-        Calculate
+       Räuber
       </button>
       <button md-button (click)="iterate()">
         <md-icon>cached</md-icon>
-        Iterate
+        Iteration
       </button>
       <button md-button (click)="reset()">
         <md-icon>close</md-icon>
         Reset
+      </button>
+      <button md-button (click)="showNewMapForm=true" *ngIf="!showNewMapForm">
+        <md-icon>settings</md-icon>
+        Neue Map generieren
       </button>
     </md-card-actions>
   </md-card>
