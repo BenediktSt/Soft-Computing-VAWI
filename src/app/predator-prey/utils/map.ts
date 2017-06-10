@@ -36,6 +36,18 @@ export class Map {
         return this.numCells;
     }
 
+    public getCount(type: string): number {
+        let count = 0;
+        this.fields.forEach(line => {
+            line.forEach(cell => {
+                if (cell.type === type) {
+                    count ++;
+                }
+            });
+        });
+        return count;
+    }
+
     public getCell(xValue: number, yValue: number): Cell {
         return this.fields[modulo(yValue, this.size)][modulo(xValue, this.size)];
     }

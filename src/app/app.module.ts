@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import {
   MdToolbarModule,
@@ -34,7 +35,8 @@ import { PredatorPreyComponent } from './predator-prey/predator-prey.component';
     MdInputModule,
     MdGridListModule,
     MdIconModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
