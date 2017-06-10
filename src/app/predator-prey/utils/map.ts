@@ -82,7 +82,7 @@ export class Map {
             yValue = Math.floor((Math.random() * this.size));
         }
         this.numCells++;
-        this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'predator', colorPredator));
+        this.setCell(new Cell(xValue, yValue, 10, this.numCells, 'predator', colorPredator));
     }
 
     public calculateMovement() {
@@ -126,6 +126,7 @@ export class Map {
             line.forEach(cell => {
                 cell = this.ruleSet.populate(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.gainEnergy(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = this.ruleSet.loseEnergy(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.moveDirectionPrey(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
                 cell = this.ruleSet.moveDirectionPredator(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
@@ -150,6 +151,7 @@ export class Map {
         this.fields.forEach(line => {
             line.forEach(cell => {
                 cell = this.ruleSet.unmarkReproduktion(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = this.ruleSet.deleteCell(this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
             });
         });
 

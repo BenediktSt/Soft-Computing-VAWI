@@ -12,10 +12,11 @@ export class Ruleset {
         this.map = map;
     }
 
+    /**
+     * Eine Zelle vom Typ Beute erhöht jede Iteration ihr Level, außer sie war Teil einer Fortpflanzung.
+     */
     gainEnergy(tuple: Cell[], activeCell: Cell): Cell {
-        /**
-         * Eine Zelle vom Typ Beute erhöht jede Iteration ihr Level, außer sie war Teil einer Fortpflanzung.
-         */
+
         const newCell: Cell = activeCell;
 
         if (activeCell.type === 'prey' && !activeCell.reproduced) {
@@ -25,10 +26,43 @@ export class Ruleset {
         return newCell;
     }
 
+    /**
+     * Eine Zelle vom Typ Räuber vermidnert jede Iteration ihr Level.
+     */
+    loseEnergy(tuple: Cell[], activeCell: Cell): Cell {
+
+        const newCell: Cell = activeCell;
+
+        if (activeCell.type === 'predator') {
+            newCell.value--;
+        }
+
+        return newCell;
+    }
+
+    /**
+     * Eine Zelle wird gelöscht, wenn ihr Level <=0 fällt.
+     */
+    deleteCell(tuple: Cell[], activeCell: Cell): Cell {
+        // const newCell: Cell = new Cell(activeCell.xCoordinate, activeCell.yCoordinate, 0, 0);
+        const newCell: Cell = activeCell;
+
+        if (activeCell.type !== 'empty' && activeCell.value <= 0) {
+            newCell.value = 0;
+            newCell.direction = null;
+            newCell.type = 'empty';
+            newCell.color = colorEmpty;
+            newCell.id = 0;
+        }
+
+        return newCell;
+    }
+
+    /**
+     * Eine Zelle vom Typ Beute wird für die nächste Iteration nicht mehr als Teil der Fortpflanzung betrachtet.
+     */
     unmarkReproduktion(tuple: Cell[], activeCell: Cell): Cell {
-        /**
-         * Eine Zelle vom Typ Beute wird für die nächste Iteration nicht mehr als Teil der Fortpflanzung betrachtet.
-         */
+
 
         const newCell: Cell = activeCell;
 
@@ -39,13 +73,14 @@ export class Ruleset {
         return newCell;
     }
 
+    /**
+     * Eine Zelle vom Typ Beute erhöht erzeugt eine neue Zelle vom Typ Beute mit dem Level=1,
+     * wenn ihr eigenes Level das notwengie PopulationsLevel erreicht hat und
+     * der ausreichende Platz dafür vorhanden ist.
+     * Ihr Level wird dabei halbiert.
+     */
     populate(tuple: Cell[], activeCell: Cell): Cell {
-        /**
-         * Eine Zelle vom Typ Beute erhöht erzeugt eine neue Zelle vom Typ Beute mit dem Level=1,
-         * wenn ihr eigenes Level das notwengie PopulationsLevel erreicht hat und
-         * der ausreichende Platz dafür vorhanden ist.
-         * Ihr Level wird dabei halbiert.
-         */
+
         const newCell: Cell = activeCell;
 
         // Berechnung der Neuen Zelle
@@ -74,12 +109,13 @@ export class Ruleset {
 
     }
 
+    /**
+     * Eine Zelle vom Typ Beute entscheidet, in welche Richtung sie sich bewegen möchte.
+     * Dies passiert zufällig und kann nur auf freie Felder geschehen.
+     * In dieser Regel findet noch keine Bewegung statt, sondern nur die Bestimmung der Richtung.
+     */
     moveDirectionPrey(tuple: Cell[], activeCell: Cell): Cell {
-        /**
-         * Eine Zelle vom Typ Beute entscheidet, in welche Richtung sie sich bewegen möchte.
-         * Dies passiert zufällig und kann nur auf freie Felder geschehen.
-         * In dieser Regel findet noch keine Bewegung statt, sondern nur die Bestimmung der Richtung.
-         */
+
         const newCell: Cell = activeCell;
         const potentialDirections: number[] = [];
 
@@ -100,12 +136,13 @@ export class Ruleset {
         return newCell;
     }
 
+    /**
+     * Eine Zelle vom Typ Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
+     * Der Räuber bewegt sich auf das Feld einer Beute zu.
+     * Wenn keine Beute im Umkreis ist, bewegt sich der Räuber auf ein zufälliges Feld.
+     */
     moveDirectionPredator(tuple: Cell[], activeCell: Cell): Cell {
-        /**
-         * Eine Zelle vom Typ Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
-         * Der Räuber bewegt sich auf das Feld einer Beute zu.
-         * Wenn keine Beute im Umkreis ist, bewegt sich der Räuber auf ein zufälliges Feld.
-         */
+
         const newCell: Cell = activeCell;
         const potentialDirections: number[] = [];
 
@@ -133,26 +170,27 @@ export class Ruleset {
         return newCell;
     }
 
+    /**
+     * Eine Zelle vom Typ Beute oder Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
+     * Dies passiert zufällig und kann nur auf freie Felder geschehen.
+     * In dieser Regel findet noch keine Bewegung statt, sondern nur die Bestimmung der Richtung.
+     */
     processMovement(tuple: Cell[], activeCell: Cell): Cell {
-        /**
-         * Eine Zelle vom Typ Beute oder Räuber entscheidet, in welche Richtung sie sich bewegen möchte.
-         * Dies passiert zufällig und kann nur auf freie Felder geschehen.
-         * In dieser Regel findet noch keine Bewegung statt, sondern nur die Bestimmung der Richtung.
-         */
+
         const newCell: Cell = activeCell;
 
         tuple.forEach((cell, index) => {
             if (activeCell.type === 'prey' &&
                 cell.type === 'predator' &&
                 (cell.direction + index) === 7
-                ) {
+            ) {
                 // entfernen der Beute
                 newCell.value = cell.value + 10;
                 newCell.direction = null;
                 newCell.type = cell.type;
                 newCell.color = cell.color;
                 newCell.id = cell.id;
-            }else if (
+            } else if (
                 cell.direction !== null &&
                 activeCell.type === 'empty' &&
                 !activeCell.reproduced &&
