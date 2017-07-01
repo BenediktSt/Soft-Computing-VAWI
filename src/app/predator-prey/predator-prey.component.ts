@@ -78,6 +78,7 @@ export class PredatorPreyComponent implements OnInit {
       this.ruleSet.setMap(this.map);
       this.newMapForm.reset();
       this.showNewMapForm = false;
+      this.chartComp.reset();
     }else {
       this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
       duration: 2000,
