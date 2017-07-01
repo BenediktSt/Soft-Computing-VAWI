@@ -17,11 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PredatorPreyComponent } from './predator-prey/predator-prey.component';
+import { PopulationChartComponent } from './predator-prey/population-chart/population-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PredatorPreyComponent
+    PredatorPreyComponent,
+    PopulationChartComponent
   ],
   imports: [
     BrowserModule,

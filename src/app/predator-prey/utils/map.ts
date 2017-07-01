@@ -77,24 +77,42 @@ export class Map {
     }
 
     public addPrey(xValue?: number, yValue?: number) {
-        if (!xValue) {
+        let emptyField = false;
+        let countTries = 0;
+        while (!emptyField) {
+            countTries ++;
             xValue = Math.floor((Math.random() * this.size));
-        }
-
-        if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
+            if (this.getCell(xValue, yValue).type === 'empty') {
+                emptyField = true;
+            }else {
+                emptyField = false;
+            }
+
+            if (countTries >= this.size * this.size) {
+                return;
+            }
         }
         this.numCells++;
         this.setCell(new Cell(xValue, yValue, 1, this.numCells, 'prey', colorPrey));
     }
 
     public addPredator(xValue?: number, yValue?: number) {
-        if (!xValue) {
+        let emptyField = false;
+        let countTries = 0;
+        while (!emptyField) {
+            countTries ++;
             xValue = Math.floor((Math.random() * this.size));
-        }
-
-        if (!yValue) {
             yValue = Math.floor((Math.random() * this.size));
+            if (this.getCell(xValue, yValue).type === 'empty') {
+                emptyField = true;
+            }else {
+                emptyField = false;
+            }
+
+            if (countTries >= this.size * this.size) {
+                return;
+            }
         }
         this.numCells++;
         this.setCell(new Cell(xValue, yValue, this.startLevelPredator, this.numCells, 'predator', colorPredator));
