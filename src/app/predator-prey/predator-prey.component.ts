@@ -12,7 +12,7 @@ import { BaseChartDirective } from 'ng2-charts/ng2-charts';
   styleUrls: ['./predator-prey.component.css']
 })
 export class PredatorPreyComponent implements OnInit {
-  
+
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
   public size: number;
@@ -88,6 +88,9 @@ export class PredatorPreyComponent implements OnInit {
 
   reset() {
     this.map = new Map(this.size, this.ruleSet, this.startLevelPredator);
+    this.lineChartLabels = [];
+    this.lineChartData[0].data = [];
+    this.lineChartData[1].data = [];
   }
 
   generateNewMap() {
