@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
+import { RouterModule, Routes } from '@angular/router';
 
 import {
   MdToolbarModule,
@@ -12,20 +13,35 @@ import {
   MdInputModule,
   MdGridListModule,
   MdIconModule,
-  MdSnackBarModule } from '@angular/material';
+  MdSnackBarModule,
+  MdMenuModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PredatorPreyComponent } from './predator-prey/predator-prey.component';
 import { PopulationChartComponent } from './predator-prey/population-chart/population-chart.component';
+import { FuzzyComponent } from './fuzzy/fuzzy.component';
+import { HomeComponent } from './home/home.component';
+
+
+const appRouts: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'predpray', component: PredatorPreyComponent},
+  {path: 'fuzzy', component: FuzzyComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'}
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PredatorPreyComponent,
-    PopulationChartComponent
+    PopulationChartComponent,
+    FuzzyComponent,
+    HomeComponent
   ],
   imports: [
+    RouterModule.forRoot(appRouts),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -38,6 +54,7 @@ import { PopulationChartComponent } from './predator-prey/population-chart/popul
     MdGridListModule,
     MdIconModule,
     MdSnackBarModule,
+    MdMenuModule,
     ChartsModule
   ],
   providers: [],
