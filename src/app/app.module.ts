@@ -28,7 +28,8 @@ const appRouts: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'predpray', component: PredatorPreyComponent},
   {path: 'fuzzy', component: FuzzyComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'}
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: '/home'}
 ];
 
 
