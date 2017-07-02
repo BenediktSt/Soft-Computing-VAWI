@@ -48,6 +48,10 @@
       </form>
     </md-card-content>
     <md-card-actions>
+      <button md-button (click)="fillrandom()">
+        <md-icon>input</md-icon>
+        Befülle zufällig
+      </button>
       <button md-button (click)="calculate()">
         <md-icon>cached</md-icon>
         Berechnen
@@ -70,7 +74,7 @@
       Fuzzy-Graphen
     </md-card-title>
     <md-card-content>
-      <app-fuzzy-chart [demandData]="logicDemand" [stockData]="logicStock"></app-fuzzy-chart>
+      <app-fuzzy-chart [demandData]="fuzzyControllerDemand.logic" [stockData]="fuzzyControllerStock.logic"></app-fuzzy-chart>
     </md-card-content>
     <md-card-actions>
       <button md-button (click)="showFuzzy=false">
@@ -86,6 +90,11 @@
     <md-card-title>
       Empfehlung
     </md-card-title>
+    <md-card-content>
+      <div *ngFor="let row of result">
+        {{row}}
+      </div>
+    </md-card-content>
   </md-card>
 </div>
 
