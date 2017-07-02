@@ -24,6 +24,7 @@ export class FuzzyComponent implements OnInit {
 
   public showFuzzy: boolean;
 
+  public ruleResult: Array<any> = [];
   public result: Array<any> = [];
   public ruleset: Ruleset;
 
@@ -66,31 +67,27 @@ export class FuzzyComponent implements OnInit {
 
   calculate() {
     if (this.purchaseForm.status === 'VALID') {
-      this.result = [];
-      this.result.push('demandProdA' + JSON.stringify(
-        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodA').value)));
-      this.result.push('demandProdB' + JSON.stringify(
-        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodB').value)));
-      this.result.push('demandProdC' + JSON.stringify(
-        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodC').value)));
-      this.result.push('demandProdD' + JSON.stringify(
-        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodD').value)));
-      this.result.push('stockProdA' + JSON.stringify(
-        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodA').value)));
-      this.result.push('stockProdB' + JSON.stringify(
-        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodB').value)));
-      this.result.push('stockProdC' + JSON.stringify(
-        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodC').value)));
-      this.result.push('stockProdD' + JSON.stringify(
-        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodD').value)));
-      this.result.push('Gesamtes Lager: ' + JSON.stringify(this.getTotalStockSet()));
 
-        this.ruleset.executeAllRules(
-          this.purchaseForm.get('demand').value,
-          this.purchaseForm.get('stock').value,
-          this.getTotalStockSet()
-        );
-  }else {
+      this.ruleResult = this.ruleset.executeAllRules(
+        this.purchaseForm.get('demand').value,
+        this.purchaseForm.get('stock').value,
+        this.getTotalStockSet()
+      );
+
+      this.result = [];
+
+      this.ruleResult.forEach((elem, index) => {
+        this.result.push({
+          Produkt: this.ruleResult[index].prod,
+          KaufenNiedrig: this.ruleResult[index].buySet.low.reduce(add, 0) / this.ruleResult[index].buySet.low.length,
+          KaufenMittel: this.ruleResult[index].buySet.middle.reduce(add, 0) / this.ruleResult[index].buySet.middle.length,
+          KaufenHoch: this.ruleResult[index].buySet.high.reduce(add, 0) / this.ruleResult[index].buySet.high.length
+        });
+      });
+
+      // TODO: Schönere Ergebnisausgabe
+
+    }else {
       this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
         duration: 2000,
       });
@@ -138,4 +135,8 @@ export class FuzzyComponent implements OnInit {
     this.fuzzyControllerStock = new FuzzyController(logicStock);
   }
 
+}
+
+function add(a: number, b: number): number{
+  return a + b;
 }
