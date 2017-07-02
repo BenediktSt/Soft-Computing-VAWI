@@ -5,6 +5,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Purpose
 This project is implementing all the excercises for the VAWI Soft-Computing course SS2017.
 
+To see the application in action just visit its [gh-page](https://benediktst.github.io/Soft-Computing-VAWI/home).
+
 ## Start the application
 
 Install all packages via `npm install`.

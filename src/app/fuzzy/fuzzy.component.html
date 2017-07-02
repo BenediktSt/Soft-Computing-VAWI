@@ -1,3 +1,91 @@
-<p>
-  fuzzy works!
-</p>
+<h2>
+  Einkaufssimulation eines Supermarktes
+</h2>
+
+<div>
+  <md-card class="content-card">
+    <md-card-title>
+      Ausgangswerte
+    </md-card-title>
+    <md-card-content style="display:flex">
+      <form [formGroup]="purchaseForm" class="flexContainer">
+        <div>
+        <md-input-container>
+          <input mdInput formControlName="demandProdA" type="number" placeholder="Nachfrage Produkt A" max="50">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="demandProdB" type="number" placeholder="Nachfrage Produkt B">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="demandProdC" type="number" placeholder="Nachfrage Produkt C">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="demandProdD" type="number" placeholder="Nachfrage Produkt D">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        </div>
+        <div>
+        <md-input-container>
+          <input mdInput formControlName="stockProdA" type="number" placeholder="Lagerbestand Produkt A">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="stockProdB" type="number" placeholder="Lagerbestand Produkt B">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="stockProdC" type="number" placeholder="Lagerbestand Produkt C">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="stockProdD" type="number" placeholder="Lagerbestand Produkt D">
+          <md-hint> max. 50 </md-hint>
+        </md-input-container>
+        </div>
+      </form>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="calculate()">
+        <md-icon>cached</md-icon>
+        Berechnen
+      </button>
+      <button md-button *ngIf="!showFuzzy" (click)="showFuzzy=true">
+        <md-icon>show_chart</md-icon>
+        Graphen anzeigen
+      </button>
+      <button md-button *ngIf="showFuzzy" (click)="showFuzzy=false">
+        <md-icon>show_chart</md-icon>
+        Graphen ausblenden
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<div *ngIf="showFuzzy">
+  <md-card class="content-card">
+    <md-card-title>
+      Fuzzy-Graphen
+    </md-card-title>
+    <md-card-content>
+      <app-fuzzy-chart [demandData]="logicDemand" [stockData]="logicStock"></app-fuzzy-chart>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="showFuzzy=false">
+        <md-icon>close</md-icon>
+        Schliessen
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<div>
+  <md-card class="content-card">
+    <md-card-title>
+      Empfehlung
+    </md-card-title>
+  </md-card>
+</div>
+

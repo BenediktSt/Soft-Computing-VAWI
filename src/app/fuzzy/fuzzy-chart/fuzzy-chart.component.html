@@ -1,0 +1,16 @@
+<div>
+  <h2 align="center"> Fuzzy-Set für die Nachfrage </h2>
+  <canvas baseChart height="75"
+    [datasets]="demandChartData"
+    [labels]="allChartLabels"
+    [options]="allChartOptions"
+    [chartType]="allChartType">
+  </canvas>
+  <h2 align="center"> Fuzzy-Set für den Lagerbestand </h2>
+  <canvas baseChart height="75"
+    [datasets]="stockChartData"
+    [labels]="allChartLabels"
+    [options]="allChartOptions"
+    [chartType]="allChartType">
+  </canvas>
+</div>
