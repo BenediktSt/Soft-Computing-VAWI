@@ -22,6 +22,7 @@ import { PredatorPreyComponent } from './predator-prey/predator-prey.component';
 import { PopulationChartComponent } from './predator-prey/population-chart/population-chart.component';
 import { FuzzyComponent } from './fuzzy/fuzzy.component';
 import { HomeComponent } from './home/home.component';
+import { FuzzyChartComponent } from './fuzzy/fuzzy-chart/fuzzy-chart.component';
 
 
 const appRouts: Routes = [
@@ -39,7 +40,8 @@ const appRouts: Routes = [
     PredatorPreyComponent,
     PopulationChartComponent,
     FuzzyComponent,
-    HomeComponent
+    HomeComponent,
+    FuzzyChartComponent
   ],
   imports: [
     RouterModule.forRoot(appRouts),
