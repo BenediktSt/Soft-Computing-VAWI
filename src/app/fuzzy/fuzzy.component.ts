@@ -7,6 +7,8 @@ import { Triangle } from 'es6-fuzz/lib/curve/triangle';
 import { Trapezoid } from 'es6-fuzz/lib/curve/trapezoid';
 
 import { FuzzyController } from './util/fuzzyController';
+import { Ruleset } from './util/rules';
+import { FuzzySet } from './util/fuzzySet';
 
 @Component({
   selector: 'app-fuzzy',
@@ -23,20 +25,26 @@ export class FuzzyComponent implements OnInit {
   public showFuzzy: boolean;
 
   public result: Array<any> = [];
+  public ruleset: Ruleset;
 
   constructor(private fb: FormBuilder , public snackBar: MdSnackBar) {
     this.purchaseForm = this.fb.group({
-      demandProdA: ['', Validators.required ],
-      demandProdB: ['', Validators.required ],
-      demandProdC: ['', Validators.required ],
-      demandProdD: ['', Validators.required ],
-      stockProdA: ['', Validators.required ],
-      stockProdB: ['', Validators.required ],
-      stockProdC: ['', Validators.required ],
-      stockProdD: ['', Validators.required ],
+      demand: this.fb.group({
+        prodA: ['', Validators.required ],
+        prodB: ['', Validators.required ],
+        prodC: ['', Validators.required ],
+        prodD: ['', Validators.required ]
+      }),
+      stock: this.fb.group({
+        prodA: ['', Validators.required ],
+        prodB: ['', Validators.required ],
+        prodC: ['', Validators.required ],
+        prodD: ['', Validators.required ]
+      })
     });
 
     this.initializeFuzzyLogic();
+    this.ruleset = new Ruleset(this.fuzzyControllerDemand, this.fuzzyControllerStock);
 
     this.showFuzzy = false;
 
@@ -46,28 +54,42 @@ export class FuzzyComponent implements OnInit {
   }
 
   fillrandom() {
-    this.purchaseForm.get('demandProdA').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('demandProdB').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('demandProdC').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('demandProdD').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('stockProdA').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('stockProdB').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('stockProdC').setValue(Math.floor((Math.random() * 50)));
-    this.purchaseForm.get('stockProdD').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('demand').get('prodA').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('demand').get('prodB').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('demand').get('prodC').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('demand').get('prodD').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('stock').get('prodA').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('stock').get('prodB').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('stock').get('prodC').setValue(Math.floor((Math.random() * 50)));
+    this.purchaseForm.get('stock').get('prodD').setValue(Math.floor((Math.random() * 50)));
   }
 
   calculate() {
     if (this.purchaseForm.status === 'VALID') {
       this.result = [];
-      this.result.push('demandProdA' + JSON.stringify(this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demandProdA').value)));
-      this.result.push('demandProdB' + JSON.stringify(this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demandProdB').value)));
-      this.result.push('demandProdC' + JSON.stringify(this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demandProdC').value)));
-      this.result.push('demandProdD' + JSON.stringify(this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demandProdD').value)));
-      this.result.push('stockProdA' + JSON.stringify(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdA').value)));
-      this.result.push('stockProdB' + JSON.stringify(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdB').value)));
-      this.result.push('stockProdC' + JSON.stringify(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdC').value)));
-      this.result.push('stockProdD' + JSON.stringify(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdD').value)));
+      this.result.push('demandProdA' + JSON.stringify(
+        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodA').value)));
+      this.result.push('demandProdB' + JSON.stringify(
+        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodB').value)));
+      this.result.push('demandProdC' + JSON.stringify(
+        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodC').value)));
+      this.result.push('demandProdD' + JSON.stringify(
+        this.fuzzyControllerDemand.getSet(this.purchaseForm.get('demand').get('prodD').value)));
+      this.result.push('stockProdA' + JSON.stringify(
+        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodA').value)));
+      this.result.push('stockProdB' + JSON.stringify(
+        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodB').value)));
+      this.result.push('stockProdC' + JSON.stringify(
+        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodC').value)));
+      this.result.push('stockProdD' + JSON.stringify(
+        this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodD').value)));
       this.result.push('Gesamtes Lager: ' + JSON.stringify(this.getTotalStockSet()));
+
+        this.ruleset.executeAllRules(
+          this.purchaseForm.get('demand').value,
+          this.purchaseForm.get('stock').value,
+          this.getTotalStockSet()
+        );
   }else {
       this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
         duration: 2000,
@@ -75,26 +97,26 @@ export class FuzzyComponent implements OnInit {
     }
   }
 
-  getTotalStockSet() {
+  getTotalStockSet(): FuzzySet {
     // Der Und-Operator liefert meistens für alle Sets 0
     // Der Oder-Operator liefert meistens für alle Sets 1
     // => Ansatz: Mittelwert der einzelnen Sets
 
     const stockSets = [];
-    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdA').value));
-    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdB').value));
-    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdC').value));
-    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stockProdD').value));
+    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodA').value));
+    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodB').value));
+    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodC').value));
+    stockSets.push(this.fuzzyControllerStock.getSet(this.purchaseForm.get('stock').get('prodD').value));
 
-    const totalSet = [];
-    stockSets[0].forEach((element, index) => {
+    const totalSet = new FuzzySet();
+    stockSets[0].pairs.forEach((element, index) => {
       let value = 0;
       const key = element.key;
       for (const stock of stockSets) {
-        value += stock[index].value;
+        value += stock.getValueByKey(element.key);
       }
       value = value / stockSets.length;
-      totalSet.push({key: key, value: value});
+      totalSet.addPair(key, value);
     });
     return totalSet;
   }

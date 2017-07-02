@@ -1,19 +1,20 @@
 import { Logic } from 'es6-fuzz';
+import { FuzzySet } from './fuzzySet';
 
 export class FuzzyController {
 
     constructor(public logic: Logic) {}
 
-    getSet(value: number) {
+    public getSet(value: number): FuzzySet {
         const res = this.logic.defuzzify(value);
-        const set = [];
+        const set = new FuzzySet();
         res.rules.forEach(element => {
-            set.push({key: element.output, value: element.fuzzy});
+            set.addPair(element.output, element.fuzzy);
         });
         return set;
     }
 
-    logicalAnd(...values: number[]) {
+    public logicalAnd(...values: number[]) {
         const sets = [];
         values.forEach((element) => {
             sets.push(this.getSet(element));
@@ -27,7 +28,6 @@ export class FuzzyController {
                 if (argument[index].value > val) {
                     val = argument[index].value;
                 }
-                // val *= argument[index].value;
             });
             ret.push({key: key, value: val})
         });
