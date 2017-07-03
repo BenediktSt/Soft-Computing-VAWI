@@ -32,6 +32,13 @@ export class Ruleset {
         stock: any,
         totalStock: FuzzySet
         ) {
+
+            this.ruleResults = [
+                {prod: 'prodA', buySet: {low: [], middle: [], high: [] }},
+                {prod: 'prodB', buySet: {low: [], middle: [], high: [] }},
+                {prod: 'prodC', buySet: {low: [], middle: [], high: [] }},
+                {prod: 'prodD', buySet: {low: [], middle: [], high: [] }}
+            ];
             for (let i = 0; i < this.names.length; i++) {
                 this.rule1(
                     i,

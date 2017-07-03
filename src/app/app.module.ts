@@ -6,15 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { RouterModule, Routes } from '@angular/router';
 
-import {
-  MdToolbarModule,
-  MdCardModule,
-  MdButtonModule,
-  MdInputModule,
-  MdGridListModule,
-  MdIconModule,
-  MdSnackBarModule,
-  MdMenuModule } from '@angular/material';
+import { CustomMaterialModule } from './app-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -49,15 +41,8 @@ const appRouts: Routes = [
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    MdToolbarModule,
     BrowserAnimationsModule,
-    MdCardModule,
-    MdButtonModule,
-    MdInputModule,
-    MdGridListModule,
-    MdIconModule,
-    MdSnackBarModule,
-    MdMenuModule,
+    CustomMaterialModule,
     ChartsModule
   ],
   providers: [],
