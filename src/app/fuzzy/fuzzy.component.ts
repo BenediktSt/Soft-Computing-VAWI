@@ -77,15 +77,33 @@ export class FuzzyComponent implements OnInit {
       this.result = [];
 
       this.ruleResult.forEach((elem, index) => {
-        this.result.push({
-          Produkt: this.ruleResult[index].prod,
-          KaufenNiedrig: this.ruleResult[index].buySet.low.reduce(add, 0) / this.ruleResult[index].buySet.low.length,
-          KaufenMittel: this.ruleResult[index].buySet.middle.reduce(add, 0) / this.ruleResult[index].buySet.middle.length,
-          KaufenHoch: this.ruleResult[index].buySet.high.reduce(add, 0) / this.ruleResult[index].buySet.high.length
-        });
-      });
+        const buyLow = this.ruleResult[index].buySet.low.reduce(add, 0) / this.ruleResult[index].buySet.low.length;
+        const buyMiddle = this.ruleResult[index].buySet.middle.reduce(add, 0) / this.ruleResult[index].buySet.middle.length;
+        const buyHigh =  this.ruleResult[index].buySet.high.reduce(add, 0) / this.ruleResult[index].buySet.high.length;
 
-      // TODO: Schönere Ergebnisausgabe
+        if (buyLow >= buyMiddle && buyLow >= buyHigh) {
+          this.result.push({
+            text: 'Für Produkt ' + this.ruleResult[index].prod.substring(4) + ' ist die Kaufmenge zu ' +
+              (buyLow * 100).toFixed(0) + '%: Niedrig',
+            value: (buyLow * 100).toFixed(0),
+            color: 'warn'
+          });
+        }else if (buyMiddle >= buyHigh) {
+          this.result.push({
+            text: 'Für Produkt ' + this.ruleResult[index].prod.substring(4) + ' ist die Kaufmenge zu ' +
+              (buyMiddle * 100).toFixed(0) + '%: Mittel',
+            value: (buyMiddle * 100).toFixed(0),
+            color: 'accent'
+          });
+        }else {
+          this.result.push({
+            text: 'Für Produkt ' + this.ruleResult[index].prod.substring(4) + ' ist die Kaufmenge zu ' +
+              (buyHigh * 100).toFixed(0) + '%: Hoch',
+            value: (buyHigh * 100).toFixed(0),
+            color: 'primary'
+          });
+        }
+      });
 
     }else {
       this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {

@@ -91,8 +91,15 @@
       Empfehlung
     </md-card-title>
     <md-card-content>
-      <div *ngFor="let row of result">
-        {{row | json}}
+      <div align="center">
+        <div *ngFor="let row of result" class='flexContainer'>
+          <div><h2>{{row.text}}</h2></div>
+          <div><md-progress-bar
+            mode="determinate"
+            [color]="row.color"
+            [value]="row.value">
+          </md-progress-bar></div>
+        </div>
       </div>
     </md-card-content>
   </md-card>
