@@ -65,6 +65,11 @@ export class FuzzyComponent implements OnInit {
     this.purchaseForm.get('stock').get('prodD').setValue(Math.floor((Math.random() * 50)));
   }
 
+  reset() {
+    this.purchaseForm.reset();
+    this.result = [];
+  }
+
   calculate() {
     if (this.purchaseForm.status === 'VALID') {
 
