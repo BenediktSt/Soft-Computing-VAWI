@@ -8,6 +8,43 @@
       Ausgangswerte
     </md-card-title>
     <md-card-content>
+      <md-grid-list cols="6" rowHeight="4:1">
+        <md-grid-tile>Produkt</md-grid-tile>
+        <md-grid-tile>Produktgröße</md-grid-tile>
+        <md-grid-tile>Lieferzeit</md-grid-tile>
+        <md-grid-tile>Verbrauch pro Tag</md-grid-tile>
+        <md-grid-tile>aktueller Bestand</md-grid-tile>
+        <md-grid-tile>Details</md-grid-tile>
+        <div *ngFor="let product of data">
+          <md-grid-tile *ngFor="let param of product.getData()">
+            {{param}}
+          </md-grid-tile>
+          <md-grid-tile>Linkout</md-grid-tile>
+        </div>
+      </md-grid-list>
     </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="calculate()">
+        <md-icon>cached</md-icon>
+        Berechnen
+      </button>
+    </md-card-actions>
   </md-card>
 </div>
+
+<div>
+  <md-card class="content-card">
+    <md-card-title>
+      Vectoren
+    </md-card-title>
+    <h2>Eltern</h2>
+    <md-card-content>
+      <div *ngFor="let vector of parents">
+        {{vector.toString()}}
+      </div>
+      <h2>Kinder</h2>
+      <div *ngFor="let vector of children">
+        {{vector.toString()}}
+      </div>
+    </md-card-content>
+  </md-card>

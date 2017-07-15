@@ -9,3 +9,7 @@ body{
 h2 {
     font-family: Roboto, Helvetica,sans-serif;
 }
+
+.content-card {
+    margin: 5px;
+}
