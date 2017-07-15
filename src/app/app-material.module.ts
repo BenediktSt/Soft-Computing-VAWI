@@ -8,7 +8,9 @@ import {
   MdIconModule,
   MdSnackBarModule,
   MdMenuModule,
-  MdProgressBarModule } from '@angular/material';
+  MdProgressBarModule,
+  MdTableModule
+ } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ import {
     MdIconModule,
     MdSnackBarModule,
     MdMenuModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdTableModule
     ],
   exports: [
     MdToolbarModule,
@@ -31,7 +34,8 @@ import {
     MdIconModule,
     MdSnackBarModule,
     MdMenuModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdTableModule
     ]
 })
 export class CustomMaterialModule { }
