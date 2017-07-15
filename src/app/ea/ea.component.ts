@@ -15,7 +15,7 @@ export class EaComponent implements OnInit {
   public children: Vector[];
 
   public numParents = 5;
-  public maxStartSize = 10;
+  public maxStartSize = 20;
 
   constructor() {
     this.data = [
@@ -40,6 +40,9 @@ export class EaComponent implements OnInit {
   }
 
   calculate() {
+    this.parents[0].evaluate(5, this.data);
+
+    this.children = this.getNChildren(this.parents, 5);
 
   }
 
@@ -56,5 +59,40 @@ export class EaComponent implements OnInit {
     }
     return start;
   }
+
+  getChild(parent1: Vector, parent2: Vector): Vector {
+    // Rekombination durch Mittelwertbildung
+    const childMinStock = [];
+    const childBuyAmount = [];
+
+    parent1.minimalStock.forEach((element, index) => {
+      childMinStock.push(Math.round((parent1.minimalStock[index] + parent2.minimalStock[index]) / 2));
+      childBuyAmount.push(Math.round((parent1.buyAmount[index] + parent2.buyAmount[index]) / 2));
+    });
+
+    return new Vector(childMinStock, childBuyAmount);
+  }
+
+  getNChildren(parents: Vector[], numberChildren: number): Vector[] {
+    const children = [];
+    for (let i = 0; i < numberChildren; i++) {
+      // get parents
+      children.push(this.getChild(
+        parents[Math.floor(Math.random() * parents.length)],
+        parents[Math.floor(Math.random() * parents.length)],
+        )
+      );
+    }
+    return children;
+  }
+
+  // TODO: Mutation der Kinder
+  // Bewertung der einzelnen Vektoren
+  // Auswählen der besten Vektoren
+  // Wiederhilung der Prozesses
+
+  /*mutate(vector: Vector): Vector {
+
+  }*/
 
 }
