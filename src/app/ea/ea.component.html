@@ -24,9 +24,21 @@
       </md-grid-list>
     </md-card-content>
     <md-card-actions>
-      <button md-button (click)="calculate()">
+      <button md-button (click)="makeChildren()">
         <md-icon>cached</md-icon>
-        Berechnen
+        Kinder generieren
+      </button>
+      <button md-button (click)="evaluateVectors()">
+        <md-icon>cached</md-icon>
+        Bewerten
+      </button>
+      <button md-button (click)="buildNextGen()">
+        <md-icon>cached</md-icon>
+        Crossover
+      </button>
+       <button md-button (click)="iterate(50)">
+        <md-icon>cached</md-icon>
+        5 * Iterieren
       </button>
     </md-card-actions>
   </md-card>
@@ -40,11 +52,16 @@
     <h2>Eltern</h2>
     <md-card-content>
       <div *ngFor="let vector of parents">
-        {{vector.toString()}}
+        <span [class.isNextGen]="vector.isNextGen">
+          {{vector.toString()}} : {{vector.fitness}}
+        </span>
       </div>
+      <p> Durchschnitt Eltern-Fitness: {{averageFitness}}<p>
       <h2>Kinder</h2>
       <div *ngFor="let vector of children">
-        {{vector.toString()}}
+        <span [class.isNextGen]="vector.isNextGen">
+          {{vector.toString()}} : {{vector.fitness}}
+        </span>
       </div>
     </md-card-content>
   </md-card>

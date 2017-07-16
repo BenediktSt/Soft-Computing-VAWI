@@ -11,12 +11,16 @@ interface Order {
 export class Vector {
 
     orders: Order[];
+    isNextGen: boolean;
+    fitness: number;
 
     constructor(
         public minimalStock: number[],
         public buyAmount: number[],
     ) {
         this.orders = [];
+        this.isNextGen = false;
+        this.fitness = 0;
     }
 
     public toString(): string {
@@ -67,8 +71,11 @@ export class Vector {
 
         }
 
-        console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
-        console.log('Durschnittlicher Lagerbestand' + totalStock / iterations);
+        // console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
+        // console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
+
+        // Durchschnittlicher Lagerbestand + 5 * sumEmptyProducts
+        this.fitness = totalStock / iterations + 2 * sumEmptyProducts;
 
     }
 

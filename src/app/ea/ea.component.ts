@@ -13,9 +13,14 @@ export class EaComponent implements OnInit {
   public data: Product[];
   public parents: Vector[];
   public children: Vector[];
+  public averageFitness: number;
 
-  public numParents = 5;
+  public numParents = 10;
+  public numChildren = 15;
   public maxStartSize = 20;
+
+  public standardDeviation = 0.2;
+  public simulationIterations = 10;
 
   constructor() {
     this.data = [
@@ -33,17 +38,47 @@ export class EaComponent implements OnInit {
 
     this.children = [];
     this.parents = this.generateStart(this.numParents);
+    this.averageFitness = 0;
 
   }
 
   ngOnInit() {
   }
 
-  calculate() {
-    this.parents[0].evaluate(5, this.data);
+  // Interface
+  makeChildren() {
+    this.children = this.getNChildren(this.parents, this.numChildren);
+  }
 
-    this.children = this.getNChildren(this.parents, 5);
+  // Interface
+  evaluateVectors() {
+    for (let parent of this.parents) {
+      parent.evaluate(20, this.data);
+    }
 
+    for (let child of this.children) {
+      child.evaluate(20, this.data);
+    }
+
+    this.averageFitness = this.getAverageFitness(this.parents);
+  }
+
+  // Interface
+  buildNextGen() {
+    this.parents = this.selectForNextGen(this.numParents, this.children, this.simulationIterations);
+
+    for (let parent of this.parents) {
+      parent.isNextGen = false;
+    }
+  }
+
+  // Interface
+  iterate(iterations: number) {
+    for (let i = 0; i < iterations; i++){
+      this.makeChildren();
+      this.evaluateVectors();
+      this.buildNextGen();
+    }
   }
 
   generateStart(parents: number): Vector[] {
@@ -70,7 +105,7 @@ export class EaComponent implements OnInit {
       childBuyAmount.push(Math.round((parent1.buyAmount[index] + parent2.buyAmount[index]) / 2));
     });
 
-    return new Vector(childMinStock, childBuyAmount);
+    return this.mutate(new Vector(childMinStock, childBuyAmount), this.standardDeviation);
   }
 
   getNChildren(parents: Vector[], numberChildren: number): Vector[] {
@@ -86,13 +121,47 @@ export class EaComponent implements OnInit {
     return children;
   }
 
-  // TODO: Mutation der Kinder
-  // Bewertung der einzelnen Vektoren
   // Auswählen der besten Vektoren
   // Wiederhilung der Prozesses
 
-  /*mutate(vector: Vector): Vector {
+  mutate(vector: Vector, standardDeviation: number): Vector {
+    // Zufallswert innerhalb der zweifachern Standardabweichung - die Standardabweichung
+    const mutateMinStock = [];
+    const mutateBuyAmount = [];
+    vector.minimalStock.forEach((element, index) => {
+      let localStandardDeviation = vector.minimalStock[index] * standardDeviation;
+      mutateMinStock.push(Math.round(
+        vector.minimalStock[index] + (Math.random() * localStandardDeviation * 2 ) - localStandardDeviation));
 
-  }*/
+      localStandardDeviation = vector.buyAmount[index] * standardDeviation;
+      mutateBuyAmount.push(Math.round(
+        vector.buyAmount[index] + (Math.random() * localStandardDeviation * 2 ) - localStandardDeviation));
+    });
+
+    return new Vector(mutateMinStock, mutateBuyAmount);
+  }
+
+  selectForNextGen(numberParents: number, children: Vector[], iterations: number): Vector[] {
+    const nextGen = [];
+    for (let i = 0; i < numberParents; i ++) {
+      let bestChild = null;
+      for (let child of children) {
+        if ((bestChild === null  || child.fitness < bestChild.fitness) && !child.isNextGen) {
+          bestChild = child;
+        }
+      }
+      bestChild.isNextGen = true;
+      nextGen.push(bestChild);
+    }
+    return nextGen;
+  }
+
+  getAverageFitness(vectors: Vector[]): number {
+    let sum = 0;
+    for (let vector of vectors){
+      sum += vector.fitness;
+    }
+    return sum / vectors.length;
+  }
 
 }
