@@ -5,3 +5,7 @@ md-grid-tile {
 .isNextGen {
   font-weight: bold;
 }
+
+md-grid-list {
+  height: 400px;
+}

@@ -1,5 +1,5 @@
 <h2>
-  Warenlagerung eines Kaufhausen mit Evolutionären Algorithmen
+  Warenlagerung eines Kaufhauses mit Evolutionären Algorithmen
 </h2>
 
 <div>
@@ -8,18 +8,16 @@
       Ausgangswerte
     </md-card-title>
     <md-card-content>
-      <md-grid-list cols="6" rowHeight="4:1">
+      <md-grid-list cols="5" rowHeight="fit">
         <md-grid-tile>Produkt</md-grid-tile>
         <md-grid-tile>Produktgröße</md-grid-tile>
         <md-grid-tile>Lieferzeit</md-grid-tile>
         <md-grid-tile>Verbrauch pro Tag</md-grid-tile>
-        <md-grid-tile>aktueller Bestand</md-grid-tile>
-        <md-grid-tile>Details</md-grid-tile>
+        <md-grid-tile>Bestand</md-grid-tile>
         <div *ngFor="let product of data">
           <md-grid-tile *ngFor="let param of product.getData()">
             {{param}}
           </md-grid-tile>
-          <md-grid-tile>Linkout</md-grid-tile>
         </div>
       </md-grid-list>
     </md-card-content>
@@ -34,11 +32,11 @@
       </button>
       <button md-button (click)="buildNextGen()">
         <md-icon>cached</md-icon>
-        Crossover
+        Crossover mit Mutation
       </button>
        <button md-button (click)="iterate(50)">
         <md-icon>cached</md-icon>
-        5 * Iterieren
+        50 * Iterieren
       </button>
     </md-card-actions>
   </md-card>

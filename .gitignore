@@ -42,8 +42,8 @@ testem.log
 Thumbs.db
 
 #LaTex Files
-/docs/latex/*/*.pdf
-/docs/latex/*/*.aux
-/docs/latex/*/*.log
-/docs/latex/*/*.gz
-/docs/latex/*/*.out
+/latex/*/*.pdf
+/latex/*/*.aux
+/latex/*/*.log
+/latex/*/*.gz
+/latex/*/*.out

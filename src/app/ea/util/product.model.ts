@@ -5,7 +5,7 @@ export class Product {
         public size: number,
         public deliveryPeriod: number,
         public consumption: number,
-        public stock: number = 0
+        public stock: number = 10
     ) {
 
     }

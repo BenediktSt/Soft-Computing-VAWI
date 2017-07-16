@@ -71,8 +71,8 @@ export class Vector {
 
         }
 
-        // console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
-        // console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
+        console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
+        console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
 
         // Durchschnittlicher Lagerbestand + 5 * sumEmptyProducts
         this.fitness = totalStock / iterations + 2 * sumEmptyProducts;
@@ -99,7 +99,7 @@ export class Vector {
 
     private calculateOrders(time: number, products: Product[], orders: Order[]): Product[] {
         orders.forEach((elem) => {
-            if (elem.Delivery === time) {
+            if (elem.Delivery >= time) {
                 products[elem.Product].stock += elem.Amount;
             }
         });
