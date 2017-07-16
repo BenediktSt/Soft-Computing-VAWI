@@ -15,14 +15,12 @@ import { PopulationChartComponent } from './predator-prey/population-chart/popul
 import { FuzzyComponent } from './fuzzy/fuzzy.component';
 import { HomeComponent } from './home/home.component';
 import { FuzzyChartComponent } from './fuzzy/fuzzy-chart/fuzzy-chart.component';
-import { EaComponent } from './ea/ea.component';
 
 
 const appRouts: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'predpray', component: PredatorPreyComponent},
   {path: 'fuzzy', component: FuzzyComponent},
-  {path: 'ea', component: EaComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home'}
 ];
@@ -35,8 +33,7 @@ const appRouts: Routes = [
     PopulationChartComponent,
     FuzzyComponent,
     HomeComponent,
-    FuzzyChartComponent,
-    EaComponent
+    FuzzyChartComponent
   ],
   imports: [
     RouterModule.forRoot(appRouts),

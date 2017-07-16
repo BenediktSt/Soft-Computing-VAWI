@@ -8,8 +8,7 @@ import {
   MdIconModule,
   MdSnackBarModule,
   MdMenuModule,
-  MdProgressBarModule
- } from '@angular/material';
+  MdProgressBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
