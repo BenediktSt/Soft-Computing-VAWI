@@ -1,6 +1,6 @@
-webpackJsonp([1],{
+webpackJsonp([1,5],{
 
-/***/ "../../../../../src async recursive":
+/***/ 220:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -9,16 +9,38 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = "../../../../../src async recursive";
+webpackEmptyContext.id = 220;
+
 
 /***/ }),
 
-/***/ "../../../../../src/app/app-material.module.ts":
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(242);
+
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
+}
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 231:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(41);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomMaterialModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -64,36 +86,11 @@ CustomMaterialModule = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/app.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\r\n.example-menue {\r\n  padding: 0 14px;\r\n}\r\n\r\n.example-spacer {\r\n  -webkit-box-flex: 1;\r\n      -ms-flex: 1 1 auto;\r\n          flex: 1 1 auto;\r\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/app.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<md-toolbar color=\"primary\">{{title}}\r\n    <span class=\"example-spacer\"></span>\r\n    <button md-icon-button [mdMenuTriggerFor]=\"menu\"  class=\"example-menue\">\r\n        <md-icon>menu</md-icon>\r\n    </button>\r\n        <md-menu #menu=\"mdMenu\">\r\n        <button md-menu-item routerLink=\"/home\">\r\n            <span>Home</span>\r\n        </button>\r\n        <button md-menu-item routerLink=\"/predpray\">\r\n            <span>SL-1</span>\r\n        </button>\r\n        <button md-menu-item routerLink=\"/fuzzy\">\r\n            <span>SL-2</span>\r\n        </button>\r\n        </md-menu>\r\n</md-toolbar>\r\n\r\n<router-outlet></router-outlet>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/app.component.ts":
+/***/ 232:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -111,8 +108,8 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
-        template: __webpack_require__("../../../../../src/app/app.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        template: __webpack_require__(360),
+        styles: [__webpack_require__(349)]
     })
 ], AppComponent);
 
@@ -120,25 +117,25 @@ AppComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/app.module.ts":
+/***/ 233:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts__ = __webpack_require__("../../../../ng2-charts/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_material_module__ = __webpack_require__("../../../../../src/app/app-material.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__predator_prey_predator_prey_component__ = __webpack_require__("../../../../../src/app/predator-prey/predator-prey.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__predator_prey_population_chart_population_chart_component__ = __webpack_require__("../../../../../src/app/predator-prey/population-chart/population-chart.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fuzzy_fuzzy_component__ = __webpack_require__("../../../../../src/app/fuzzy/fuzzy.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fuzzy_fuzzy_chart_fuzzy_chart_component__ = __webpack_require__("../../../../../src/app/fuzzy/fuzzy-chart/fuzzy-chart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_material_module__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser_animations__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__predator_prey_predator_prey_component__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__predator_prey_population_chart_population_chart_component__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fuzzy_fuzzy_component__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_component__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__fuzzy_fuzzy_chart_fuzzy_chart_component__ = __webpack_require__(234);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -202,37 +199,12 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/fuzzy/fuzzy-chart/fuzzy-chart.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/fuzzy/fuzzy-chart/fuzzy-chart.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div>\r\n  <h2 align=\"center\"> Fuzzy-Set für die Nachfrage </h2>\r\n  <canvas baseChart height=\"75\"\r\n    [datasets]=\"demandChartData\"\r\n    [labels]=\"allChartLabels\"\r\n    [options]=\"allChartOptions\"\r\n    [chartType]=\"allChartType\">\r\n  </canvas>\r\n  <h2 align=\"center\"> Fuzzy-Set für den Lagerbestand </h2>\r\n  <canvas baseChart height=\"75\"\r\n    [datasets]=\"stockChartData\"\r\n    [labels]=\"allChartLabels\"\r\n    [options]=\"allChartOptions\"\r\n    [chartType]=\"allChartType\">\r\n  </canvas>\r\n</div>\r\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/fuzzy/fuzzy-chart/fuzzy-chart.component.ts":
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_es6_fuzz__ = __webpack_require__("../../../../es6-fuzz/lib/logic.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_es6_fuzz__ = __webpack_require__(86);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuzzyChartComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -301,8 +273,8 @@ __decorate([
 FuzzyChartComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-fuzzy-chart',
-        template: __webpack_require__("../../../../../src/app/fuzzy/fuzzy-chart/fuzzy-chart.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/fuzzy/fuzzy-chart/fuzzy-chart.component.css")]
+        template: __webpack_require__(361),
+        styles: [__webpack_require__(350)]
     }),
     __metadata("design:paramtypes", [])
 ], FuzzyChartComponent);
@@ -312,44 +284,19 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/fuzzy/fuzzy.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".flexContainer{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n} \r\n.flexContainer div{\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1;\r\n            flex: 1;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n.flexContainer div md-input-container{\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1;\r\n            flex: 1;\r\n}\r\n\r\n\r\n.content-card {\r\n    margin: 5px;\r\n}\r\n\r\nh2 {\r\n    font-family: Roboto, Helvetica,sans-serif;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/fuzzy/fuzzy.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h2>\r\n  Einkaufssimulation eines Supermarktes\r\n</h2>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Ausgangswerte\r\n    </md-card-title>\r\n    <md-card-content style=\"display:flex\">\r\n      <form [formGroup]=\"purchaseForm\" class=\"flexContainer\">\r\n        <div formGroupName=\"demand\">\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodA\" type=\"number\" placeholder=\"Nachfrage Produkt A\" max=\"50\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodB\" type=\"number\" placeholder=\"Nachfrage Produkt B\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodC\" type=\"number\" placeholder=\"Nachfrage Produkt C\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodD\" type=\"number\" placeholder=\"Nachfrage Produkt D\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        </div>\r\n        <div formGroupName=\"stock\">\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodA\" type=\"number\" placeholder=\"Lagerbestand Produkt A\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodB\" type=\"number\" placeholder=\"Lagerbestand Produkt B\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodC\" type=\"number\" placeholder=\"Lagerbestand Produkt C\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodD\" type=\"number\" placeholder=\"Lagerbestand Produkt D\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        </div>\r\n      </form>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"fillrandom()\">\r\n        <md-icon>input</md-icon>\r\n        Befülle zufällig\r\n      </button>\r\n      <button md-button (click)=\"calculate()\">\r\n        <md-icon>cached</md-icon>\r\n        Berechnen\r\n      </button>\r\n      <button md-button *ngIf=\"!showFuzzy\" (click)=\"showFuzzy=true\">\r\n        <md-icon>show_chart</md-icon>\r\n        Graphen anzeigen\r\n      </button>\r\n      <button md-button *ngIf=\"showFuzzy\" (click)=\"showFuzzy=false\">\r\n        <md-icon>show_chart</md-icon>\r\n        Graphen ausblenden\r\n      </button>\r\n      <button md-button (click)=\"reset()\">\r\n        <md-icon>close</md-icon>\r\n        Reset\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div *ngIf=\"showFuzzy\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Fuzzy-Graphen\r\n    </md-card-title>\r\n    <md-card-content>\r\n      <app-fuzzy-chart [demandData]=\"fuzzyControllerDemand.logic\" [stockData]=\"fuzzyControllerStock.logic\"></app-fuzzy-chart>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"showFuzzy=false\">\r\n        <md-icon>close</md-icon>\r\n        Schliessen\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Empfehlung\r\n    </md-card-title>\r\n    <md-card-content>\r\n      <div align=\"center\">\r\n        <div *ngFor=\"let row of result\" class='flexContainer'>\r\n          <div><h3>{{row.text}}</h3></div>\r\n          <div><md-progress-bar\r\n            mode=\"determinate\"\r\n            [color]=\"row.color\"\r\n            [value]=\"row.value\">\r\n          </md-progress-bar></div>\r\n        </div>\r\n      </div>\r\n    </md-card-content>\r\n  </md-card>\r\n</div>\r\n\r\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/fuzzy/fuzzy.component.ts":
+/***/ 235:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_es6_fuzz__ = __webpack_require__("../../../../es6-fuzz/lib/logic.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_fuzz_lib_curve_triangle__ = __webpack_require__("../../../../es6-fuzz/lib/curve/triangle.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_es6_fuzz_lib_curve_trapezoid__ = __webpack_require__("../../../../es6-fuzz/lib/curve/trapezoid.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_fuzzyController__ = __webpack_require__("../../../../../src/app/fuzzy/util/fuzzyController.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_rules__ = __webpack_require__("../../../../../src/app/fuzzy/util/rules.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_fuzzySet__ = __webpack_require__("../../../../../src/app/fuzzy/util/fuzzySet.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_es6_fuzz__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_fuzz_lib_curve_triangle__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_es6_fuzz_lib_curve_trapezoid__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_fuzzyController__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_rules__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_fuzzySet__ = __webpack_require__(70);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuzzyComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -491,8 +438,8 @@ var FuzzyComponent = (function () {
 FuzzyComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-fuzzy',
-        template: __webpack_require__("../../../../../src/app/fuzzy/fuzzy.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/fuzzy/fuzzy.component.css")]
+        template: __webpack_require__(362),
+        styles: [__webpack_require__(351)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MdSnackBar */]) === "function" && _b || Object])
 ], FuzzyComponent);
@@ -505,11 +452,11 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/fuzzy/util/fuzzyController.ts":
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fuzzySet__ = __webpack_require__("../../../../../src/app/fuzzy/util/fuzzySet.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fuzzySet__ = __webpack_require__(70);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuzzyController; });
 
 var FuzzyController = (function () {
@@ -554,41 +501,7 @@ var FuzzyController = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/fuzzy/util/fuzzySet.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuzzySet; });
-var FuzzySet = (function () {
-    function FuzzySet() {
-        this.pairs = [];
-    }
-    ;
-    FuzzySet.prototype.addPair = function (key, value) {
-        if (this.getValueByKey(key) === -1) {
-            this.pairs.push({ key: key, value: value });
-        }
-        else {
-            console.log(new Error('Doppelter Key'));
-        }
-    };
-    FuzzySet.prototype.getValueByKey = function (key) {
-        for (var _i = 0, _a = this.pairs; _i < _a.length; _i++) {
-            var pair = _a[_i];
-            if (pair.key === key) {
-                return pair.value;
-            }
-        }
-        return -1;
-    };
-    return FuzzySet;
-}());
-
-//# sourceMappingURL=fuzzySet.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/fuzzy/util/rules.ts":
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -694,36 +607,11 @@ var Ruleset = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/home/home.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "div {\r\n    font-family: Roboto, Helvetica,sans-serif;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/home/home.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div align='center'>\r\n  <h1>\r\n    Startseite\r\n  </h1>\r\n\r\n  <div>\r\n    Hallo,<br><br>\r\n    dies ist die Startseite für die Studienleistungen im Fach Soft Computing SS17 von Benedikt Straube.<br>\r\n    Über das Menu oben rechts können die verschiedenen Studienleistungen ausgewählt werden.<br>\r\n    <br><br>\r\n    Viel Vergnügen.\r\n  </div>\r\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/home/home.component.ts":
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -745,8 +633,8 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-home',
-        template: __webpack_require__("../../../../../src/app/home/home.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/home/home.component.css")]
+        template: __webpack_require__(363),
+        styles: [__webpack_require__(352)]
     }),
     __metadata("design:paramtypes", [])
 ], HomeComponent);
@@ -755,150 +643,16 @@ HomeComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/predator-prey/population-chart/population-chart.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/predator-prey/population-chart/population-chart.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div>\r\n  <canvas baseChart\r\n    [datasets]=\"lineChartData\"\r\n    [labels]=\"lineChartLabels\"\r\n    [colors]=\"lineChartColors\"\r\n    [options]=\"lineChartOptions\"\r\n    [chartType]=\"lineChartType\">\r\n  </canvas>\r\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/predator-prey/population-chart/population-chart.component.ts":
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__ = __webpack_require__("../../../../ng2-charts/ng2-charts.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopulationChartComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var PopulationChartComponent = (function () {
-    function PopulationChartComponent() {
-        this.lineChartType = 'line';
-        this.lineChartData = [
-            { data: [], label: 'Beute' },
-            { data: [], label: 'Räuber' }
-        ];
-        this.lineChartOptions = {
-            responsive: true
-        };
-        this.lineChartLabels = [];
-        this.lineChartColors = [
-            {
-                backgroundColor: 'rgba(144,238,144,0.2)',
-                borderColor: 'rgba(0,128,0,1)',
-                pointBackgroundColor: 'rgba(0,128,0,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            },
-            {
-                backgroundColor: 'rgba(240,128,128,0.2)',
-                borderColor: 'rgba(255,0,0,1)',
-                pointBackgroundColor: 'rgba(255,0,0,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(77,83,96,1)'
-            },
-        ];
-    }
-    PopulationChartComponent.prototype.ngOnInit = function () {
-    };
-    PopulationChartComponent.prototype.addDataSet = function (predatorCount, preyCount) {
-        this.lineChartData[0].data.push(preyCount);
-        this.lineChartData[1].data.push(predatorCount);
-        this.lineChartLabels.push(this.lineChartLabels.length + 1);
-        this.chart.chart.config.data.labels = this.lineChartLabels;
-        this.chart.chart.config.data.data = this.lineChartData;
-        this.chart.chart.update();
-    };
-    PopulationChartComponent.prototype.reset = function () {
-        this.lineChartLabels = [];
-        this.lineChartData[0].data = [];
-        this.lineChartData[1].data = [];
-    };
-    return PopulationChartComponent;
-}());
-__decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__["BaseChartDirective"]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__["BaseChartDirective"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__["BaseChartDirective"]) === "function" && _a || Object)
-], PopulationChartComponent.prototype, "chart", void 0);
-PopulationChartComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-population-chart',
-        template: __webpack_require__("../../../../../src/app/predator-prey/population-chart/population-chart.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/predator-prey/population-chart/population-chart.component.css")]
-    }),
-    __metadata("design:paramtypes", [])
-], PopulationChartComponent);
-
-var _a;
-//# sourceMappingURL=population-chart.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/predator-prey/predator-prey.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\r\nmd-grid-tile.empty {\r\n  background: #B19CD9;\r\n}\r\n\r\nmd-grid-tile.predator {\r\n  background: lightcoral;\r\n}\r\n\r\nmd-grid-tile.prey {\r\n  background: lightgreen;\r\n}\r\n\r\n\r\np.thick {\r\n    font-weight: bold;\r\n}\r\n.content-card {\r\n    margin: 5px;\r\n}\r\n\r\nh2 {\r\n    font-family: Roboto, Helvetica,sans-serif;\r\n}\r\n\r\nmd-grid-list {\r\n  height: 500px;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/predator-prey/predator-prey.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h2>\r\n  Darstellung eines Räuber-Beute-Systems\r\n</h2>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-header>\r\n      <md-card-subtitle>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"size\" placeholder=\"Feldgröße\" disabled>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"populationLevel\" placeholder=\"Fortpflanzungslevel\" disabled>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"startLevelPredator\" placeholder=\"Startlevel der Räuber\" disabled>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"energyThroughEating\" placeholder=\"Energiegewinn durch Essen\" disabled>\r\n        </md-input-container>\r\n      </md-card-subtitle>\r\n    </md-card-header>\r\n    <md-card-content>\r\n      <md-grid-list [cols]=\"size\" rowHeight=\"fit\">\r\n        <div *ngFor=\"let line of map.fields\">\r\n          <md-grid-tile *ngFor=\"let cell of line\" (click)=\"currentCell = cell\" [style.background]=\"cell.color\">\r\n            {{cell.value}}\r\n          </md-grid-tile>\r\n        </div>\r\n      </md-grid-list>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"map.addPrey()\">\r\n        <md-icon>add_circle_outline</md-icon>\r\n        Beute\r\n      </button>\r\n      <button md-button (click)=\"map.addPredator()\">\r\n        <md-icon>add_circle</md-icon>\r\n       Räuber\r\n      </button>\r\n      <button md-button (click)=\"iterate()\">\r\n        <md-icon>cached</md-icon>\r\n        Iteration\r\n      </button>\r\n      <button md-button (click)=\"reset()\">\r\n        <md-icon>close</md-icon>\r\n        Reset\r\n      </button>\r\n      <button md-button (click)=\"showNewMapForm=true\" *ngIf=\"!showNewMapForm\">\r\n        <md-icon>settings</md-icon>\r\n        Neue Map generieren\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div *ngIf=\"showNewMapForm\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-content>\r\n      <form [formGroup]=\"newMapForm\">\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"size\" type=\"number\" placeholder=\"Feldgröße\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"populationLevel\" type=\"number\" placeholder=\"Fortpflanzungslevel\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"startLevelPredator\" type=\"number\" placeholder=\"Startlevel der Räuber\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"energyThroughEating\" type=\"number\" placeholder=\"Energiegewinn durch Essen\">\r\n        </md-input-container>\r\n      </form>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"generateNewMap()\">\r\n        <md-icon>settings</md-icon>\r\n        Map generieren\r\n      </button>\r\n      <button md-button (click)=\"showNewMapForm=false; newMapForm.reset()\">\r\n        <md-icon>close</md-icon>\r\n        SCHLIESSEN\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n\r\n<div *ngIf=\"currentCell\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-header>\r\n      <md-card-title> Aktuelle Zelle </md-card-title>\r\n    </md-card-header>\r\n    <md-card-content>\r\n      <p class=\"thick\">Koordinaten: </p>\r\n      <p>{{currentCell.xCoordinate}}, {{currentCell.yCoordinate}} </p>\r\n      <p class=\"thick\">ID: </p>\r\n      <p>{{currentCell.id}} </p>\r\n      <p class=\"thick\">Wert: </p>\r\n      <p>{{currentCell.value}} </p>\r\n      <p class=\"thick\">Typ: </p>\r\n      <p>{{currentCell.type}} </p>\r\n      <p class=\"thick\">Ausrichtung: </p>\r\n      <p *ngIf=\"currentCell.direction !== null\"> {{currentCell.direction}} </p>\r\n      <p *ngIf=\"currentCell.direction === null\"> null </p>\r\n      <p class=\"thick\">Nachbarn: </p>\r\n      <span *ngFor=\"let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)\"> \r\n        {{neighbour.value}} ... {{neighbour.direction}},\r\n      </span>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"currentCell=null\">\r\n        <md-icon>close</md-icon>\r\n        SCHLIESSEN\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div>\r\n  <md-card>\r\n    <app-population-chart></app-population-chart>\r\n  </md-card>\r\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/predator-prey/predator-prey.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_map__ = __webpack_require__("../../../../../src/app/predator-prey/utils/map.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_rules__ = __webpack_require__("../../../../../src/app/predator-prey/utils/rules.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__population_chart_population_chart_component__ = __webpack_require__("../../../../../src/app/predator-prey/population-chart/population-chart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_map__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_rules__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__population_chart_population_chart_component__ = __webpack_require__(71);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PredatorPreyComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -975,8 +729,8 @@ __decorate([
 PredatorPreyComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-predator-prey',
-        template: __webpack_require__("../../../../../src/app/predator-prey/predator-prey.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/predator-prey/predator-prey.component.css")]
+        template: __webpack_require__(365),
+        styles: [__webpack_require__(354)]
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* FormBuilder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MdSnackBar */]) === "function" && _c || Object])
 ], PredatorPreyComponent);
@@ -986,11 +740,11 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/predator-prey/utils/cell.ts":
+/***/ 240:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__("../../../../../src/app/predator-prey/utils/map.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__(42);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Cell; });
 var Direction;
 (function (Direction) {
@@ -1025,171 +779,11 @@ var Cell = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/predator-prey/utils/map.ts":
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__("../../../../../src/app/predator-prey/utils/cell.ts");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return colorEmpty; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return colorPrey; });
-/* unused harmony export colorPredator */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Map; });
-
-function modulo(num, mod) {
-    return ((num % mod) + mod) % mod;
-}
-var colorEmpty = '#B19CD9';
-var colorPrey = 'lightgreen';
-var colorPredator = 'lightcoral';
-var Map = (function () {
-    function Map(size, ruleSet, startLevelPredator) {
-        this.size = size;
-        this.ruleSet = ruleSet;
-        this.startLevelPredator = startLevelPredator;
-        this.fields = [];
-        this.numCells = 0;
-        for (var i = 0; i < this.size; i++) {
-            this.fields[i] = [];
-            for (var j = 0; j < this.size; j++) {
-                this.fields[i][j] = new __WEBPACK_IMPORTED_MODULE_0__cell__["a" /* Cell */](j, i, 0, 0);
-                // this.numCells++;
-            }
-        }
-    }
-    Map.prototype.getNewID = function () {
-        this.numCells++;
-        return this.numCells;
-    };
-    Map.prototype.getCount = function (type) {
-        var count = 0;
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                if (cell.type === type) {
-                    count++;
-                }
-            });
-        });
-        return count;
-    };
-    Map.prototype.getCell = function (xValue, yValue) {
-        return this.fields[modulo(yValue, this.size)][modulo(xValue, this.size)];
-    };
-    Map.prototype.setCell = function (cell) {
-        this.fields[cell.yCoordinate][cell.xCoordinate] = cell;
-    };
-    Map.prototype.getNeighbours = function (xValue, yValue) {
-        var tuple = [];
-        // Nachbarzellen oberhalb
-        tuple.push(this.getCell(xValue - 1, yValue - 1));
-        tuple.push(this.getCell(xValue, yValue - 1));
-        tuple.push(this.getCell(xValue + 1, yValue - 1));
-        // Nachbarzellen nebenan
-        tuple.push(this.getCell(xValue - 1, yValue));
-        tuple.push(this.getCell(xValue + 1, yValue));
-        // Nachbarzellen unterhalb
-        tuple.push(this.getCell(xValue - 1, yValue + 1));
-        tuple.push(this.getCell(xValue, yValue + 1));
-        tuple.push(this.getCell(xValue + 1, yValue + 1));
-        return tuple;
-    };
-    Map.prototype.addPrey = function (xValue, yValue) {
-        var emptyField = false;
-        var countTries = 0;
-        while (!emptyField) {
-            countTries++;
-            xValue = Math.floor((Math.random() * this.size));
-            yValue = Math.floor((Math.random() * this.size));
-            if (this.getCell(xValue, yValue).type === 'empty') {
-                emptyField = true;
-            }
-            else {
-                emptyField = false;
-            }
-            if (countTries >= this.size * this.size) {
-                return;
-            }
-        }
-        this.numCells++;
-        this.setCell(new __WEBPACK_IMPORTED_MODULE_0__cell__["a" /* Cell */](xValue, yValue, 1, this.numCells, 'prey', colorPrey));
-    };
-    Map.prototype.addPredator = function (xValue, yValue) {
-        var emptyField = false;
-        var countTries = 0;
-        while (!emptyField) {
-            countTries++;
-            xValue = Math.floor((Math.random() * this.size));
-            yValue = Math.floor((Math.random() * this.size));
-            if (this.getCell(xValue, yValue).type === 'empty') {
-                emptyField = true;
-            }
-            else {
-                emptyField = false;
-            }
-            if (countTries >= this.size * this.size) {
-                return;
-            }
-        }
-        this.numCells++;
-        this.setCell(new __WEBPACK_IMPORTED_MODULE_0__cell__["a" /* Cell */](xValue, yValue, this.startLevelPredator, this.numCells, 'predator', colorPredator));
-    };
-    Map.prototype.iterate = function () {
-        var _this = this;
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                cell = _this.ruleSet.populate(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                cell = _this.ruleSet.gainEnergy(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                cell = _this.ruleSet.loseEnergy(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                cell = _this.ruleSet.moveDirectionPrey(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                cell = _this.ruleSet.moveDirectionPredator(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-            });
-        });
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                if (cell.type !== 'predator') {
-                    cell = _this.ruleSet.processMovementPredator(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                }
-            });
-        });
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                if (cell.type !== 'empty') {
-                    cell = _this.ruleSet.processMovementPredator(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                }
-            });
-        });
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                if (cell.type === 'empty') {
-                    cell = _this.ruleSet.processMovementPrey(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                }
-            });
-        });
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                if (cell.type !== 'empty') {
-                    cell = _this.ruleSet.processMovementPrey(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                }
-            });
-        });
-        this.fields.forEach(function (line) {
-            line.forEach(function (cell) {
-                cell = _this.ruleSet.unmarkReproduktion(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-                cell = _this.ruleSet.deleteCell(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
-            });
-        });
-    };
-    return Map;
-}());
-
-//# sourceMappingURL=map.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/predator-prey/utils/rules.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__("../../../../../src/app/predator-prey/utils/map.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__(42);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Ruleset; });
 
 var Ruleset = (function () {
@@ -1410,7 +1004,7 @@ var Ruleset = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/environments/environment.ts":
+/***/ 242:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1427,268 +1021,355 @@ var environment = {
 
 /***/ }),
 
-/***/ "../../../../../src/main.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 349:
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("../../../../../src/app/app.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+exports = module.exports = __webpack_require__(11)(false);
+// imports
 
 
+// module
+exports.push([module.i, "\r\n.example-menue {\r\n  padding: 0 14px;\r\n}\r\n\r\n.example-spacer {\r\n  -webkit-box-flex: 1;\r\n      -ms-flex: 1 1 auto;\r\n          flex: 1 1 auto;\r\n}\r\n\r\n", ""]);
+
+// exports
 
 
-if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
-}
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../moment/locale recursive ^\\.\\/.*$":
+/***/ 350:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 351:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".flexContainer{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: row;\r\n            flex-direction: row;\r\n    -webkit-box-pack: justify;\r\n        -ms-flex-pack: justify;\r\n            justify-content: space-between;\r\n} \r\n.flexContainer div{\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1;\r\n            flex: 1;\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n        -ms-flex-direction: column;\r\n            flex-direction: column;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n}\r\n.flexContainer div md-input-container{\r\n    -webkit-box-flex: 1;\r\n        -ms-flex: 1;\r\n            flex: 1;\r\n}\r\n\r\n\r\n.content-card {\r\n    margin: 5px;\r\n}\r\n\r\nh2 {\r\n    font-family: Roboto, Helvetica,sans-serif;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 352:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "div {\r\n    font-family: Roboto, Helvetica,sans-serif;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 353:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 354:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\r\nmd-grid-tile.empty {\r\n  background: #B19CD9;\r\n}\r\n\r\nmd-grid-tile.predator {\r\n  background: lightcoral;\r\n}\r\n\r\nmd-grid-tile.prey {\r\n  background: lightgreen;\r\n}\r\n\r\n\r\np.thick {\r\n    font-weight: bold;\r\n}\r\n.content-card {\r\n    margin: 5px;\r\n}\r\n\r\nh2 {\r\n    font-family: Roboto, Helvetica,sans-serif;\r\n}\r\n\r\nmd-grid-list {\r\n  height: 500px;\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 355:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": "../../../../moment/locale/af.js",
-	"./af.js": "../../../../moment/locale/af.js",
-	"./ar": "../../../../moment/locale/ar.js",
-	"./ar-dz": "../../../../moment/locale/ar-dz.js",
-	"./ar-dz.js": "../../../../moment/locale/ar-dz.js",
-	"./ar-kw": "../../../../moment/locale/ar-kw.js",
-	"./ar-kw.js": "../../../../moment/locale/ar-kw.js",
-	"./ar-ly": "../../../../moment/locale/ar-ly.js",
-	"./ar-ly.js": "../../../../moment/locale/ar-ly.js",
-	"./ar-ma": "../../../../moment/locale/ar-ma.js",
-	"./ar-ma.js": "../../../../moment/locale/ar-ma.js",
-	"./ar-sa": "../../../../moment/locale/ar-sa.js",
-	"./ar-sa.js": "../../../../moment/locale/ar-sa.js",
-	"./ar-tn": "../../../../moment/locale/ar-tn.js",
-	"./ar-tn.js": "../../../../moment/locale/ar-tn.js",
-	"./ar.js": "../../../../moment/locale/ar.js",
-	"./az": "../../../../moment/locale/az.js",
-	"./az.js": "../../../../moment/locale/az.js",
-	"./be": "../../../../moment/locale/be.js",
-	"./be.js": "../../../../moment/locale/be.js",
-	"./bg": "../../../../moment/locale/bg.js",
-	"./bg.js": "../../../../moment/locale/bg.js",
-	"./bn": "../../../../moment/locale/bn.js",
-	"./bn.js": "../../../../moment/locale/bn.js",
-	"./bo": "../../../../moment/locale/bo.js",
-	"./bo.js": "../../../../moment/locale/bo.js",
-	"./br": "../../../../moment/locale/br.js",
-	"./br.js": "../../../../moment/locale/br.js",
-	"./bs": "../../../../moment/locale/bs.js",
-	"./bs.js": "../../../../moment/locale/bs.js",
-	"./ca": "../../../../moment/locale/ca.js",
-	"./ca.js": "../../../../moment/locale/ca.js",
-	"./cs": "../../../../moment/locale/cs.js",
-	"./cs.js": "../../../../moment/locale/cs.js",
-	"./cv": "../../../../moment/locale/cv.js",
-	"./cv.js": "../../../../moment/locale/cv.js",
-	"./cy": "../../../../moment/locale/cy.js",
-	"./cy.js": "../../../../moment/locale/cy.js",
-	"./da": "../../../../moment/locale/da.js",
-	"./da.js": "../../../../moment/locale/da.js",
-	"./de": "../../../../moment/locale/de.js",
-	"./de-at": "../../../../moment/locale/de-at.js",
-	"./de-at.js": "../../../../moment/locale/de-at.js",
-	"./de-ch": "../../../../moment/locale/de-ch.js",
-	"./de-ch.js": "../../../../moment/locale/de-ch.js",
-	"./de.js": "../../../../moment/locale/de.js",
-	"./dv": "../../../../moment/locale/dv.js",
-	"./dv.js": "../../../../moment/locale/dv.js",
-	"./el": "../../../../moment/locale/el.js",
-	"./el.js": "../../../../moment/locale/el.js",
-	"./en-au": "../../../../moment/locale/en-au.js",
-	"./en-au.js": "../../../../moment/locale/en-au.js",
-	"./en-ca": "../../../../moment/locale/en-ca.js",
-	"./en-ca.js": "../../../../moment/locale/en-ca.js",
-	"./en-gb": "../../../../moment/locale/en-gb.js",
-	"./en-gb.js": "../../../../moment/locale/en-gb.js",
-	"./en-ie": "../../../../moment/locale/en-ie.js",
-	"./en-ie.js": "../../../../moment/locale/en-ie.js",
-	"./en-nz": "../../../../moment/locale/en-nz.js",
-	"./en-nz.js": "../../../../moment/locale/en-nz.js",
-	"./eo": "../../../../moment/locale/eo.js",
-	"./eo.js": "../../../../moment/locale/eo.js",
-	"./es": "../../../../moment/locale/es.js",
-	"./es-do": "../../../../moment/locale/es-do.js",
-	"./es-do.js": "../../../../moment/locale/es-do.js",
-	"./es.js": "../../../../moment/locale/es.js",
-	"./et": "../../../../moment/locale/et.js",
-	"./et.js": "../../../../moment/locale/et.js",
-	"./eu": "../../../../moment/locale/eu.js",
-	"./eu.js": "../../../../moment/locale/eu.js",
-	"./fa": "../../../../moment/locale/fa.js",
-	"./fa.js": "../../../../moment/locale/fa.js",
-	"./fi": "../../../../moment/locale/fi.js",
-	"./fi.js": "../../../../moment/locale/fi.js",
-	"./fo": "../../../../moment/locale/fo.js",
-	"./fo.js": "../../../../moment/locale/fo.js",
-	"./fr": "../../../../moment/locale/fr.js",
-	"./fr-ca": "../../../../moment/locale/fr-ca.js",
-	"./fr-ca.js": "../../../../moment/locale/fr-ca.js",
-	"./fr-ch": "../../../../moment/locale/fr-ch.js",
-	"./fr-ch.js": "../../../../moment/locale/fr-ch.js",
-	"./fr.js": "../../../../moment/locale/fr.js",
-	"./fy": "../../../../moment/locale/fy.js",
-	"./fy.js": "../../../../moment/locale/fy.js",
-	"./gd": "../../../../moment/locale/gd.js",
-	"./gd.js": "../../../../moment/locale/gd.js",
-	"./gl": "../../../../moment/locale/gl.js",
-	"./gl.js": "../../../../moment/locale/gl.js",
-	"./gom-latn": "../../../../moment/locale/gom-latn.js",
-	"./gom-latn.js": "../../../../moment/locale/gom-latn.js",
-	"./he": "../../../../moment/locale/he.js",
-	"./he.js": "../../../../moment/locale/he.js",
-	"./hi": "../../../../moment/locale/hi.js",
-	"./hi.js": "../../../../moment/locale/hi.js",
-	"./hr": "../../../../moment/locale/hr.js",
-	"./hr.js": "../../../../moment/locale/hr.js",
-	"./hu": "../../../../moment/locale/hu.js",
-	"./hu.js": "../../../../moment/locale/hu.js",
-	"./hy-am": "../../../../moment/locale/hy-am.js",
-	"./hy-am.js": "../../../../moment/locale/hy-am.js",
-	"./id": "../../../../moment/locale/id.js",
-	"./id.js": "../../../../moment/locale/id.js",
-	"./is": "../../../../moment/locale/is.js",
-	"./is.js": "../../../../moment/locale/is.js",
-	"./it": "../../../../moment/locale/it.js",
-	"./it.js": "../../../../moment/locale/it.js",
-	"./ja": "../../../../moment/locale/ja.js",
-	"./ja.js": "../../../../moment/locale/ja.js",
-	"./jv": "../../../../moment/locale/jv.js",
-	"./jv.js": "../../../../moment/locale/jv.js",
-	"./ka": "../../../../moment/locale/ka.js",
-	"./ka.js": "../../../../moment/locale/ka.js",
-	"./kk": "../../../../moment/locale/kk.js",
-	"./kk.js": "../../../../moment/locale/kk.js",
-	"./km": "../../../../moment/locale/km.js",
-	"./km.js": "../../../../moment/locale/km.js",
-	"./kn": "../../../../moment/locale/kn.js",
-	"./kn.js": "../../../../moment/locale/kn.js",
-	"./ko": "../../../../moment/locale/ko.js",
-	"./ko.js": "../../../../moment/locale/ko.js",
-	"./ky": "../../../../moment/locale/ky.js",
-	"./ky.js": "../../../../moment/locale/ky.js",
-	"./lb": "../../../../moment/locale/lb.js",
-	"./lb.js": "../../../../moment/locale/lb.js",
-	"./lo": "../../../../moment/locale/lo.js",
-	"./lo.js": "../../../../moment/locale/lo.js",
-	"./lt": "../../../../moment/locale/lt.js",
-	"./lt.js": "../../../../moment/locale/lt.js",
-	"./lv": "../../../../moment/locale/lv.js",
-	"./lv.js": "../../../../moment/locale/lv.js",
-	"./me": "../../../../moment/locale/me.js",
-	"./me.js": "../../../../moment/locale/me.js",
-	"./mi": "../../../../moment/locale/mi.js",
-	"./mi.js": "../../../../moment/locale/mi.js",
-	"./mk": "../../../../moment/locale/mk.js",
-	"./mk.js": "../../../../moment/locale/mk.js",
-	"./ml": "../../../../moment/locale/ml.js",
-	"./ml.js": "../../../../moment/locale/ml.js",
-	"./mr": "../../../../moment/locale/mr.js",
-	"./mr.js": "../../../../moment/locale/mr.js",
-	"./ms": "../../../../moment/locale/ms.js",
-	"./ms-my": "../../../../moment/locale/ms-my.js",
-	"./ms-my.js": "../../../../moment/locale/ms-my.js",
-	"./ms.js": "../../../../moment/locale/ms.js",
-	"./my": "../../../../moment/locale/my.js",
-	"./my.js": "../../../../moment/locale/my.js",
-	"./nb": "../../../../moment/locale/nb.js",
-	"./nb.js": "../../../../moment/locale/nb.js",
-	"./ne": "../../../../moment/locale/ne.js",
-	"./ne.js": "../../../../moment/locale/ne.js",
-	"./nl": "../../../../moment/locale/nl.js",
-	"./nl-be": "../../../../moment/locale/nl-be.js",
-	"./nl-be.js": "../../../../moment/locale/nl-be.js",
-	"./nl.js": "../../../../moment/locale/nl.js",
-	"./nn": "../../../../moment/locale/nn.js",
-	"./nn.js": "../../../../moment/locale/nn.js",
-	"./pa-in": "../../../../moment/locale/pa-in.js",
-	"./pa-in.js": "../../../../moment/locale/pa-in.js",
-	"./pl": "../../../../moment/locale/pl.js",
-	"./pl.js": "../../../../moment/locale/pl.js",
-	"./pt": "../../../../moment/locale/pt.js",
-	"./pt-br": "../../../../moment/locale/pt-br.js",
-	"./pt-br.js": "../../../../moment/locale/pt-br.js",
-	"./pt.js": "../../../../moment/locale/pt.js",
-	"./ro": "../../../../moment/locale/ro.js",
-	"./ro.js": "../../../../moment/locale/ro.js",
-	"./ru": "../../../../moment/locale/ru.js",
-	"./ru.js": "../../../../moment/locale/ru.js",
-	"./sd": "../../../../moment/locale/sd.js",
-	"./sd.js": "../../../../moment/locale/sd.js",
-	"./se": "../../../../moment/locale/se.js",
-	"./se.js": "../../../../moment/locale/se.js",
-	"./si": "../../../../moment/locale/si.js",
-	"./si.js": "../../../../moment/locale/si.js",
-	"./sk": "../../../../moment/locale/sk.js",
-	"./sk.js": "../../../../moment/locale/sk.js",
-	"./sl": "../../../../moment/locale/sl.js",
-	"./sl.js": "../../../../moment/locale/sl.js",
-	"./sq": "../../../../moment/locale/sq.js",
-	"./sq.js": "../../../../moment/locale/sq.js",
-	"./sr": "../../../../moment/locale/sr.js",
-	"./sr-cyrl": "../../../../moment/locale/sr-cyrl.js",
-	"./sr-cyrl.js": "../../../../moment/locale/sr-cyrl.js",
-	"./sr.js": "../../../../moment/locale/sr.js",
-	"./ss": "../../../../moment/locale/ss.js",
-	"./ss.js": "../../../../moment/locale/ss.js",
-	"./sv": "../../../../moment/locale/sv.js",
-	"./sv.js": "../../../../moment/locale/sv.js",
-	"./sw": "../../../../moment/locale/sw.js",
-	"./sw.js": "../../../../moment/locale/sw.js",
-	"./ta": "../../../../moment/locale/ta.js",
-	"./ta.js": "../../../../moment/locale/ta.js",
-	"./te": "../../../../moment/locale/te.js",
-	"./te.js": "../../../../moment/locale/te.js",
-	"./tet": "../../../../moment/locale/tet.js",
-	"./tet.js": "../../../../moment/locale/tet.js",
-	"./th": "../../../../moment/locale/th.js",
-	"./th.js": "../../../../moment/locale/th.js",
-	"./tl-ph": "../../../../moment/locale/tl-ph.js",
-	"./tl-ph.js": "../../../../moment/locale/tl-ph.js",
-	"./tlh": "../../../../moment/locale/tlh.js",
-	"./tlh.js": "../../../../moment/locale/tlh.js",
-	"./tr": "../../../../moment/locale/tr.js",
-	"./tr.js": "../../../../moment/locale/tr.js",
-	"./tzl": "../../../../moment/locale/tzl.js",
-	"./tzl.js": "../../../../moment/locale/tzl.js",
-	"./tzm": "../../../../moment/locale/tzm.js",
-	"./tzm-latn": "../../../../moment/locale/tzm-latn.js",
-	"./tzm-latn.js": "../../../../moment/locale/tzm-latn.js",
-	"./tzm.js": "../../../../moment/locale/tzm.js",
-	"./uk": "../../../../moment/locale/uk.js",
-	"./uk.js": "../../../../moment/locale/uk.js",
-	"./ur": "../../../../moment/locale/ur.js",
-	"./ur.js": "../../../../moment/locale/ur.js",
-	"./uz": "../../../../moment/locale/uz.js",
-	"./uz-latn": "../../../../moment/locale/uz-latn.js",
-	"./uz-latn.js": "../../../../moment/locale/uz-latn.js",
-	"./uz.js": "../../../../moment/locale/uz.js",
-	"./vi": "../../../../moment/locale/vi.js",
-	"./vi.js": "../../../../moment/locale/vi.js",
-	"./x-pseudo": "../../../../moment/locale/x-pseudo.js",
-	"./x-pseudo.js": "../../../../moment/locale/x-pseudo.js",
-	"./yo": "../../../../moment/locale/yo.js",
-	"./yo.js": "../../../../moment/locale/yo.js",
-	"./zh-cn": "../../../../moment/locale/zh-cn.js",
-	"./zh-cn.js": "../../../../moment/locale/zh-cn.js",
-	"./zh-hk": "../../../../moment/locale/zh-hk.js",
-	"./zh-hk.js": "../../../../moment/locale/zh-hk.js",
-	"./zh-tw": "../../../../moment/locale/zh-tw.js",
-	"./zh-tw.js": "../../../../moment/locale/zh-tw.js"
+	"./af": 87,
+	"./af.js": 87,
+	"./ar": 94,
+	"./ar-dz": 88,
+	"./ar-dz.js": 88,
+	"./ar-kw": 89,
+	"./ar-kw.js": 89,
+	"./ar-ly": 90,
+	"./ar-ly.js": 90,
+	"./ar-ma": 91,
+	"./ar-ma.js": 91,
+	"./ar-sa": 92,
+	"./ar-sa.js": 92,
+	"./ar-tn": 93,
+	"./ar-tn.js": 93,
+	"./ar.js": 94,
+	"./az": 95,
+	"./az.js": 95,
+	"./be": 96,
+	"./be.js": 96,
+	"./bg": 97,
+	"./bg.js": 97,
+	"./bn": 98,
+	"./bn.js": 98,
+	"./bo": 99,
+	"./bo.js": 99,
+	"./br": 100,
+	"./br.js": 100,
+	"./bs": 101,
+	"./bs.js": 101,
+	"./ca": 102,
+	"./ca.js": 102,
+	"./cs": 103,
+	"./cs.js": 103,
+	"./cv": 104,
+	"./cv.js": 104,
+	"./cy": 105,
+	"./cy.js": 105,
+	"./da": 106,
+	"./da.js": 106,
+	"./de": 109,
+	"./de-at": 107,
+	"./de-at.js": 107,
+	"./de-ch": 108,
+	"./de-ch.js": 108,
+	"./de.js": 109,
+	"./dv": 110,
+	"./dv.js": 110,
+	"./el": 111,
+	"./el.js": 111,
+	"./en-au": 112,
+	"./en-au.js": 112,
+	"./en-ca": 113,
+	"./en-ca.js": 113,
+	"./en-gb": 114,
+	"./en-gb.js": 114,
+	"./en-ie": 115,
+	"./en-ie.js": 115,
+	"./en-nz": 116,
+	"./en-nz.js": 116,
+	"./eo": 117,
+	"./eo.js": 117,
+	"./es": 119,
+	"./es-do": 118,
+	"./es-do.js": 118,
+	"./es.js": 119,
+	"./et": 120,
+	"./et.js": 120,
+	"./eu": 121,
+	"./eu.js": 121,
+	"./fa": 122,
+	"./fa.js": 122,
+	"./fi": 123,
+	"./fi.js": 123,
+	"./fo": 124,
+	"./fo.js": 124,
+	"./fr": 127,
+	"./fr-ca": 125,
+	"./fr-ca.js": 125,
+	"./fr-ch": 126,
+	"./fr-ch.js": 126,
+	"./fr.js": 127,
+	"./fy": 128,
+	"./fy.js": 128,
+	"./gd": 129,
+	"./gd.js": 129,
+	"./gl": 130,
+	"./gl.js": 130,
+	"./gom-latn": 131,
+	"./gom-latn.js": 131,
+	"./he": 132,
+	"./he.js": 132,
+	"./hi": 133,
+	"./hi.js": 133,
+	"./hr": 134,
+	"./hr.js": 134,
+	"./hu": 135,
+	"./hu.js": 135,
+	"./hy-am": 136,
+	"./hy-am.js": 136,
+	"./id": 137,
+	"./id.js": 137,
+	"./is": 138,
+	"./is.js": 138,
+	"./it": 139,
+	"./it.js": 139,
+	"./ja": 140,
+	"./ja.js": 140,
+	"./jv": 141,
+	"./jv.js": 141,
+	"./ka": 142,
+	"./ka.js": 142,
+	"./kk": 143,
+	"./kk.js": 143,
+	"./km": 144,
+	"./km.js": 144,
+	"./kn": 145,
+	"./kn.js": 145,
+	"./ko": 146,
+	"./ko.js": 146,
+	"./ky": 147,
+	"./ky.js": 147,
+	"./lb": 148,
+	"./lb.js": 148,
+	"./lo": 149,
+	"./lo.js": 149,
+	"./lt": 150,
+	"./lt.js": 150,
+	"./lv": 151,
+	"./lv.js": 151,
+	"./me": 152,
+	"./me.js": 152,
+	"./mi": 153,
+	"./mi.js": 153,
+	"./mk": 154,
+	"./mk.js": 154,
+	"./ml": 155,
+	"./ml.js": 155,
+	"./mr": 156,
+	"./mr.js": 156,
+	"./ms": 158,
+	"./ms-my": 157,
+	"./ms-my.js": 157,
+	"./ms.js": 158,
+	"./my": 159,
+	"./my.js": 159,
+	"./nb": 160,
+	"./nb.js": 160,
+	"./ne": 161,
+	"./ne.js": 161,
+	"./nl": 163,
+	"./nl-be": 162,
+	"./nl-be.js": 162,
+	"./nl.js": 163,
+	"./nn": 164,
+	"./nn.js": 164,
+	"./pa-in": 165,
+	"./pa-in.js": 165,
+	"./pl": 166,
+	"./pl.js": 166,
+	"./pt": 168,
+	"./pt-br": 167,
+	"./pt-br.js": 167,
+	"./pt.js": 168,
+	"./ro": 169,
+	"./ro.js": 169,
+	"./ru": 170,
+	"./ru.js": 170,
+	"./sd": 171,
+	"./sd.js": 171,
+	"./se": 172,
+	"./se.js": 172,
+	"./si": 173,
+	"./si.js": 173,
+	"./sk": 174,
+	"./sk.js": 174,
+	"./sl": 175,
+	"./sl.js": 175,
+	"./sq": 176,
+	"./sq.js": 176,
+	"./sr": 178,
+	"./sr-cyrl": 177,
+	"./sr-cyrl.js": 177,
+	"./sr.js": 178,
+	"./ss": 179,
+	"./ss.js": 179,
+	"./sv": 180,
+	"./sv.js": 180,
+	"./sw": 181,
+	"./sw.js": 181,
+	"./ta": 182,
+	"./ta.js": 182,
+	"./te": 183,
+	"./te.js": 183,
+	"./tet": 184,
+	"./tet.js": 184,
+	"./th": 185,
+	"./th.js": 185,
+	"./tl-ph": 186,
+	"./tl-ph.js": 186,
+	"./tlh": 187,
+	"./tlh.js": 187,
+	"./tr": 188,
+	"./tr.js": 188,
+	"./tzl": 189,
+	"./tzl.js": 189,
+	"./tzm": 191,
+	"./tzm-latn": 190,
+	"./tzm-latn.js": 190,
+	"./tzm.js": 191,
+	"./uk": 192,
+	"./uk.js": 192,
+	"./ur": 193,
+	"./ur.js": 193,
+	"./uz": 195,
+	"./uz-latn": 194,
+	"./uz-latn.js": 194,
+	"./uz.js": 195,
+	"./vi": 196,
+	"./vi.js": 196,
+	"./x-pseudo": 197,
+	"./x-pseudo.js": 197,
+	"./yo": 198,
+	"./yo.js": 198,
+	"./zh-cn": 199,
+	"./zh-cn.js": 199,
+	"./zh-hk": 200,
+	"./zh-hk.js": 200,
+	"./zh-tw": 201,
+	"./zh-tw.js": 201
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
 };
 function webpackContextResolve(req) {
 	var id = map[req];
-	if(!(id + 1)) // check for number or string
+	if(!(id + 1)) // check for number
 		throw new Error("Cannot find module '" + req + "'.");
 	return id;
 };
@@ -1697,17 +1378,337 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "../../../../moment/locale recursive ^\\.\\/.*$";
+webpackContext.id = 355;
+
 
 /***/ }),
 
-/***/ 0:
+/***/ 360:
+/***/ (function(module, exports) {
+
+module.exports = "<md-toolbar color=\"primary\">{{title}}\r\n    <span class=\"example-spacer\"></span>\r\n    <button md-icon-button [mdMenuTriggerFor]=\"menu\"  class=\"example-menue\">\r\n        <md-icon>menu</md-icon>\r\n    </button>\r\n        <md-menu #menu=\"mdMenu\">\r\n        <button md-menu-item routerLink=\"/home\">\r\n            <span>Home</span>\r\n        </button>\r\n        <button md-menu-item routerLink=\"/predpray\">\r\n            <span>SL-1</span>\r\n        </button>\r\n        <button md-menu-item routerLink=\"/fuzzy\">\r\n            <span>SL-2</span>\r\n        </button>\r\n        </md-menu>\r\n</md-toolbar>\r\n\r\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ 361:
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <h2 align=\"center\"> Fuzzy-Set für die Nachfrage </h2>\r\n  <canvas baseChart height=\"75\"\r\n    [datasets]=\"demandChartData\"\r\n    [labels]=\"allChartLabels\"\r\n    [options]=\"allChartOptions\"\r\n    [chartType]=\"allChartType\">\r\n  </canvas>\r\n  <h2 align=\"center\"> Fuzzy-Set für den Lagerbestand </h2>\r\n  <canvas baseChart height=\"75\"\r\n    [datasets]=\"stockChartData\"\r\n    [labels]=\"allChartLabels\"\r\n    [options]=\"allChartOptions\"\r\n    [chartType]=\"allChartType\">\r\n  </canvas>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ 362:
+/***/ (function(module, exports) {
+
+module.exports = "<h2>\r\n  Einkaufssimulation eines Supermarktes\r\n</h2>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Ausgangswerte\r\n    </md-card-title>\r\n    <md-card-content style=\"display:flex\">\r\n      <form [formGroup]=\"purchaseForm\" class=\"flexContainer\">\r\n        <div formGroupName=\"demand\">\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodA\" type=\"number\" placeholder=\"Nachfrage Produkt A\" max=\"50\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodB\" type=\"number\" placeholder=\"Nachfrage Produkt B\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodC\" type=\"number\" placeholder=\"Nachfrage Produkt C\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodD\" type=\"number\" placeholder=\"Nachfrage Produkt D\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        </div>\r\n        <div formGroupName=\"stock\">\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodA\" type=\"number\" placeholder=\"Lagerbestand Produkt A\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodB\" type=\"number\" placeholder=\"Lagerbestand Produkt B\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodC\" type=\"number\" placeholder=\"Lagerbestand Produkt C\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"prodD\" type=\"number\" placeholder=\"Lagerbestand Produkt D\">\r\n          <md-hint> max. 50 </md-hint>\r\n        </md-input-container>\r\n        </div>\r\n      </form>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"fillrandom()\">\r\n        <md-icon>input</md-icon>\r\n        Befülle zufällig\r\n      </button>\r\n      <button md-button (click)=\"calculate()\">\r\n        <md-icon>cached</md-icon>\r\n        Berechnen\r\n      </button>\r\n      <button md-button *ngIf=\"!showFuzzy\" (click)=\"showFuzzy=true\">\r\n        <md-icon>show_chart</md-icon>\r\n        Graphen anzeigen\r\n      </button>\r\n      <button md-button *ngIf=\"showFuzzy\" (click)=\"showFuzzy=false\">\r\n        <md-icon>show_chart</md-icon>\r\n        Graphen ausblenden\r\n      </button>\r\n      <button md-button (click)=\"reset()\">\r\n        <md-icon>close</md-icon>\r\n        Reset\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div *ngIf=\"showFuzzy\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Fuzzy-Graphen\r\n    </md-card-title>\r\n    <md-card-content>\r\n      <app-fuzzy-chart [demandData]=\"fuzzyControllerDemand.logic\" [stockData]=\"fuzzyControllerStock.logic\"></app-fuzzy-chart>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"showFuzzy=false\">\r\n        <md-icon>close</md-icon>\r\n        Schliessen\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Empfehlung\r\n    </md-card-title>\r\n    <md-card-content>\r\n      <div align=\"center\">\r\n        <div *ngFor=\"let row of result\" class='flexContainer'>\r\n          <div><h3>{{row.text}}</h3></div>\r\n          <div><md-progress-bar\r\n            mode=\"determinate\"\r\n            [color]=\"row.color\"\r\n            [value]=\"row.value\">\r\n          </md-progress-bar></div>\r\n        </div>\r\n      </div>\r\n    </md-card-content>\r\n  </md-card>\r\n</div>\r\n\r\n"
+
+/***/ }),
+
+/***/ 363:
+/***/ (function(module, exports) {
+
+module.exports = "<div align='center'>\r\n  <h1>\r\n    Startseite\r\n  </h1>\r\n\r\n  <div>\r\n    Hallo,<br><br>\r\n    dies ist die Startseite für die Studienleistungen im Fach Soft Computing SS17 von Benedikt Straube.<br>\r\n    Über das Menu oben rechts können die verschiedenen Studienleistungen ausgewählt werden.<br>\r\n    <br><br>\r\n    Viel Vergnügen.\r\n  </div>\r\n</div>"
+
+/***/ }),
+
+/***/ 364:
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <canvas baseChart\r\n    [datasets]=\"lineChartData\"\r\n    [labels]=\"lineChartLabels\"\r\n    [colors]=\"lineChartColors\"\r\n    [options]=\"lineChartOptions\"\r\n    [chartType]=\"lineChartType\">\r\n  </canvas>\r\n</div>"
+
+/***/ }),
+
+/***/ 365:
+/***/ (function(module, exports) {
+
+module.exports = "<h2>\r\n  Darstellung eines Räuber-Beute-Systems\r\n</h2>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-header>\r\n      <md-card-subtitle>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"size\" placeholder=\"Feldgröße\" disabled>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"populationLevel\" placeholder=\"Fortpflanzungslevel\" disabled>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"startLevelPredator\" placeholder=\"Startlevel der Räuber\" disabled>\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput [(ngModel)]=\"energyThroughEating\" placeholder=\"Energiegewinn durch Essen\" disabled>\r\n        </md-input-container>\r\n      </md-card-subtitle>\r\n    </md-card-header>\r\n    <md-card-content>\r\n      <md-grid-list [cols]=\"size\" rowHeight=\"fit\">\r\n        <div *ngFor=\"let line of map.fields\">\r\n          <md-grid-tile *ngFor=\"let cell of line\" (click)=\"currentCell = cell\" [style.background]=\"cell.color\">\r\n            {{cell.value}}\r\n          </md-grid-tile>\r\n        </div>\r\n      </md-grid-list>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"map.addPrey()\">\r\n        <md-icon>add_circle_outline</md-icon>\r\n        Beute\r\n      </button>\r\n      <button md-button (click)=\"map.addPredator()\">\r\n        <md-icon>add_circle</md-icon>\r\n       Räuber\r\n      </button>\r\n      <button md-button (click)=\"iterate()\">\r\n        <md-icon>cached</md-icon>\r\n        Iteration\r\n      </button>\r\n      <button md-button (click)=\"reset()\">\r\n        <md-icon>close</md-icon>\r\n        Reset\r\n      </button>\r\n      <button md-button (click)=\"showNewMapForm=true\" *ngIf=\"!showNewMapForm\">\r\n        <md-icon>settings</md-icon>\r\n        Neue Map generieren\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div *ngIf=\"showNewMapForm\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-content>\r\n      <form [formGroup]=\"newMapForm\">\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"size\" type=\"number\" placeholder=\"Feldgröße\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"populationLevel\" type=\"number\" placeholder=\"Fortpflanzungslevel\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"startLevelPredator\" type=\"number\" placeholder=\"Startlevel der Räuber\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"energyThroughEating\" type=\"number\" placeholder=\"Energiegewinn durch Essen\">\r\n        </md-input-container>\r\n      </form>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"generateNewMap()\">\r\n        <md-icon>settings</md-icon>\r\n        Map generieren\r\n      </button>\r\n      <button md-button (click)=\"showNewMapForm=false; newMapForm.reset()\">\r\n        <md-icon>close</md-icon>\r\n        SCHLIESSEN\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n\r\n<div *ngIf=\"currentCell\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-header>\r\n      <md-card-title> Aktuelle Zelle </md-card-title>\r\n    </md-card-header>\r\n    <md-card-content>\r\n      <p class=\"thick\">Koordinaten: </p>\r\n      <p>{{currentCell.xCoordinate}}, {{currentCell.yCoordinate}} </p>\r\n      <p class=\"thick\">ID: </p>\r\n      <p>{{currentCell.id}} </p>\r\n      <p class=\"thick\">Wert: </p>\r\n      <p>{{currentCell.value}} </p>\r\n      <p class=\"thick\">Typ: </p>\r\n      <p>{{currentCell.type}} </p>\r\n      <p class=\"thick\">Ausrichtung: </p>\r\n      <p *ngIf=\"currentCell.direction !== null\"> {{currentCell.direction}} </p>\r\n      <p *ngIf=\"currentCell.direction === null\"> null </p>\r\n      <p class=\"thick\">Nachbarn: </p>\r\n      <span *ngFor=\"let neighbour of map.getNeighbours(currentCell.xCoordinate, currentCell.yCoordinate)\"> \r\n        {{neighbour.value}} ... {{neighbour.direction}},\r\n      </span>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"currentCell=null\">\r\n        <md-icon>close</md-icon>\r\n        SCHLIESSEN\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div>\r\n  <md-card>\r\n    <app-population-chart></app-population-chart>\r\n  </md-card>\r\n</div>"
+
+/***/ }),
+
+/***/ 405:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("../../../../../src/main.ts");
+module.exports = __webpack_require__(221);
 
+
+/***/ }),
+
+/***/ 42:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cell__ = __webpack_require__(240);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return colorEmpty; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return colorPrey; });
+/* unused harmony export colorPredator */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Map; });
+
+function modulo(num, mod) {
+    return ((num % mod) + mod) % mod;
+}
+var colorEmpty = '#B19CD9';
+var colorPrey = 'lightgreen';
+var colorPredator = 'lightcoral';
+var Map = (function () {
+    function Map(size, ruleSet, startLevelPredator) {
+        this.size = size;
+        this.ruleSet = ruleSet;
+        this.startLevelPredator = startLevelPredator;
+        this.fields = [];
+        this.numCells = 0;
+        for (var i = 0; i < this.size; i++) {
+            this.fields[i] = [];
+            for (var j = 0; j < this.size; j++) {
+                this.fields[i][j] = new __WEBPACK_IMPORTED_MODULE_0__cell__["a" /* Cell */](j, i, 0, 0);
+            }
+        }
+    }
+    Map.prototype.getNewID = function () {
+        this.numCells++;
+        return this.numCells;
+    };
+    Map.prototype.getCount = function (type) {
+        var count = 0;
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                if (cell.type === type) {
+                    count++;
+                }
+            });
+        });
+        return count;
+    };
+    Map.prototype.getCell = function (xValue, yValue) {
+        return this.fields[modulo(yValue, this.size)][modulo(xValue, this.size)];
+    };
+    Map.prototype.setCell = function (cell) {
+        this.fields[cell.yCoordinate][cell.xCoordinate] = cell;
+    };
+    Map.prototype.getNeighbours = function (xValue, yValue) {
+        var tuple = [];
+        // Nachbarzellen oberhalb
+        tuple.push(this.getCell(xValue - 1, yValue - 1));
+        tuple.push(this.getCell(xValue, yValue - 1));
+        tuple.push(this.getCell(xValue + 1, yValue - 1));
+        // Nachbarzellen nebenan
+        tuple.push(this.getCell(xValue - 1, yValue));
+        tuple.push(this.getCell(xValue + 1, yValue));
+        // Nachbarzellen unterhalb
+        tuple.push(this.getCell(xValue - 1, yValue + 1));
+        tuple.push(this.getCell(xValue, yValue + 1));
+        tuple.push(this.getCell(xValue + 1, yValue + 1));
+        return tuple;
+    };
+    Map.prototype.addPrey = function (xValue, yValue) {
+        var emptyField = false;
+        var countTries = 0;
+        while (!emptyField) {
+            countTries++;
+            xValue = Math.floor((Math.random() * this.size));
+            yValue = Math.floor((Math.random() * this.size));
+            if (this.getCell(xValue, yValue).type === 'empty') {
+                emptyField = true;
+            }
+            else {
+                emptyField = false;
+            }
+            if (countTries >= this.size * this.size) {
+                return;
+            }
+        }
+        this.numCells++;
+        this.setCell(new __WEBPACK_IMPORTED_MODULE_0__cell__["a" /* Cell */](xValue, yValue, 1, this.numCells, 'prey', colorPrey));
+    };
+    Map.prototype.addPredator = function (xValue, yValue) {
+        var emptyField = false;
+        var countTries = 0;
+        while (!emptyField) {
+            countTries++;
+            xValue = Math.floor((Math.random() * this.size));
+            yValue = Math.floor((Math.random() * this.size));
+            if (this.getCell(xValue, yValue).type === 'empty') {
+                emptyField = true;
+            }
+            else {
+                emptyField = false;
+            }
+            if (countTries >= this.size * this.size) {
+                return;
+            }
+        }
+        this.numCells++;
+        this.setCell(new __WEBPACK_IMPORTED_MODULE_0__cell__["a" /* Cell */](xValue, yValue, this.startLevelPredator, this.numCells, 'predator', colorPredator));
+    };
+    Map.prototype.iterate = function () {
+        var _this = this;
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                cell = _this.ruleSet.populate(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = _this.ruleSet.gainEnergy(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = _this.ruleSet.loseEnergy(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = _this.ruleSet.moveDirectionPrey(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = _this.ruleSet.moveDirectionPredator(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+            });
+        });
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                if (cell.type !== 'predator') {
+                    cell = _this.ruleSet.processMovementPredator(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                if (cell.type !== 'empty') {
+                    cell = _this.ruleSet.processMovementPredator(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                if (cell.type === 'empty') {
+                    cell = _this.ruleSet.processMovementPrey(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                if (cell.type !== 'empty') {
+                    cell = _this.ruleSet.processMovementPrey(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                }
+            });
+        });
+        this.fields.forEach(function (line) {
+            line.forEach(function (cell) {
+                cell = _this.ruleSet.unmarkReproduktion(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+                cell = _this.ruleSet.deleteCell(_this.getNeighbours(cell.xCoordinate, cell.yCoordinate), cell);
+            });
+        });
+    };
+    return Map;
+}());
+
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+
+/***/ 70:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuzzySet; });
+var FuzzySet = (function () {
+    function FuzzySet() {
+        this.pairs = [];
+    }
+    ;
+    FuzzySet.prototype.addPair = function (key, value) {
+        if (this.getValueByKey(key) === -1) {
+            this.pairs.push({ key: key, value: value });
+        }
+        else {
+            console.log(new Error('Doppelter Key'));
+        }
+    };
+    FuzzySet.prototype.getValueByKey = function (key) {
+        for (var _i = 0, _a = this.pairs; _i < _a.length; _i++) {
+            var pair = _a[_i];
+            if (pair.key === key) {
+                return pair.value;
+            }
+        }
+        return -1;
+    };
+    return FuzzySet;
+}());
+
+//# sourceMappingURL=fuzzySet.js.map
+
+/***/ }),
+
+/***/ 71:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopulationChartComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PopulationChartComponent = (function () {
+    function PopulationChartComponent() {
+        this.lineChartType = 'line';
+        this.lineChartData = [
+            { data: [], label: 'Beute' },
+            { data: [], label: 'Räuber' }
+        ];
+        this.lineChartOptions = {
+            responsive: true
+        };
+        this.lineChartLabels = [];
+        this.lineChartColors = [
+            {
+                backgroundColor: 'rgba(144,238,144,0.2)',
+                borderColor: 'rgba(0,128,0,1)',
+                pointBackgroundColor: 'rgba(0,128,0,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            },
+            {
+                backgroundColor: 'rgba(240,128,128,0.2)',
+                borderColor: 'rgba(255,0,0,1)',
+                pointBackgroundColor: 'rgba(255,0,0,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(77,83,96,1)'
+            },
+        ];
+    }
+    PopulationChartComponent.prototype.ngOnInit = function () {
+    };
+    PopulationChartComponent.prototype.addDataSet = function (predatorCount, preyCount) {
+        this.lineChartData[0].data.push(preyCount);
+        this.lineChartData[1].data.push(predatorCount);
+        this.lineChartLabels.push(this.lineChartLabels.length + 1);
+        this.chart.chart.config.data.labels = this.lineChartLabels;
+        this.chart.chart.config.data.data = this.lineChartData;
+        this.chart.chart.update();
+    };
+    PopulationChartComponent.prototype.reset = function () {
+        this.lineChartLabels = [];
+        this.lineChartData[0].data = [];
+        this.lineChartData[1].data = [];
+    };
+    return PopulationChartComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__["BaseChartDirective"]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__["BaseChartDirective"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ng2_charts_ng2_charts__["BaseChartDirective"]) === "function" && _a || Object)
+], PopulationChartComponent.prototype, "chart", void 0);
+PopulationChartComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-population-chart',
+        template: __webpack_require__(364),
+        styles: [__webpack_require__(353)]
+    }),
+    __metadata("design:paramtypes", [])
+], PopulationChartComponent);
+
+var _a;
+//# sourceMappingURL=population-chart.component.js.map
 
 /***/ })
 
-},[0]);
+},[405]);
 //# sourceMappingURL=main.bundle.js.map

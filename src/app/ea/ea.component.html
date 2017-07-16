@@ -1,0 +1,67 @@
+<h2>
+  Warenlagerung eines Kaufhausen mit Evolutionären Algorithmen
+</h2>
+
+<div>
+  <md-card class="content-card">
+    <md-card-title>
+      Ausgangswerte
+    </md-card-title>
+    <md-card-content>
+      <md-grid-list cols="6" rowHeight="4:1">
+        <md-grid-tile>Produkt</md-grid-tile>
+        <md-grid-tile>Produktgröße</md-grid-tile>
+        <md-grid-tile>Lieferzeit</md-grid-tile>
+        <md-grid-tile>Verbrauch pro Tag</md-grid-tile>
+        <md-grid-tile>aktueller Bestand</md-grid-tile>
+        <md-grid-tile>Details</md-grid-tile>
+        <div *ngFor="let product of data">
+          <md-grid-tile *ngFor="let param of product.getData()">
+            {{param}}
+          </md-grid-tile>
+          <md-grid-tile>Linkout</md-grid-tile>
+        </div>
+      </md-grid-list>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="makeChildren()">
+        <md-icon>cached</md-icon>
+        Kinder generieren
+      </button>
+      <button md-button (click)="evaluateVectors()">
+        <md-icon>cached</md-icon>
+        Bewerten
+      </button>
+      <button md-button (click)="buildNextGen()">
+        <md-icon>cached</md-icon>
+        Crossover
+      </button>
+       <button md-button (click)="iterate(50)">
+        <md-icon>cached</md-icon>
+        5 * Iterieren
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<div>
+  <md-card class="content-card">
+    <md-card-title>
+      Vectoren
+    </md-card-title>
+    <h2>Eltern</h2>
+    <md-card-content>
+      <div *ngFor="let vector of parents">
+        <span [class.isNextGen]="vector.isNextGen">
+          {{vector.toString()}} : {{vector.fitness}}
+        </span>
+      </div>
+      <p> Durchschnitt Eltern-Fitness: {{averageFitness}}<p>
+      <h2>Kinder</h2>
+      <div *ngFor="let vector of children">
+        <span [class.isNextGen]="vector.isNextGen">
+          {{vector.toString()}} : {{vector.fitness}}
+        </span>
+      </div>
+    </md-card-content>
+  </md-card>
