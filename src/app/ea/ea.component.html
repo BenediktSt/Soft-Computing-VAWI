@@ -32,7 +32,7 @@
       </button>
       <button md-button (click)="buildNextGen()">
         <md-icon>cached</md-icon>
-        Crossover mit Mutation
+        Mutation
       </button>
        <button md-button (click)="iterate(50)">
         <md-icon>cached</md-icon>
@@ -45,20 +45,21 @@
 <div>
   <md-card class="content-card">
     <md-card-title>
-      Vectoren
+      Vektoren
     </md-card-title>
     <h2>Eltern</h2>
     <md-card-content>
       <div *ngFor="let vector of parents">
         <span [class.isNextGen]="vector.isNextGen">
-          {{vector.toString()}} : {{vector.fitness}}
+          ({{vector.toString()}}) : {{vector.fitness}}
         </span>
       </div>
       <p> Durchschnitt Eltern-Fitness: {{averageFitness}}<p>
+      <p *ngIf="bestVector"> Bester Vektor: {{bestVector.toString()}} : {{bestVector.fitness}}<p>
       <h2>Kinder</h2>
       <div *ngFor="let vector of children">
         <span [class.isNextGen]="vector.isNextGen">
-          {{vector.toString()}} : {{vector.fitness}}
+          ({{vector.toString()}}) : {{vector.fitness}}
         </span>
       </div>
     </md-card-content>

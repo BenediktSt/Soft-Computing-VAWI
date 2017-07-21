@@ -33,7 +33,7 @@ export class Vector {
     }
 
     public evaluate(iterations: number, data: Product[]) {
-
+        
         let products = [];
 
         data.forEach((element) => {
@@ -71,18 +71,26 @@ export class Vector {
 
         }
 
-        console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
-        console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
+        let totalMinimalStock = 0;
+        let totalBuyAmount = 0;
+        this.minimalStock.forEach((elem, index) => {
+            totalMinimalStock += elem;
+            totalBuyAmount += this.buyAmount[index];
+        })
+
+        // console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
+        // console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
 
         // Durchschnittlicher Lagerbestand + 5 * sumEmptyProducts
-        this.fitness = totalStock / iterations + 2 * sumEmptyProducts;
+        this.fitness = totalStock / iterations + sumEmptyProducts + totalMinimalStock + totalBuyAmount;
+        this.orders = [];
 
     }
 
     private getTotalStock(products: Product[]): number {
         let count = 0;
         products.forEach((elem) => {
-            count += elem.stock;
+            count += elem.stock * elem.size;
         });
         return count;
     }

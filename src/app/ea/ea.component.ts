@@ -14,13 +14,14 @@ export class EaComponent implements OnInit {
   public parents: Vector[];
   public children: Vector[];
   public averageFitness: number;
+  public bestVector: Vector;
 
   public numParents = 10;
   public numChildren = 15;
   public maxStartSize = 20;
 
-  public standardDeviation = 0.2;
-  public simulationIterations = 10;
+  public standardDeviation = 0.1;
+  public simulationIterations = 80;
 
   constructor() {
     this.data = [
@@ -39,6 +40,7 @@ export class EaComponent implements OnInit {
     this.children = [];
     this.parents = this.generateStart(this.numParents);
     this.averageFitness = 0;
+    this.bestVector = null;
 
   }
 
@@ -53,11 +55,11 @@ export class EaComponent implements OnInit {
   // Interface
   evaluateVectors() {
     for (let parent of this.parents) {
-      parent.evaluate(20, this.data);
+      parent.evaluate(this.simulationIterations, this.data);
     }
 
     for (let child of this.children) {
-      child.evaluate(20, this.data);
+      child.evaluate(this.simulationIterations, this.data);
     }
 
     this.averageFitness = this.getAverageFitness(this.parents);
@@ -65,11 +67,12 @@ export class EaComponent implements OnInit {
 
   // Interface
   buildNextGen() {
-    this.parents = this.selectForNextGen(this.numParents, this.children, this.simulationIterations);
+    this.parents = this.selectForNextGen(this.numParents, this.children);
 
     for (let parent of this.parents) {
       parent.isNextGen = false;
     }
+    this.averageFitness = this.getAverageFitness(this.parents);
   }
 
   // Interface
@@ -131,17 +134,17 @@ export class EaComponent implements OnInit {
     vector.minimalStock.forEach((element, index) => {
       let localStandardDeviation = vector.minimalStock[index] * standardDeviation;
       mutateMinStock.push(Math.round(
-        vector.minimalStock[index] + (Math.random() * localStandardDeviation * 2 ) - localStandardDeviation));
+        vector.minimalStock[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
 
       localStandardDeviation = vector.buyAmount[index] * standardDeviation;
       mutateBuyAmount.push(Math.round(
-        vector.buyAmount[index] + (Math.random() * localStandardDeviation * 2 ) - localStandardDeviation));
+        vector.buyAmount[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
     });
 
     return new Vector(mutateMinStock, mutateBuyAmount);
   }
 
-  selectForNextGen(numberParents: number, children: Vector[], iterations: number): Vector[] {
+  selectForNextGen(numberParents: number, children: Vector[]): Vector[] {
     const nextGen = [];
     for (let i = 0; i < numberParents; i ++) {
       let bestChild = null;
@@ -152,13 +155,19 @@ export class EaComponent implements OnInit {
       }
       bestChild.isNextGen = true;
       nextGen.push(bestChild);
+
+      // Besten Vektor merken
+      if (this.bestVector === null || bestChild.fitness < this.bestVector.fitness) {
+        this.bestVector = Object.create(bestChild);
+        this.bestVector.isNextGen = false;
+      }
     }
     return nextGen;
   }
 
   getAverageFitness(vectors: Vector[]): number {
     let sum = 0;
-    for (let vector of vectors){
+    for (const vector of vectors){
       sum += vector.fitness;
     }
     return sum / vectors.length;

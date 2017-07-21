@@ -45,12 +45,12 @@ Vorsicht: Hier existiert zum aktuellen Zeitpunkt noch ein Bug des Routings, was 
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.6\textwidth]{res/interface.png}
+	\includegraphics[width=0.7\textwidth]{res/interface.png}
 	\caption{Aktionsmöglichkeiten der Anwendung}
 	\label{img:interface}
 \end{figure}
 
-Um die Implementierung der SL-3 zu erreichen muss innerhalb der Kopfzeile ganz rechts das Menü geöffnet und die Option SL-3 ausgewählt werden. In der Anwendung (siehe Abbildung \ref{img:interface}) können nun die Ausgangsdaten über die Eingabefelder gepflegt werden. Dabei wird im linken Block (1) die Nachfrage und im rechten Block (2) der Lagerbestand pro Produkt eingetragen. Weiterhin können durch den Button "Befülle zufällig"(3) auch zufällige Werte für alle Felder erzeugt werden. "Berechnen" (4) führt bei gefüllten Ausgangswerten eine Fuzzyfizierung durch und wendet im Anschluss alle hinterlegten Regeln auf die Datenbasis an. Zuletzt wird aus den dadurch gewonnen Werten eine Empfehlung für jedes Produkt abgegeben(7). Mittels (5) können die Graphen der Fuzzy-Sets eingeblendet werden und mittels (6) werden alle Eingaben im Formular zurückgesetzt.
+Um die Implementierung der SL-3 zu erreichen muss innerhalb der Kopfzeile ganz rechts das Menü geöffnet und die Option SL-3 ausgewählt werden. In der Anwendung (siehe Abbildung \ref{img:interface}) können an erster Stelle (1) die Ausgangsdaten eingesehen werden. Diese sind für diese Implementierung statisch im Code hinterlegt und sind hier lediglich informativ. Bei den Aktionen steht zuerst die Generierung der Kinder (2) zur Verfügung. Dies geschieht nach einer (10/2,15)- Evolutionsstrategie, wodurch basierend auf den zufällig generierten Eltern 15 neue Vektoren entstehen. Dabei werden diese durch Mittelwertbildung erzeugt. Die Bewertung (3) fügt eine Bewertung zu jedem Vektor hinzu. Die Eltern erhalten ebenfalls eine Bewertung, auch wenn sie für nie nachfolgende Generation nicht weiter betrachtet werden. Bei der Mutation (4) wird eine statische Standardabweichung auf alle Bestandteile der Vektoren angewendet, um die notwendige Varianz zu erhalten. Die dadurch entstehenden Vektoren werden dann als neue Elterngeneration verwendet. Bei der 50-fachen Iteration (5) werden die vorherigen drei Schritte entsprechend häufig wiederholt. Im unteren Bereich (6) werden die Eltern und Kinder mit Bewertung dargestellt.
 
 \section{Aufbau der Applikation}
 \label{aufbau}
@@ -61,41 +61,35 @@ Die Implementierung erfolgt innerhalb nachfolgender Orderstruktur:
 \begin{lstlisting}[backgroundcolor=\color{lightgray}]
 src
 |- app
-   |- fuzzy
+   |- ea
 \end{lstlisting}
 Außenstehende Komponenten sind zur Navigation und Verwaltung notwendig.
 
-Innerhalb des Fuzzy-Ordners befinden sich folgende Dateien:
+Innerhalb des EA-Ordners befinden sich folgende Dateien:
 \begin{itemize}
-\item fuzzy.component.css (Styling der Komponente)
-\item fuzzy.component.html (Strukturierung der Komponente)
-\item fuzzy.component.ts (Logik der Komponente)
+\item ea.component.css (Styling der Komponente)
+\item ea.component.html (Strukturierung der Komponente)
+\item ea.component.ts (Logik der Komponente)
 \end{itemize}
-
-Weiterhin wurde zur Trennung von Anzeige und Logik die Visualisierung der Graphen in eine Sub-Komponente fuzzy-chart.component ausgelagert. Da diese lediglich eine Komponente zur Visualisierung ist und keine eigenen Logik besitzt, wird hierauf nicht weiter eingegangen.
 
 Im util-Ordner stehen noch weitere Klassen zur Verfügung, auf welche im Folgenden genauer eingegangen werden soll.
 \begin{itemize}
-	\item fuzzyController.ts (Umsetzung des Fuzzy Logic)
-	\item fuzzySet.ts (Umsetzung der Fuzzyfizierten Sets)
-	\item rules.ts (Hinterlegen der Regeln)
+	\item product.model.ts (Modell eines Produktes)
+	\item vektoren.model.ts (Abbilden und Bewerten eines Vektors)
 \end{itemize}
 
-Die \textit{FuzzySet}-Klasse repräsentiert für einen Wert x die Zugehörigkeitswerte zu beliebigen Teilmengen. Die Klasse wird hauptsächlich zum Speichern und Lesen dieser Informationen verwendet. Die Methoden \textit{addPair} und \textit{getValueByKey} stehen hierfür zur Verfügung. Somit können können Teilmengen mit deren Zugehörigkeitswerten leicht  hinzugefügt und abgefragt werden.
-\\
+Die \textit{Produkt}-Klasse enthält alle für die Produkte notwendigen Informationen. Dies beinhaltet den Namen, die anteilige Lagergröße, die Lieferdauer, der Verbrauch und der Lagerbestand. Die Produkte an sich benötigen keine weitere Logik.
 
-Die \textit{FuzzyController}-Klasse erhält die Fuzzy-Logic als Parameter innerhalb des Konstruktoren. In dieser sind die Bereiche der einzelnen Teilmengen mit ihren jeweiligen Zugehörigkeitsfunktionen enthalten. Die Klasse enthält die \textit{getSet}-Methode, welche zu einem Wert x die Zugehörigkeitswerte zu jeder Teilmenge in Form eines \textit{FuzzySet}-Objekts zurückgibt. Dies basiert auf der im Objekt hinterlegten Logik. Weiterhin steht die \textit{logicalAnd}-Methode zur Verfügung, welche für eine Reihe von Werten die zugehörigen Sets ermittelt und diese mit einem logischen UND miteinander verknüpft. Diese Funktion wurde zu Beginn für die Ermittlung des Gesamtlagerbestandes genutzt. Aufgrund der Ergebnisse, wurde sich dann allerdings für eine andere Methode entschieden (siehe Kapitel \ref{ergebnisse})
-\\
+Die \textit{Vektoren}-Klasse besitzt zwei Arrays, welche für die reelle Codierung relevant sind: \textit{minimalStock} und \textit{buyAmount}. Innerhalb von minimalStock wird für jedes Produkt festgehalten, ab wann nachgekauft werden sollte, buyAmount enthält entsprechend die nachzukaufende Menge. Diese werden auch innerhalb der \textit{toString}-Methode zur Visualisierung verwendet. Hier werden sie allerdings jeweils Pro Produkt dargestellt, also [minimalStock(Prod A), buyAmount(Prod A)], ... (siehe Abbildung \ref{img:vektoren}). Ergänzt wird diese Darstellung durch die Bewertung der einzelnen Vektoren und eine durchschnittliche Fitness über die gesamte Generation.
 
-In der \textit{Ruleset}-Klasse sind alle Regeln hinterlegt, welche auf die fuzzyfizierten Ausgangswerte angewendet werden. Jede Regel gibt dabei einen Zugehörigkeitswert zu einer der drei Ergebnismengen zur Kaufentscheidung zurück, welche gesammelt für jedes Produkt zurückgegeben werden. Die Regeln sind so aufgebaut, dass sie die für sich relevanten Zugehörigkeiten ermitteln, mit einem logischen UND verknüpfen und als Ergebnisdimension zurückgeben.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{res/vektoren.png}
+	\caption{Darstellung der Elternvektoren}
+	\label{img:vektoren}
+\end{figure}
 
-Die beschriebenen Klassen werden hauptsächlich durch die \textit{FuzzyComponent} verwendet. Diese ist verantwortlich für die Initialisierung und hauptsächlich zuständig für die Interaktion zwischen Frontend und Logik. Im Konstruktor werden die Eingabefelder Nachfrage und Lagerbestand für vier Produkte (A-D) erzeugt. Für de Implementierung wurde dabei eine Maximale Eingabe von 50 gewählt. Zusätzlich werden die Teilmengen der Fuzzy-Sets und deren Zugehörigkeitsfunktionen definiert. Die Zugehörigkeitsfunktionen werden dabei durch geometrische Formen wie Dreiecke oder Trapeze definiert (siehe Abbildung \ref{img:fuzzy}). Diese Funktionen sind fest im Code definiert und können nicht im Frontend angepasst werden.
-\\
 
-Die Funktionen \textit{fillrandom} und \textit{reset} werden bei den entsprechenden Buttons im Frontend ausgeführt und befüllen entweder alle Felder des Formulars mit einem zufälligen Wert oder setzten die Eingaben und das Ergebnis zurück. \textit{getTotalStockSet} ermittelt das Set für den gesamten Lagerbestand über alle Produkte, indem zuerst zu jedem Produkt einzeln die Zugehörigkeit zu den Fuzzy-Teilmengen ermittelt wird. Im Anschluss
-wird für jede Teilmenge der Mittelwert über die einzelnen Produkte ermittelt.
-
-Die \textit{calculate} Funktion übermittelt die Ausgangswerte des Frontends an das beschriebene Ruleset. Die Ergebnisse werden im Anschluss gemittelt und pro Produkt wird eine Empfehlung ausgesprochen, zu der Kaufentscheidung mit dem höchsten Zugehörigkeitswert. So steht pro Produkt eine Entscheidung der Form "Für Produkt A ist die Kaufmenge zu 74\%: Niedrig" vor.
 
 \section{Ergebnisse}
 \label{ergebnisse}
