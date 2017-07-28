@@ -1,5 +1,5 @@
 md-grid-tile {
-  background: lightblue;
+  background: #B19CD9;
 }
 
 .isNextGen {
@@ -8,4 +8,12 @@ md-grid-tile {
 
 md-grid-list {
   height: 400px;
+}
+
+.table-headline {
+  font-weight: bold;
+}
+
+.ea-options md-input-container {
+  padding-right: 15px
 }

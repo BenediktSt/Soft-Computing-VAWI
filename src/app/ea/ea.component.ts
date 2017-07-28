@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSource } from '@angular/cdk';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Product } from './util/product.model';
 import { Vector } from './util/vektoren.model';
 
@@ -23,7 +23,9 @@ export class EaComponent implements OnInit {
   public standardDeviation = 0.1;
   public simulationIterations = 80;
 
-  constructor() {
+  public configForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
     this.data = [
       new Product('A', 0.01, 3, 1),
       new Product('B', 0.02, 2, 1),
@@ -42,6 +44,35 @@ export class EaComponent implements OnInit {
     this.averageFitness = 0;
     this.bestVector = null;
 
+    this.configForm = this.fb.group({
+      numParents: [{value: 1, disabled: true}, Validators.required ],
+      numchildren: [{value: 1, disabled: true}, Validators.required ],
+      numMaxStartSize: [{value: 1, disabled: true}, Validators.required ],
+      minimalStock: this.fb.group({
+        prodA: [{value: 1, disabled: true}, Validators.required ],
+        prodB: [{value: 1, disabled: true}, Validators.required ],
+        prodC: [{value: 1, disabled: true}, Validators.required ],
+        prodD: [{value: 1, disabled: true}, Validators.required ],
+        prodE: [{value: 1, disabled: true}, Validators.required ],
+        prodF: [{value: 1, disabled: true}, Validators.required ],
+        prodG: [{value: 1, disabled: true}, Validators.required ],
+        prodH: [{value: 1, disabled: true}, Validators.required ],
+        prodI: [{value: 1, disabled: true}, Validators.required ],
+        prodJ: [{value: 1, disabled: true}, Validators.required ]
+      }),
+      buyAmount: this.fb.group({
+        prodA: [{value: 1, disabled: true}, Validators.required ],
+        prodB: [{value: 1, disabled: true}, Validators.required ],
+        prodC: [{value: 1, disabled: true}, Validators.required ],
+        prodD: [{value: 1, disabled: true}, Validators.required ],
+        prodE: [{value: 1, disabled: true}, Validators.required ],
+        prodF: [{value: 1, disabled: true}, Validators.required ],
+        prodG: [{value: 1, disabled: true}, Validators.required ],
+        prodH: [{value: 1, disabled: true}, Validators.required ],
+        prodI: [{value: 1, disabled: true}, Validators.required ],
+        prodJ: [{value: 1, disabled: true}, Validators.required ]
+      })
+    });
   }
 
   ngOnInit() {
@@ -55,11 +86,13 @@ export class EaComponent implements OnInit {
   // Interface
   evaluateVectors() {
     for (let parent of this.parents) {
-      parent.evaluate(this.simulationIterations, this.data);
+      // parent.evaluate(this.simulationIterations, this.data);
+      parent.evaluate2(this.data);
     }
 
     for (let child of this.children) {
-      child.evaluate(this.simulationIterations, this.data);
+      //  child.evaluate(this.simulationIterations, this.data);
+      child.evaluate2(this.data);
     }
 
     this.averageFitness = this.getAverageFitness(this.parents);
@@ -123,9 +156,6 @@ export class EaComponent implements OnInit {
     }
     return children;
   }
-
-  // Auswählen der besten Vektoren
-  // Wiederhilung der Prozesses
 
   mutate(vector: Vector, standardDeviation: number): Vector {
     // Zufallswert innerhalb der zweifachern Standardabweichung - die Standardabweichung
