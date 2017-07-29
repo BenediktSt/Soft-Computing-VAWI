@@ -38,11 +38,15 @@
         <md-icon>cached</md-icon>
         50 * Iterieren
       </button>
+      <button md-button (click)="showConfig = true">
+        <md-icon>settings</md-icon>
+        Konfiguration anzeigen
+      </button>
     </md-card-actions>
   </md-card>
 </div>
 
-<div>
+<div *ngIf="showConfig">
   <md-card class="content-card">
     <md-card-title>
       Konfiguration des Evolutionären Algorithmus
@@ -54,7 +58,7 @@
           <input mdInput formControlName="numParents" type="number" placeholder="Anzahl Eltern">
         </md-input-container>
         <md-input-container>
-          <input mdInput formControlName="numchildren" type="number" placeholder="Anzahl Kinder">
+          <input mdInput formControlName="numChildren" type="number" placeholder="Anzahl Kinder">
         </md-input-container>
         <md-input-container>
           <input mdInput formControlName="numMaxStartSize" type="number" placeholder="Maximaler Startwert">
@@ -132,6 +136,20 @@
         </div>
       </form>
     </md-card-content>
+    <md-card-actions>
+      <button *ngIf="!editConfig" md-button (click)="editConfiguration()">
+        <md-icon>settings</md-icon>
+        Bearbeiten
+      </button>
+      <button *ngIf="editConfig" md-button (click)="saveConfiguration()">
+        <md-icon>save</md-icon>
+        Speichern und Reset
+      </button>
+      <button md-button (click)="closeConfiguration()">
+        <md-icon>close</md-icon>
+        Schließen
+      </button>
+    </md-card-actions>
   </md-card>
 </div>
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MdSnackBar } from '@angular/material';
+
 import { Product } from './util/product.model';
 import { Vector } from './util/vektoren.model';
 
@@ -16,16 +18,20 @@ export class EaComponent implements OnInit {
   public averageFitness: number;
   public bestVector: Vector;
 
-  public numParents = 10;
-  public numChildren = 15;
-  public maxStartSize = 20;
+  public numParents: number;
+  public numChildren: number;
+  public maxStartSize: number;
 
-  public standardDeviation = 0.1;
-  public simulationIterations = 80;
+  public standardDeviationMinimalStock: Array<number>;
+  public standardDeviationbuyAmount: Array<number>;
+  public simulationIterations: number;
 
   public configForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  public showConfig: boolean;
+  public editConfig: boolean;
+
+  constructor(private fb: FormBuilder, public snackBar: MdSnackBar) {
     this.data = [
       new Product('A', 0.01, 3, 1),
       new Product('B', 0.02, 2, 1),
@@ -39,38 +45,48 @@ export class EaComponent implements OnInit {
       new Product('J', 0.1, 2, 1),
     ];
 
+    // Config
+    this.numParents = 10;
+    this.numChildren = 15;
+    this.maxStartSize = 20;
+    this.simulationIterations = 80;
+    this.standardDeviationMinimalStock = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
+    this.standardDeviationbuyAmount = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
+
     this.children = [];
     this.parents = this.generateStart(this.numParents);
     this.averageFitness = 0;
     this.bestVector = null;
+    this.showConfig = false;
+    this.editConfig = false;
 
     this.configForm = this.fb.group({
-      numParents: [{value: 1, disabled: true}, Validators.required ],
-      numchildren: [{value: 1, disabled: true}, Validators.required ],
-      numMaxStartSize: [{value: 1, disabled: true}, Validators.required ],
+      numParents: [{value: this.numParents, disabled: true}, Validators.required ],
+      numChildren: [{value: this.numChildren, disabled: true}, Validators.required ],
+      numMaxStartSize: [{value: this.maxStartSize, disabled: true}, Validators.required ],
       minimalStock: this.fb.group({
-        prodA: [{value: 1, disabled: true}, Validators.required ],
-        prodB: [{value: 1, disabled: true}, Validators.required ],
-        prodC: [{value: 1, disabled: true}, Validators.required ],
-        prodD: [{value: 1, disabled: true}, Validators.required ],
-        prodE: [{value: 1, disabled: true}, Validators.required ],
-        prodF: [{value: 1, disabled: true}, Validators.required ],
-        prodG: [{value: 1, disabled: true}, Validators.required ],
-        prodH: [{value: 1, disabled: true}, Validators.required ],
-        prodI: [{value: 1, disabled: true}, Validators.required ],
-        prodJ: [{value: 1, disabled: true}, Validators.required ]
+        prodA: [{value: this.standardDeviationMinimalStock[0], disabled: true}, Validators.required ],
+        prodB: [{value: this.standardDeviationMinimalStock[1], disabled: true}, Validators.required ],
+        prodC: [{value: this.standardDeviationMinimalStock[2], disabled: true}, Validators.required ],
+        prodD: [{value: this.standardDeviationMinimalStock[3], disabled: true}, Validators.required ],
+        prodE: [{value: this.standardDeviationMinimalStock[4], disabled: true}, Validators.required ],
+        prodF: [{value: this.standardDeviationMinimalStock[5], disabled: true}, Validators.required ],
+        prodG: [{value: this.standardDeviationMinimalStock[6], disabled: true}, Validators.required ],
+        prodH: [{value: this.standardDeviationMinimalStock[7], disabled: true}, Validators.required ],
+        prodI: [{value: this.standardDeviationMinimalStock[8], disabled: true}, Validators.required ],
+        prodJ: [{value: this.standardDeviationMinimalStock[9], disabled: true}, Validators.required ]
       }),
       buyAmount: this.fb.group({
-        prodA: [{value: 1, disabled: true}, Validators.required ],
-        prodB: [{value: 1, disabled: true}, Validators.required ],
-        prodC: [{value: 1, disabled: true}, Validators.required ],
-        prodD: [{value: 1, disabled: true}, Validators.required ],
-        prodE: [{value: 1, disabled: true}, Validators.required ],
-        prodF: [{value: 1, disabled: true}, Validators.required ],
-        prodG: [{value: 1, disabled: true}, Validators.required ],
-        prodH: [{value: 1, disabled: true}, Validators.required ],
-        prodI: [{value: 1, disabled: true}, Validators.required ],
-        prodJ: [{value: 1, disabled: true}, Validators.required ]
+        prodA: [{value: this.standardDeviationbuyAmount[0], disabled: true}, Validators.required ],
+        prodB: [{value: this.standardDeviationbuyAmount[1], disabled: true}, Validators.required ],
+        prodC: [{value: this.standardDeviationbuyAmount[2], disabled: true}, Validators.required ],
+        prodD: [{value: this.standardDeviationbuyAmount[3], disabled: true}, Validators.required ],
+        prodE: [{value: this.standardDeviationbuyAmount[4], disabled: true}, Validators.required ],
+        prodF: [{value: this.standardDeviationbuyAmount[5], disabled: true}, Validators.required ],
+        prodG: [{value: this.standardDeviationbuyAmount[6], disabled: true}, Validators.required ],
+        prodH: [{value: this.standardDeviationbuyAmount[7], disabled: true}, Validators.required ],
+        prodI: [{value: this.standardDeviationbuyAmount[8], disabled: true}, Validators.required ],
+        prodJ: [{value: this.standardDeviationbuyAmount[9], disabled: true}, Validators.required ]
       })
     });
   }
@@ -117,6 +133,40 @@ export class EaComponent implements OnInit {
     }
   }
 
+  // Interface
+  editConfiguration() {
+    this.editConfig = true;
+    this.configForm.enable();
+  }
+
+  // Interface
+  closeConfiguration() {
+    this.editConfig = false;
+    this.showConfig = false;
+    this.configForm.disable();
+  }
+
+  // Interface
+  saveConfiguration() {
+    if (this.configForm.status === 'VALID') {
+      this.numParents = this.configForm.get('numParents').value;
+      this.numChildren = this.configForm.get('numChildren').value;
+      this.maxStartSize = this.configForm.get('numMaxStartSize').value;
+
+      // reset
+      this.children = [];
+      this.parents = this.generateStart(this.numParents);
+      this.averageFitness = 0;
+      this.bestVector = null;
+      this.showConfig = false;
+      this.editConfig = false;
+    }else {
+      this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
+        duration: 2000,
+      });
+    }
+  }
+
   generateStart(parents: number): Vector[] {
     const start = [];
     for (let i = 0; i < parents; i++) {
@@ -141,7 +191,7 @@ export class EaComponent implements OnInit {
       childBuyAmount.push(Math.round((parent1.buyAmount[index] + parent2.buyAmount[index]) / 2));
     });
 
-    return this.mutate(new Vector(childMinStock, childBuyAmount), this.standardDeviation);
+    return this.mutate(new Vector(childMinStock, childBuyAmount), this.standardDeviationMinimalStock, this.standardDeviationbuyAmount);
   }
 
   getNChildren(parents: Vector[], numberChildren: number): Vector[] {
@@ -157,16 +207,16 @@ export class EaComponent implements OnInit {
     return children;
   }
 
-  mutate(vector: Vector, standardDeviation: number): Vector {
+  mutate(vector: Vector, standardDeviationMinimalStock: Array<number>, standardDeviationbuyAmount: Array<number>): Vector {
     // Zufallswert innerhalb der zweifachern Standardabweichung - die Standardabweichung
     const mutateMinStock = [];
     const mutateBuyAmount = [];
     vector.minimalStock.forEach((element, index) => {
-      let localStandardDeviation = vector.minimalStock[index] * standardDeviation;
+      let localStandardDeviation = vector.minimalStock[index] * standardDeviationMinimalStock[index];
       mutateMinStock.push(Math.round(
         vector.minimalStock[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
 
-      localStandardDeviation = vector.buyAmount[index] * standardDeviation;
+      localStandardDeviation = vector.buyAmount[index] * standardDeviationbuyAmount[index];
       mutateBuyAmount.push(Math.round(
         vector.buyAmount[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
     });
