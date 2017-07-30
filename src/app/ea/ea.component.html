@@ -42,6 +42,10 @@
         <md-icon>settings</md-icon>
         Konfiguration anzeigen
       </button>
+      <button md-button (click)="reset(numParents)">
+        <md-icon>close</md-icon>
+        Reset
+      </button>
     </md-card-actions>
   </md-card>
 </div>
@@ -167,7 +171,7 @@
       </div>
       <p> Durchschnitt Eltern-Fitness: {{averageFitness}}
         <p>
-          <p *ngIf="bestVector"> Bester Vektor: {{bestVector.toString()}} : {{bestVector.fitness}}
+          <p *ngIf="bestVector"> Bester Vektor insgesamt: {{bestVector.toString()}} : {{bestVector.fitness}}
             <p>
               <h2>Kinder</h2>
               <div *ngFor="let vector of children">

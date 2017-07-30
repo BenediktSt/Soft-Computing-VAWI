@@ -47,11 +47,11 @@ export class EaComponent implements OnInit {
 
     // Config
     this.numParents = 10;
-    this.numChildren = 15;
+    this.numChildren = 20;
     this.maxStartSize = 20;
     this.simulationIterations = 80;
-    this.standardDeviationMinimalStock = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
-    this.standardDeviationbuyAmount = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
+    this.standardDeviationMinimalStock = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2];
+    this.standardDeviationbuyAmount = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2];
 
     this.children = [];
     this.parents = this.generateStart(this.numParents);
@@ -154,17 +154,21 @@ export class EaComponent implements OnInit {
       this.maxStartSize = this.configForm.get('numMaxStartSize').value;
 
       // reset
-      this.children = [];
-      this.parents = this.generateStart(this.numParents);
-      this.averageFitness = 0;
-      this.bestVector = null;
-      this.showConfig = false;
-      this.editConfig = false;
+      this.reset(this.numParents);
     }else {
       this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
         duration: 2000,
       });
     }
+  }
+
+  // Interface
+  reset(numParents: number) {
+    this.children = [];
+    this.parents = this.generateStart(numParents);
+    this.averageFitness = 0;
+    this.bestVector = null;
+    this.closeConfiguration();
   }
 
   generateStart(parents: number): Vector[] {
