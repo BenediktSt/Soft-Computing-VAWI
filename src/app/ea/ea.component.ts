@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSource } from '@angular/cdk';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MdSnackBar } from '@angular/material';
+
 import { Product } from './util/product.model';
 import { Vector } from './util/vektoren.model';
 
@@ -14,15 +16,22 @@ export class EaComponent implements OnInit {
   public parents: Vector[];
   public children: Vector[];
   public averageFitness: number;
+  public bestVector: Vector;
 
-  public numParents = 10;
-  public numChildren = 15;
-  public maxStartSize = 20;
+  public numParents: number;
+  public numChildren: number;
+  public maxStartSize: number;
 
-  public standardDeviation = 0.2;
-  public simulationIterations = 10;
+  public standardDeviationMinimalStock: Array<number>;
+  public standardDeviationbuyAmount: Array<number>;
+  public simulationIterations: number;
 
-  constructor() {
+  public configForm: FormGroup;
+
+  public showConfig: boolean;
+  public editConfig: boolean;
+
+  constructor(private fb: FormBuilder, public snackBar: MdSnackBar) {
     this.data = [
       new Product('A', 0.01, 3, 1),
       new Product('B', 0.02, 2, 1),
@@ -36,10 +45,50 @@ export class EaComponent implements OnInit {
       new Product('J', 0.1, 2, 1),
     ];
 
+    // Config
+    this.numParents = 10;
+    this.numChildren = 20;
+    this.maxStartSize = 20;
+    this.simulationIterations = 80;
+    this.standardDeviationMinimalStock = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2];
+    this.standardDeviationbuyAmount = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2];
+
     this.children = [];
     this.parents = this.generateStart(this.numParents);
     this.averageFitness = 0;
+    this.bestVector = null;
+    this.showConfig = false;
+    this.editConfig = false;
 
+    this.configForm = this.fb.group({
+      numParents: [{value: this.numParents, disabled: true}, Validators.required ],
+      numChildren: [{value: this.numChildren, disabled: true}, Validators.required ],
+      numMaxStartSize: [{value: this.maxStartSize, disabled: true}, Validators.required ],
+      minimalStock: this.fb.group({
+        prodA: [{value: this.standardDeviationMinimalStock[0], disabled: true}, Validators.required ],
+        prodB: [{value: this.standardDeviationMinimalStock[1], disabled: true}, Validators.required ],
+        prodC: [{value: this.standardDeviationMinimalStock[2], disabled: true}, Validators.required ],
+        prodD: [{value: this.standardDeviationMinimalStock[3], disabled: true}, Validators.required ],
+        prodE: [{value: this.standardDeviationMinimalStock[4], disabled: true}, Validators.required ],
+        prodF: [{value: this.standardDeviationMinimalStock[5], disabled: true}, Validators.required ],
+        prodG: [{value: this.standardDeviationMinimalStock[6], disabled: true}, Validators.required ],
+        prodH: [{value: this.standardDeviationMinimalStock[7], disabled: true}, Validators.required ],
+        prodI: [{value: this.standardDeviationMinimalStock[8], disabled: true}, Validators.required ],
+        prodJ: [{value: this.standardDeviationMinimalStock[9], disabled: true}, Validators.required ]
+      }),
+      buyAmount: this.fb.group({
+        prodA: [{value: this.standardDeviationbuyAmount[0], disabled: true}, Validators.required ],
+        prodB: [{value: this.standardDeviationbuyAmount[1], disabled: true}, Validators.required ],
+        prodC: [{value: this.standardDeviationbuyAmount[2], disabled: true}, Validators.required ],
+        prodD: [{value: this.standardDeviationbuyAmount[3], disabled: true}, Validators.required ],
+        prodE: [{value: this.standardDeviationbuyAmount[4], disabled: true}, Validators.required ],
+        prodF: [{value: this.standardDeviationbuyAmount[5], disabled: true}, Validators.required ],
+        prodG: [{value: this.standardDeviationbuyAmount[6], disabled: true}, Validators.required ],
+        prodH: [{value: this.standardDeviationbuyAmount[7], disabled: true}, Validators.required ],
+        prodI: [{value: this.standardDeviationbuyAmount[8], disabled: true}, Validators.required ],
+        prodJ: [{value: this.standardDeviationbuyAmount[9], disabled: true}, Validators.required ]
+      })
+    });
   }
 
   ngOnInit() {
@@ -53,11 +102,13 @@ export class EaComponent implements OnInit {
   // Interface
   evaluateVectors() {
     for (let parent of this.parents) {
-      parent.evaluate(20, this.data);
+      // parent.evaluate(this.simulationIterations, this.data);
+      parent.evaluate2(this.data);
     }
 
     for (let child of this.children) {
-      child.evaluate(20, this.data);
+      //  child.evaluate(this.simulationIterations, this.data);
+      child.evaluate2(this.data);
     }
 
     this.averageFitness = this.getAverageFitness(this.parents);
@@ -65,11 +116,12 @@ export class EaComponent implements OnInit {
 
   // Interface
   buildNextGen() {
-    this.parents = this.selectForNextGen(this.numParents, this.children, this.simulationIterations);
+    this.parents = this.selectForNextGen(this.numParents, this.children);
 
     for (let parent of this.parents) {
       parent.isNextGen = false;
     }
+    this.averageFitness = this.getAverageFitness(this.parents);
   }
 
   // Interface
@@ -79,6 +131,44 @@ export class EaComponent implements OnInit {
       this.evaluateVectors();
       this.buildNextGen();
     }
+  }
+
+  // Interface
+  editConfiguration() {
+    this.editConfig = true;
+    this.configForm.enable();
+  }
+
+  // Interface
+  closeConfiguration() {
+    this.editConfig = false;
+    this.showConfig = false;
+    this.configForm.disable();
+  }
+
+  // Interface
+  saveConfiguration() {
+    if (this.configForm.status === 'VALID') {
+      this.numParents = this.configForm.get('numParents').value;
+      this.numChildren = this.configForm.get('numChildren').value;
+      this.maxStartSize = this.configForm.get('numMaxStartSize').value;
+
+      // reset
+      this.reset(this.numParents);
+    }else {
+      this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
+        duration: 2000,
+      });
+    }
+  }
+
+  // Interface
+  reset(numParents: number) {
+    this.children = [];
+    this.parents = this.generateStart(numParents);
+    this.averageFitness = 0;
+    this.bestVector = null;
+    this.closeConfiguration();
   }
 
   generateStart(parents: number): Vector[] {
@@ -105,7 +195,7 @@ export class EaComponent implements OnInit {
       childBuyAmount.push(Math.round((parent1.buyAmount[index] + parent2.buyAmount[index]) / 2));
     });
 
-    return this.mutate(new Vector(childMinStock, childBuyAmount), this.standardDeviation);
+    return this.mutate(new Vector(childMinStock, childBuyAmount), this.standardDeviationMinimalStock, this.standardDeviationbuyAmount);
   }
 
   getNChildren(parents: Vector[], numberChildren: number): Vector[] {
@@ -121,27 +211,24 @@ export class EaComponent implements OnInit {
     return children;
   }
 
-  // Auswählen der besten Vektoren
-  // Wiederhilung der Prozesses
-
-  mutate(vector: Vector, standardDeviation: number): Vector {
+  mutate(vector: Vector, standardDeviationMinimalStock: Array<number>, standardDeviationbuyAmount: Array<number>): Vector {
     // Zufallswert innerhalb der zweifachern Standardabweichung - die Standardabweichung
     const mutateMinStock = [];
     const mutateBuyAmount = [];
     vector.minimalStock.forEach((element, index) => {
-      let localStandardDeviation = vector.minimalStock[index] * standardDeviation;
+      let localStandardDeviation = vector.minimalStock[index] * standardDeviationMinimalStock[index];
       mutateMinStock.push(Math.round(
-        vector.minimalStock[index] + (Math.random() * localStandardDeviation * 2 ) - localStandardDeviation));
+        vector.minimalStock[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
 
-      localStandardDeviation = vector.buyAmount[index] * standardDeviation;
+      localStandardDeviation = vector.buyAmount[index] * standardDeviationbuyAmount[index];
       mutateBuyAmount.push(Math.round(
-        vector.buyAmount[index] + (Math.random() * localStandardDeviation * 2 ) - localStandardDeviation));
+        vector.buyAmount[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
     });
 
     return new Vector(mutateMinStock, mutateBuyAmount);
   }
 
-  selectForNextGen(numberParents: number, children: Vector[], iterations: number): Vector[] {
+  selectForNextGen(numberParents: number, children: Vector[]): Vector[] {
     const nextGen = [];
     for (let i = 0; i < numberParents; i ++) {
       let bestChild = null;
@@ -152,13 +239,19 @@ export class EaComponent implements OnInit {
       }
       bestChild.isNextGen = true;
       nextGen.push(bestChild);
+
+      // Besten Vektor merken
+      if (this.bestVector === null || bestChild.fitness < this.bestVector.fitness) {
+        this.bestVector = Object.create(bestChild);
+        this.bestVector.isNextGen = false;
+      }
     }
     return nextGen;
   }
 
   getAverageFitness(vectors: Vector[]): number {
     let sum = 0;
-    for (let vector of vectors){
+    for (const vector of vectors){
       sum += vector.fitness;
     }
     return sum / vectors.length;

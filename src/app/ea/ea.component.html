@@ -9,11 +9,11 @@
     </md-card-title>
     <md-card-content>
       <md-grid-list cols="5" rowHeight="fit">
-        <md-grid-tile>Produkt</md-grid-tile>
-        <md-grid-tile>Produktgröße</md-grid-tile>
-        <md-grid-tile>Lieferzeit</md-grid-tile>
-        <md-grid-tile>Verbrauch pro Tag</md-grid-tile>
-        <md-grid-tile>Bestand</md-grid-tile>
+        <md-grid-tile class="table-headline">Produkt</md-grid-tile>
+        <md-grid-tile class="table-headline">Produktgröße</md-grid-tile>
+        <md-grid-tile class="table-headline">Lieferzeit</md-grid-tile>
+        <md-grid-tile class="table-headline">Verbrauch pro Tag</md-grid-tile>
+        <md-grid-tile class="table-headline">Bestand</md-grid-tile>
         <div *ngFor="let product of data">
           <md-grid-tile *ngFor="let param of product.getData()">
             {{param}}
@@ -32,11 +32,126 @@
       </button>
       <button md-button (click)="buildNextGen()">
         <md-icon>cached</md-icon>
-        Crossover mit Mutation
+        Mutation
       </button>
-       <button md-button (click)="iterate(50)">
+      <button md-button (click)="iterate(50)">
         <md-icon>cached</md-icon>
         50 * Iterieren
+      </button>
+      <button md-button (click)="showConfig = true">
+        <md-icon>settings</md-icon>
+        Konfiguration anzeigen
+      </button>
+      <button md-button (click)="reset(numParents)">
+        <md-icon>close</md-icon>
+        Reset
+      </button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<div *ngIf="showConfig">
+  <md-card class="content-card">
+    <md-card-title>
+      Konfiguration des Evolutionären Algorithmus
+    </md-card-title>
+    <md-card-content class="ea-options">
+      <form [formGroup]="configForm">
+        <h2> Allgemeine Parameter </h2>
+        <md-input-container>
+          <input mdInput formControlName="numParents" type="number" placeholder="Anzahl Eltern">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="numChildren" type="number" placeholder="Anzahl Kinder">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput formControlName="numMaxStartSize" type="number" placeholder="Maximaler Startwert">
+        </md-input-container>
+        <br/>
+        <br/>
+        <h2> Vektor mit Standarsabweichungen für die Mutation </h2>
+
+        <div formGroupName="minimalStock">
+          <h3> Abweichungen für den minimalen Lagerbestand pro Produkt</h3>
+          <md-input-container>
+            <input mdInput formControlName="prodA" type="number" placeholder="Produkt A">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodB" type="number" placeholder="Produkt B">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodC" type="number" placeholder="Produkt C">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodD" type="number" placeholder="Produkt D">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodE" type="number" placeholder="Produkt E">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodF" type="number" placeholder="Produkt F">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodG" type="number" placeholder="Produkt G">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodH" type="number" placeholder="Produkt H">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodI" type="number" placeholder="Produkt I">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodJ" type="number" placeholder="Produkt J">
+          </md-input-container>
+        </div>
+
+        <div formGroupName="buyAmount">
+          <h3> Abweichungen für die nachzukaufende Menge pro Produkt</h3>
+          <md-input-container>
+            <input mdInput formControlName="prodA" type="number" placeholder="Produkt A">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodB" type="number" placeholder="Produkt B">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodC" type="number" placeholder="Produkt C">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodD" type="number" placeholder="Produkt D">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodE" type="number" placeholder="Produkt E">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodF" type="number" placeholder="Produkt F">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodG" type="number" placeholder="Produkt G">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodH" type="number" placeholder="Produkt H">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodI" type="number" placeholder="Produkt I">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput formControlName="prodJ" type="number" placeholder="Produkt J">
+          </md-input-container>
+        </div>
+      </form>
+    </md-card-content>
+    <md-card-actions>
+      <button *ngIf="!editConfig" md-button (click)="editConfiguration()">
+        <md-icon>settings</md-icon>
+        Bearbeiten
+      </button>
+      <button *ngIf="editConfig" md-button (click)="saveConfiguration()">
+        <md-icon>save</md-icon>
+        Speichern und Reset
+      </button>
+      <button md-button (click)="closeConfiguration()">
+        <md-icon>close</md-icon>
+        Schließen
       </button>
     </md-card-actions>
   </md-card>
@@ -45,21 +160,24 @@
 <div>
   <md-card class="content-card">
     <md-card-title>
-      Vectoren
+      Vektoren
     </md-card-title>
     <h2>Eltern</h2>
     <md-card-content>
       <div *ngFor="let vector of parents">
         <span [class.isNextGen]="vector.isNextGen">
-          {{vector.toString()}} : {{vector.fitness}}
+          ({{vector.toString()}}) : {{vector.fitness}}
         </span>
       </div>
-      <p> Durchschnitt Eltern-Fitness: {{averageFitness}}<p>
-      <h2>Kinder</h2>
-      <div *ngFor="let vector of children">
-        <span [class.isNextGen]="vector.isNextGen">
-          {{vector.toString()}} : {{vector.fitness}}
+      <p> Durchschnitt Eltern-Fitness: {{averageFitness}}
+        <p>
+          <p *ngIf="bestVector"> Bester Vektor insgesamt: {{bestVector.toString()}} : {{bestVector.fitness}}
+            <p>
+              <h2>Kinder</h2>
+              <div *ngFor="let vector of children">
+                <span [class.isNextGen]="vector.isNextGen">
+          ({{vector.toString()}}) : {{vector.fitness}}
         </span>
-      </div>
+              </div>
     </md-card-content>
   </md-card>
