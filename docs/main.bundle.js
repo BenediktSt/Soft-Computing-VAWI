@@ -40,7 +40,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(31);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomMaterialModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -123,7 +123,7 @@ AppComponent = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_charts__);
@@ -208,8 +208,10 @@ AppModule = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_product_model__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_vektoren_model__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_product_model__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_vektoren_model__ = __webpack_require__(236);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EaComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -223,28 +225,66 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var EaComponent = (function () {
-    function EaComponent() {
-        this.numParents = 10;
-        this.numChildren = 15;
-        this.maxStartSize = 20;
-        this.standardDeviation = 0.2;
-        this.simulationIterations = 10;
+    function EaComponent(fb, snackBar) {
+        this.fb = fb;
+        this.snackBar = snackBar;
         this.data = [
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('A', 0.01, 3, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('B', 0.02, 2, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('C', 0.03, 1, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('D', 0.04, 7, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('E', 0.05, 3, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('F', 0.06, 1, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('G', 0.07, 6, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('H', 0.08, 4, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('I', 0.09, 3, 1),
-            new __WEBPACK_IMPORTED_MODULE_1__util_product_model__["a" /* Product */]('J', 0.1, 2, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('A', 0.01, 3, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('B', 0.02, 2, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('C', 0.03, 1, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('D', 0.04, 7, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('E', 0.05, 3, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('F', 0.06, 1, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('G', 0.07, 6, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('H', 0.08, 4, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('I', 0.09, 3, 1),
+            new __WEBPACK_IMPORTED_MODULE_3__util_product_model__["a" /* Product */]('J', 0.1, 2, 1),
         ];
+        // Config
+        this.numParents = 10;
+        this.numChildren = 20;
+        this.maxStartSize = 20;
+        this.simulationIterations = 80;
+        this.standardDeviationMinimalStock = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2];
+        this.standardDeviationbuyAmount = [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2];
         this.children = [];
         this.parents = this.generateStart(this.numParents);
         this.averageFitness = 0;
+        this.bestVector = null;
+        this.showConfig = false;
+        this.editConfig = false;
+        this.configForm = this.fb.group({
+            numParents: [{ value: this.numParents, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+            numChildren: [{ value: this.numChildren, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+            numMaxStartSize: [{ value: this.maxStartSize, disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+            minimalStock: this.fb.group({
+                prodA: [{ value: this.standardDeviationMinimalStock[0], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodB: [{ value: this.standardDeviationMinimalStock[1], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodC: [{ value: this.standardDeviationMinimalStock[2], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodD: [{ value: this.standardDeviationMinimalStock[3], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodE: [{ value: this.standardDeviationMinimalStock[4], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodF: [{ value: this.standardDeviationMinimalStock[5], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodG: [{ value: this.standardDeviationMinimalStock[6], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodH: [{ value: this.standardDeviationMinimalStock[7], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodI: [{ value: this.standardDeviationMinimalStock[8], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodJ: [{ value: this.standardDeviationMinimalStock[9], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required]
+            }),
+            buyAmount: this.fb.group({
+                prodA: [{ value: this.standardDeviationbuyAmount[0], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodB: [{ value: this.standardDeviationbuyAmount[1], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodC: [{ value: this.standardDeviationbuyAmount[2], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodD: [{ value: this.standardDeviationbuyAmount[3], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodE: [{ value: this.standardDeviationbuyAmount[4], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodF: [{ value: this.standardDeviationbuyAmount[5], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodG: [{ value: this.standardDeviationbuyAmount[6], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodH: [{ value: this.standardDeviationbuyAmount[7], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodI: [{ value: this.standardDeviationbuyAmount[8], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required],
+                prodJ: [{ value: this.standardDeviationbuyAmount[9], disabled: true }, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["h" /* Validators */].required]
+            })
+        });
     }
     EaComponent.prototype.ngOnInit = function () {
     };
@@ -256,21 +296,24 @@ var EaComponent = (function () {
     EaComponent.prototype.evaluateVectors = function () {
         for (var _i = 0, _a = this.parents; _i < _a.length; _i++) {
             var parent = _a[_i];
-            parent.evaluate(20, this.data);
+            // parent.evaluate(this.simulationIterations, this.data);
+            parent.evaluate2(this.data);
         }
         for (var _b = 0, _c = this.children; _b < _c.length; _b++) {
             var child = _c[_b];
-            child.evaluate(20, this.data);
+            //  child.evaluate(this.simulationIterations, this.data);
+            child.evaluate2(this.data);
         }
         this.averageFitness = this.getAverageFitness(this.parents);
     };
     // Interface
     EaComponent.prototype.buildNextGen = function () {
-        this.parents = this.selectForNextGen(this.numParents, this.children, this.simulationIterations);
+        this.parents = this.selectForNextGen(this.numParents, this.children);
         for (var _i = 0, _a = this.parents; _i < _a.length; _i++) {
             var parent = _a[_i];
             parent.isNextGen = false;
         }
+        this.averageFitness = this.getAverageFitness(this.parents);
     };
     // Interface
     EaComponent.prototype.iterate = function (iterations) {
@@ -279,6 +322,40 @@ var EaComponent = (function () {
             this.evaluateVectors();
             this.buildNextGen();
         }
+    };
+    // Interface
+    EaComponent.prototype.editConfiguration = function () {
+        this.editConfig = true;
+        this.configForm.enable();
+    };
+    // Interface
+    EaComponent.prototype.closeConfiguration = function () {
+        this.editConfig = false;
+        this.showConfig = false;
+        this.configForm.disable();
+    };
+    // Interface
+    EaComponent.prototype.saveConfiguration = function () {
+        if (this.configForm.status === 'VALID') {
+            this.numParents = this.configForm.get('numParents').value;
+            this.numChildren = this.configForm.get('numChildren').value;
+            this.maxStartSize = this.configForm.get('numMaxStartSize').value;
+            // reset
+            this.reset(this.numParents);
+        }
+        else {
+            this.snackBar.open('Bitte alle Felder befüllen.', 'OK', {
+                duration: 2000,
+            });
+        }
+    };
+    // Interface
+    EaComponent.prototype.reset = function (numParents) {
+        this.children = [];
+        this.parents = this.generateStart(numParents);
+        this.averageFitness = 0;
+        this.bestVector = null;
+        this.closeConfiguration();
     };
     EaComponent.prototype.generateStart = function (parents) {
         var start = [];
@@ -289,7 +366,7 @@ var EaComponent = (function () {
                 minSock.push(Math.floor(Math.random() * this.maxStartSize));
                 buy.push(Math.floor(Math.random() * this.maxStartSize));
             }
-            start.push(new __WEBPACK_IMPORTED_MODULE_2__util_vektoren_model__["a" /* Vector */](minSock, buy));
+            start.push(new __WEBPACK_IMPORTED_MODULE_4__util_vektoren_model__["a" /* Vector */](minSock, buy));
         }
         return start;
     };
@@ -301,7 +378,7 @@ var EaComponent = (function () {
             childMinStock.push(Math.round((parent1.minimalStock[index] + parent2.minimalStock[index]) / 2));
             childBuyAmount.push(Math.round((parent1.buyAmount[index] + parent2.buyAmount[index]) / 2));
         });
-        return this.mutate(new __WEBPACK_IMPORTED_MODULE_2__util_vektoren_model__["a" /* Vector */](childMinStock, childBuyAmount), this.standardDeviation);
+        return this.mutate(new __WEBPACK_IMPORTED_MODULE_4__util_vektoren_model__["a" /* Vector */](childMinStock, childBuyAmount), this.standardDeviationMinimalStock, this.standardDeviationbuyAmount);
     };
     EaComponent.prototype.getNChildren = function (parents, numberChildren) {
         var children = [];
@@ -311,21 +388,19 @@ var EaComponent = (function () {
         }
         return children;
     };
-    // Auswählen der besten Vektoren
-    // Wiederhilung der Prozesses
-    EaComponent.prototype.mutate = function (vector, standardDeviation) {
+    EaComponent.prototype.mutate = function (vector, standardDeviationMinimalStock, standardDeviationbuyAmount) {
         // Zufallswert innerhalb der zweifachern Standardabweichung - die Standardabweichung
         var mutateMinStock = [];
         var mutateBuyAmount = [];
         vector.minimalStock.forEach(function (element, index) {
-            var localStandardDeviation = vector.minimalStock[index] * standardDeviation;
-            mutateMinStock.push(Math.round(vector.minimalStock[index] + (Math.random() * localStandardDeviation * 2) - localStandardDeviation));
-            localStandardDeviation = vector.buyAmount[index] * standardDeviation;
-            mutateBuyAmount.push(Math.round(vector.buyAmount[index] + (Math.random() * localStandardDeviation * 2) - localStandardDeviation));
+            var localStandardDeviation = vector.minimalStock[index] * standardDeviationMinimalStock[index];
+            mutateMinStock.push(Math.round(vector.minimalStock[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
+            localStandardDeviation = vector.buyAmount[index] * standardDeviationbuyAmount[index];
+            mutateBuyAmount.push(Math.round(vector.buyAmount[index] + ((Math.random() * 2 - 1) * localStandardDeviation)));
         });
-        return new __WEBPACK_IMPORTED_MODULE_2__util_vektoren_model__["a" /* Vector */](mutateMinStock, mutateBuyAmount);
+        return new __WEBPACK_IMPORTED_MODULE_4__util_vektoren_model__["a" /* Vector */](mutateMinStock, mutateBuyAmount);
     };
-    EaComponent.prototype.selectForNextGen = function (numberParents, children, iterations) {
+    EaComponent.prototype.selectForNextGen = function (numberParents, children) {
         var nextGen = [];
         for (var i = 0; i < numberParents; i++) {
             var bestChild = null;
@@ -337,6 +412,11 @@ var EaComponent = (function () {
             }
             bestChild.isNextGen = true;
             nextGen.push(bestChild);
+            // Besten Vektor merken
+            if (this.bestVector === null || bestChild.fitness < this.bestVector.fitness) {
+                this.bestVector = Object.create(bestChild);
+                this.bestVector.isNextGen = false;
+            }
         }
         return nextGen;
     };
@@ -356,9 +436,10 @@ EaComponent = __decorate([
         template: __webpack_require__(365),
         styles: [__webpack_require__(353)]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["i" /* FormBuilder */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MdSnackBar */]) === "function" && _b || Object])
 ], EaComponent);
 
+var _a, _b;
 //# sourceMappingURL=ea.component.js.map
 
 /***/ }),
@@ -414,6 +495,26 @@ var Vector = (function () {
         });
         return returnString;
     };
+    Vector.prototype.evaluate2 = function (data) {
+        // Zweite möglichkeit zur Evaluation:
+        // minimalStock - verbrauch pro Tag * lieferzeit
+        var _this = this;
+        var sumCriteria1 = 0;
+        var sumCriteria2 = 0;
+        this.minimalStock.forEach(function (elem, index) {
+            /** Kriterium 1:
+             * | minimaler Bestand - täglicher Verbrauch * Lieferzeit | = minimaler Lagerbestand
+             * Das Ergebnis wird mit der Produktgröße gewichtet
+             */
+            sumCriteria1 += Math.abs(elem - data[index].consumption * data[index].deliveryPeriod) * data[index].size;
+            /** Kriterium 2:
+             * | Einkaufsmenge - täglicher Verbrauch * Lieferzeit | = Überschuss
+             * Das Ergebnis wird mit der Produktgröße gewichtet
+             */
+            sumCriteria2 += Math.abs(_this.buyAmount[index] - data[index].consumption * data[index].deliveryPeriod) * data[index].size;
+        });
+        this.fitness = sumCriteria1 + sumCriteria2;
+    };
     Vector.prototype.evaluate = function (iterations, data) {
         var _this = this;
         var products = [];
@@ -447,15 +548,22 @@ var Vector = (function () {
         for (var i = 0; i < iterations; i++) {
             _loop_1(i);
         }
-        console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
-        console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
+        var totalMinimalStock = 0;
+        var totalBuyAmount = 0;
+        this.minimalStock.forEach(function (elem, index) {
+            totalMinimalStock += elem;
+            totalBuyAmount += _this.buyAmount[index];
+        });
+        // console.log('Anzahl lehrer Produkte: ' + sumEmptyProducts);
+        // console.log('Durschnittlicher Lagerbestand: ' + totalStock / iterations);
         // Durchschnittlicher Lagerbestand + 5 * sumEmptyProducts
-        this.fitness = totalStock / iterations + 2 * sumEmptyProducts;
+        this.fitness = totalStock / iterations + sumEmptyProducts + totalMinimalStock + totalBuyAmount;
+        this.orders = [];
     };
     Vector.prototype.getTotalStock = function (products) {
         var count = 0;
         products.forEach(function (elem) {
-            count += elem.stock;
+            count += elem.stock * elem.size;
         });
         return count;
     };
@@ -573,8 +681,8 @@ var _a, _b;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_es6_fuzz__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_es6_fuzz_lib_curve_triangle__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_es6_fuzz_lib_curve_trapezoid__ = __webpack_require__(84);
@@ -932,8 +1040,8 @@ HomeComponent = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_map__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_rules__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__population_chart_population_chart_component__ = __webpack_require__(71);
@@ -1331,7 +1439,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "md-grid-tile {\r\n  background: lightblue;\r\n}\r\n\r\n.isNextGen {\r\n  font-weight: bold;\r\n}\r\n\r\nmd-grid-list {\r\n  height: 400px;\r\n}", ""]);
+exports.push([module.i, "md-grid-tile {\r\n  background: #B19CD9;\r\n}\r\n\r\n.isNextGen {\r\n  font-weight: bold;\r\n}\r\n\r\nmd-grid-list {\r\n  height: 400px;\r\n}\r\n\r\n.table-headline {\r\n  font-weight: bold;\r\n}\r\n\r\n.ea-options md-input-container {\r\n  padding-right: 15px\r\n}", ""]);
 
 // exports
 
@@ -1695,7 +1803,7 @@ module.exports = "<md-toolbar color=\"primary\">{{title}}\r\n    <span class=\"e
 /***/ 365:
 /***/ (function(module, exports) {
 
-module.exports = "<h2>\r\n  Warenlagerung eines Kaufhauses mit Evolutionären Algorithmen\r\n</h2>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Ausgangswerte\r\n    </md-card-title>\r\n    <md-card-content>\r\n      <md-grid-list cols=\"5\" rowHeight=\"fit\">\r\n        <md-grid-tile>Produkt</md-grid-tile>\r\n        <md-grid-tile>Produktgröße</md-grid-tile>\r\n        <md-grid-tile>Lieferzeit</md-grid-tile>\r\n        <md-grid-tile>Verbrauch pro Tag</md-grid-tile>\r\n        <md-grid-tile>Bestand</md-grid-tile>\r\n        <div *ngFor=\"let product of data\">\r\n          <md-grid-tile *ngFor=\"let param of product.getData()\">\r\n            {{param}}\r\n          </md-grid-tile>\r\n        </div>\r\n      </md-grid-list>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"makeChildren()\">\r\n        <md-icon>cached</md-icon>\r\n        Kinder generieren\r\n      </button>\r\n      <button md-button (click)=\"evaluateVectors()\">\r\n        <md-icon>cached</md-icon>\r\n        Bewerten\r\n      </button>\r\n      <button md-button (click)=\"buildNextGen()\">\r\n        <md-icon>cached</md-icon>\r\n        Crossover mit Mutation\r\n      </button>\r\n       <button md-button (click)=\"iterate(50)\">\r\n        <md-icon>cached</md-icon>\r\n        50 * Iterieren\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Vectoren\r\n    </md-card-title>\r\n    <h2>Eltern</h2>\r\n    <md-card-content>\r\n      <div *ngFor=\"let vector of parents\">\r\n        <span [class.isNextGen]=\"vector.isNextGen\">\r\n          {{vector.toString()}} : {{vector.fitness}}\r\n        </span>\r\n      </div>\r\n      <p> Durchschnitt Eltern-Fitness: {{averageFitness}}<p>\r\n      <h2>Kinder</h2>\r\n      <div *ngFor=\"let vector of children\">\r\n        <span [class.isNextGen]=\"vector.isNextGen\">\r\n          {{vector.toString()}} : {{vector.fitness}}\r\n        </span>\r\n      </div>\r\n    </md-card-content>\r\n  </md-card>"
+module.exports = "<h2>\r\n  Warenlagerung eines Kaufhauses mit Evolutionären Algorithmen\r\n</h2>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Ausgangswerte\r\n    </md-card-title>\r\n    <md-card-content>\r\n      <md-grid-list cols=\"5\" rowHeight=\"fit\">\r\n        <md-grid-tile class=\"table-headline\">Produkt</md-grid-tile>\r\n        <md-grid-tile class=\"table-headline\">Produktgröße</md-grid-tile>\r\n        <md-grid-tile class=\"table-headline\">Lieferzeit</md-grid-tile>\r\n        <md-grid-tile class=\"table-headline\">Verbrauch pro Tag</md-grid-tile>\r\n        <md-grid-tile class=\"table-headline\">Bestand</md-grid-tile>\r\n        <div *ngFor=\"let product of data\">\r\n          <md-grid-tile *ngFor=\"let param of product.getData()\">\r\n            {{param}}\r\n          </md-grid-tile>\r\n        </div>\r\n      </md-grid-list>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button md-button (click)=\"makeChildren()\">\r\n        <md-icon>cached</md-icon>\r\n        Kinder generieren\r\n      </button>\r\n      <button md-button (click)=\"evaluateVectors()\">\r\n        <md-icon>cached</md-icon>\r\n        Bewerten\r\n      </button>\r\n      <button md-button (click)=\"buildNextGen()\">\r\n        <md-icon>cached</md-icon>\r\n        Mutation\r\n      </button>\r\n      <button md-button (click)=\"iterate(50)\">\r\n        <md-icon>cached</md-icon>\r\n        50 * Iterieren\r\n      </button>\r\n      <button md-button (click)=\"showConfig = true\">\r\n        <md-icon>settings</md-icon>\r\n        Konfiguration anzeigen\r\n      </button>\r\n      <button md-button (click)=\"reset(numParents)\">\r\n        <md-icon>close</md-icon>\r\n        Reset\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div *ngIf=\"showConfig\">\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Konfiguration des Evolutionären Algorithmus\r\n    </md-card-title>\r\n    <md-card-content class=\"ea-options\">\r\n      <form [formGroup]=\"configForm\">\r\n        <h2> Allgemeine Parameter </h2>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"numParents\" type=\"number\" placeholder=\"Anzahl Eltern\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"numChildren\" type=\"number\" placeholder=\"Anzahl Kinder\">\r\n        </md-input-container>\r\n        <md-input-container>\r\n          <input mdInput formControlName=\"numMaxStartSize\" type=\"number\" placeholder=\"Maximaler Startwert\">\r\n        </md-input-container>\r\n        <br/>\r\n        <br/>\r\n        <h2> Vektor mit Standarsabweichungen für die Mutation </h2>\r\n\r\n        <div formGroupName=\"minimalStock\">\r\n          <h3> Abweichungen für den minimalen Lagerbestand pro Produkt</h3>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodA\" type=\"number\" placeholder=\"Produkt A\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodB\" type=\"number\" placeholder=\"Produkt B\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodC\" type=\"number\" placeholder=\"Produkt C\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodD\" type=\"number\" placeholder=\"Produkt D\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodE\" type=\"number\" placeholder=\"Produkt E\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodF\" type=\"number\" placeholder=\"Produkt F\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodG\" type=\"number\" placeholder=\"Produkt G\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodH\" type=\"number\" placeholder=\"Produkt H\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodI\" type=\"number\" placeholder=\"Produkt I\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodJ\" type=\"number\" placeholder=\"Produkt J\">\r\n          </md-input-container>\r\n        </div>\r\n\r\n        <div formGroupName=\"buyAmount\">\r\n          <h3> Abweichungen für die nachzukaufende Menge pro Produkt</h3>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodA\" type=\"number\" placeholder=\"Produkt A\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodB\" type=\"number\" placeholder=\"Produkt B\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodC\" type=\"number\" placeholder=\"Produkt C\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodD\" type=\"number\" placeholder=\"Produkt D\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodE\" type=\"number\" placeholder=\"Produkt E\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodF\" type=\"number\" placeholder=\"Produkt F\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodG\" type=\"number\" placeholder=\"Produkt G\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodH\" type=\"number\" placeholder=\"Produkt H\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodI\" type=\"number\" placeholder=\"Produkt I\">\r\n          </md-input-container>\r\n          <md-input-container>\r\n            <input mdInput formControlName=\"prodJ\" type=\"number\" placeholder=\"Produkt J\">\r\n          </md-input-container>\r\n        </div>\r\n      </form>\r\n    </md-card-content>\r\n    <md-card-actions>\r\n      <button *ngIf=\"!editConfig\" md-button (click)=\"editConfiguration()\">\r\n        <md-icon>settings</md-icon>\r\n        Bearbeiten\r\n      </button>\r\n      <button *ngIf=\"editConfig\" md-button (click)=\"saveConfiguration()\">\r\n        <md-icon>save</md-icon>\r\n        Speichern und Reset\r\n      </button>\r\n      <button md-button (click)=\"closeConfiguration()\">\r\n        <md-icon>close</md-icon>\r\n        Schließen\r\n      </button>\r\n    </md-card-actions>\r\n  </md-card>\r\n</div>\r\n\r\n<div>\r\n  <md-card class=\"content-card\">\r\n    <md-card-title>\r\n      Vektoren\r\n    </md-card-title>\r\n    <h2>Eltern</h2>\r\n    <md-card-content>\r\n      <div *ngFor=\"let vector of parents\">\r\n        <span [class.isNextGen]=\"vector.isNextGen\">\r\n          ({{vector.toString()}}) : {{vector.fitness}}\r\n        </span>\r\n      </div>\r\n      <p> Durchschnitt Eltern-Fitness: {{averageFitness}}\r\n        <p>\r\n          <p *ngIf=\"bestVector\"> Bester Vektor insgesamt: {{bestVector.toString()}} : {{bestVector.fitness}}\r\n            <p>\r\n              <h2>Kinder</h2>\r\n              <div *ngFor=\"let vector of children\">\r\n                <span [class.isNextGen]=\"vector.isNextGen\">\r\n          ({{vector.toString()}}) : {{vector.fitness}}\r\n        </span>\r\n              </div>\r\n    </md-card-content>\r\n  </md-card>"
 
 /***/ }),
 
